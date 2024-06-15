@@ -200,6 +200,9 @@ vim.keymap.set('n', 'K', ':bprevious<CR>', { desc = 'Move to the previous buffer
 -- Press jk fast to exit insert mode
 vim.keymap.set('i', 'jk', '<ESC>')
 
+-- Toggle Neotree
+vim.keymap.set('n', '<leader>n', ':Neotree toggle<CR>', { desc = 'Toggle Neotree' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
