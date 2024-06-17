@@ -115,7 +115,6 @@ vim.keymap.set('n', 'K', ':bprevious<CR>', { desc = 'Move to the previous buffer
 vim.keymap.set('i', 'jk', '<ESC>')
 
 -- Toggle plugins windows
-vim.keymap.set('n', '<leader>n', ':Neotree toggle<CR>', { desc = 'Toggle Neotree' })
 vim.keymap.set('n', '<leader>a', ':AerialToggle<CR>', { desc = 'Toggle Aerial' })
 
 -- [[ Basic Autocommands ]]
