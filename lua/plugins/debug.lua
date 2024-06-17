@@ -9,6 +9,7 @@
 return {
   -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
+  'mfussenegger/nvim-dap-python',
   -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
@@ -92,5 +93,7 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
+
+    require('dap-python').setup 'python'
   end,
 }
