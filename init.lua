@@ -1,3 +1,9 @@
+-- Suppress optional provider warnings
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 -- NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -163,7 +169,7 @@ require('lazy').setup({
   require 'plugins.mini',
   require 'plugins.treesitter',
   require 'plugins.aerial',
-  require 'plugins.startup',
+  require 'plugins.dashboard',
   require 'plugins.remote',
   require 'plugins.debug',
   require 'plugins.indent_line',
