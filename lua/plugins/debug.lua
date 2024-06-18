@@ -24,6 +24,7 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    'mfussenegger/nvim-dap-python', -- TODO: add configurations
   },
   config = function()
     local dap = require 'dap'
@@ -93,7 +94,10 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     require('dap-python').setup 'python'
   end,
 }
