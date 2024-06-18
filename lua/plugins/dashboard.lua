@@ -10,6 +10,7 @@ return {
         week_header = {
           enable = true,
         },
+        shortcut = {},
         -- shortcut = {
         --   { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
         --   {
