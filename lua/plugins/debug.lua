@@ -9,7 +9,6 @@
 return {
   -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
-  'mfussenegger/nvim-dap-python',
   -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
@@ -22,7 +21,7 @@ return {
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
 
-    -- Add your own debuggers here
+    -- NOTE: Add your own debuggers here
     'leoluz/nvim-dap-go',
     'mfussenegger/nvim-dap-python', -- TODO: add configurations
   },
@@ -94,10 +93,6 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
     require('dap-python').setup 'python'
   end,
 }
