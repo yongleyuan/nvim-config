@@ -113,15 +113,41 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- Navigate/manage buffers
-vim.keymap.set('n', 'J', ':bnext<CR>', { desc = 'Move to the next buffer' })
-vim.keymap.set('n', 'K', ':bprevious<CR>', { desc = 'Move to the previous buffer' })
+-- -- Navigate/manage buffers
+-- vim.keymap.set('n', 'J', ':bnext<CR>', { desc = 'Move to the next buffer' })
+-- vim.keymap.set('n', 'K', ':bprevious<CR>', { desc = 'Move to the previous buffer' })
+-- Disabled because using barbar
 
 -- Press jk fast to exit insert mode
-vim.keymap.set('i', 'jk', '<ESC>')
+vim.keymap.set({ 'v', 'i' }, 'jk', '<ESC>')
 
 -- Toggle plugins windows
+vim.keymap.set('n', '<leader>A', ':AerialToggle!<CR>', { desc = 'Toggle Aerial and stay in current window' })
 vim.keymap.set('n', '<leader>a', ':AerialToggle<CR>', { desc = 'Toggle Aerial' })
+
+-- Leap key mapping
+vim.keymap.set('n', '<leader>j', '<Plug>(leap)', { desc = 'Leap' })
+
+-- barbar key mapping
+vim.keymap.set('n', '<A-j>', '<Cmd>BufferPrevious<CR>')
+vim.keymap.set('n', '<A-k>', '<Cmd>BufferNext<CR>')
+vim.keymap.set('n', '<A-h>', '<Cmd>BufferMovePrevious<CR>')
+vim.keymap.set('n', '<A-l>', '<Cmd>BufferMoveNext<CR>')
+vim.keymap.set('n', '<A-1>', '<Cmd>BufferGoto 1<CR>')
+vim.keymap.set('n', '<A-2>', '<Cmd>BufferGoto 2<CR>')
+vim.keymap.set('n', '<A-3>', '<Cmd>BufferGoto 3<CR>')
+vim.keymap.set('n', '<A-4>', '<Cmd>BufferGoto 4<CR>')
+vim.keymap.set('n', '<A-5>', '<Cmd>BufferGoto 5<CR>')
+vim.keymap.set('n', '<A-6>', '<Cmd>BufferGoto 6<CR>')
+vim.keymap.set('n', '<A-7>', '<Cmd>BufferGoto 7<CR>')
+vim.keymap.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>')
+vim.keymap.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>')
+vim.keymap.set('n', '<A-0>', '<Cmd>BufferGoto 0<CR>')
+vim.keymap.set('n', '<A-p>', '<Cmd>BufferPick<CR>')
+vim.keymap.set('n', '<A-c>', '<Cmd>BufferClose<CR>')
+vim.keymap.set('n', '<A-x>', '<Cmd>BufferClose!<CR>')
+vim.keymap.set('n', '<A-d>', '<Cmd>BufferDelete<CR>')
+vim.keymap.set('n', '<A-s>', '<Cmd>BufferDelete!<CR>')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -160,6 +186,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
 
   require 'plugins.autotab',
+  require 'plugins.statusline',
   require 'plugins.comment',
   require 'plugins.which-key',
   require 'plugins.telescope',
@@ -178,6 +205,8 @@ require('lazy').setup({
   require 'plugins.autopairs',
   require 'plugins.neo-tree',
   require 'plugins.git',
+  require 'plugins.leap',
+  require 'plugins.barbar',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
