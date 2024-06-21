@@ -149,6 +149,16 @@ vim.keymap.set('n', '<A-x>', '<Cmd>BufferClose!<CR>')
 vim.keymap.set('n', '<A-d>', '<Cmd>BufferDelete<CR>')
 vim.keymap.set('n', '<A-s>', '<Cmd>BufferDelete!<CR>')
 
+-- Move selected text up/down in visual mode
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+
+-- Modified j command to hold cursor position
+vim.keymap.set('n', 'J', 'mzJ`z')
+
+-- Search and replace
+vim.keymap.set('n', '<leader>sr', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
