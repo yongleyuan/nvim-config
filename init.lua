@@ -217,6 +217,7 @@ require('lazy').setup({
   require 'plugins.git',
   require 'plugins.leap',
   require 'plugins.barbar',
+  require 'plugins.codeium',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

@@ -6,9 +6,18 @@ return {
       -- options = { theme = 'nord' },
       sections = {
         lualine_x = {
+          function()
+            return vim.fn['codeium#GetStatusString']()
+          end,
+        },
+        lualine_y = {
           -- 'encoding',
           -- 'fileformat',
           'filetype',
+        },
+        lualine_z = {
+          'progress',
+          'location',
         },
       },
     }
