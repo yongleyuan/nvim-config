@@ -119,13 +119,15 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Disabled because using barbar
 
 -- Press jk fast to exit insert mode
-vim.keymap.set({ 'v', 'i' }, 'jk', '<ESC>')
+-- NOTE: Comment these out if capslock and esc keys are switched
+-- vim.keymap.set('n', 'jk', '<ESC>')
+-- vim.keymap.set('i', 'jk', '<ESC>')
 
--- Toggle plugins windows
+-- Toggle aerial windows
 vim.keymap.set('n', '<leader>A', ':AerialToggle!<CR>', { desc = 'Toggle Aerial and stay in current window' })
 vim.keymap.set('n', '<leader>a', ':AerialToggle<CR>', { desc = 'Toggle Aerial' })
 
--- Leap key mapping
+-- Leap
 vim.keymap.set('n', '<leader>j', '<Plug>(leap)', { desc = 'Leap' })
 
 -- barbar key mapping
@@ -167,7 +169,7 @@ vim.keymap.set('n', '<leader>sr', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
   callback = function()
     vim.highlight.on_yank()
   end,
