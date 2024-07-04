@@ -120,8 +120,8 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- Press jk fast to exit insert mode
 -- NOTE: Comment these out if capslock and esc keys are switched
--- vim.keymap.set('n', 'jk', '<ESC>')
--- vim.keymap.set('i', 'jk', '<ESC>')
+-- vim.keymap.set('v', 'jk', '<ESC>')
+vim.keymap.set('i', 'jk', '<ESC>')
 
 -- Toggle aerial windows
 vim.keymap.set('n', '<leader>A', ':AerialToggle!<CR>', { desc = 'Toggle Aerial and stay in current window' })
@@ -160,6 +160,10 @@ vim.keymap.set('n', 'J', 'mzJ`z')
 
 -- Search and replace
 vim.keymap.set('n', '<leader>sr', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- Newline with enter
+vim.keymap.set('n', '<CR>', 'o<Esc>')
+vim.keymap.set('n', '<S-CR>', 'O<Esc>')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
