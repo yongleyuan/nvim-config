@@ -98,6 +98,8 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- LSP related keymaps are set in ./lua/plugins/lsp.lua
+
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -124,7 +126,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('i', 'jk', '<ESC>')
 
 -- Toggle aerial windows
-vim.keymap.set('n', '<leader>A', ':AerialToggle!<CR>', { desc = 'Toggle Aerial and stay in current window' })
+vim.keymap.set('n', '<leader>A', ':AerialToggle!<CR>', { desc = 'Toggle Aerial and stay' })
 vim.keymap.set('n', '<leader>a', ':AerialToggle<CR>', { desc = 'Toggle Aerial' })
 
 -- Leap
@@ -159,11 +161,18 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', 'J', 'mzJ`z')
 
 -- Search and replace
-vim.keymap.set('n', '<leader>sr', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set('n', '<leader>rw', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[R]eplace [W]ord' })
 
 -- Newline with enter
 vim.keymap.set('n', '<CR>', 'o<Esc>')
 vim.keymap.set('n', '<S-CR>', 'O<Esc>')
+
+-- Autosession keymaps
+vim.keymap.set('n', '<leader>nv', '<Cmd>SessionSave<CR>', { desc = 'Sa[V]e session' })
+vim.keymap.set('n', '<leader>nr', '<Cmd>SessionRestore<CR>', { desc = '[R]estore last session' })
+vim.keymap.set('n', '<leader>nd', '<Cmd>Autosession delete<CR>', { desc = '[D]elete session' })
+vim.keymap.set('n', '<leader>ns', '<Cmd>Autosession search<CR>', { desc = '[S]earch sessions' })
+-- Just use `:SessionSave` and `:SessionRestore` etc.
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -224,6 +233,7 @@ require('lazy').setup({
   require 'plugins.leap',
   require 'plugins.barbar',
   require 'plugins.codeium',
+  require 'plugins.autosession',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

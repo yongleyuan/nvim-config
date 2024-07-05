@@ -11,7 +11,7 @@ return {
       return vim.fn['codeium#Complete']()
     end, { expr = true, silent = true })
 
-    vim.keymap.set('i', '<C-n>', function()
+    vim.keymap.set('i', '<C-o>', function()
       return vim.fn['codeium#CycleCompletions'](1)
     end, { expr = true, silent = true })
 
