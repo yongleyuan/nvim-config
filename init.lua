@@ -130,7 +130,8 @@ vim.keymap.set('n', '<leader>A', ':AerialToggle!<CR>', { desc = 'Toggle Aerial a
 vim.keymap.set('n', '<leader>a', ':AerialToggle<CR>', { desc = 'Toggle Aerial' })
 
 -- Leap
-vim.keymap.set('n', '<leader>j', '<Plug>(leap)', { desc = 'Leap' })
+-- vim.keymap.set('n', '<leader>j', '<Plug>(leap)', { desc = 'Leap' })
+vim.keymap.set('n', 'q', '<Plug>(leap)', { desc = 'Leap' })
 
 -- barbar key mapping
 vim.keymap.set('n', '<A-j>', '<Cmd>BufferPrevious<CR>')
@@ -168,10 +169,10 @@ vim.keymap.set('n', '<CR>', 'o<Esc>')
 vim.keymap.set('n', '<S-CR>', 'O<Esc>')
 
 -- Autosession keymaps
-vim.keymap.set('n', '<leader>nv', '<Cmd>SessionSave<CR>', { desc = 'Sa[V]e session' })
-vim.keymap.set('n', '<leader>nr', '<Cmd>SessionRestore<CR>', { desc = '[R]estore last session' })
-vim.keymap.set('n', '<leader>nd', '<Cmd>Autosession delete<CR>', { desc = '[D]elete session' })
-vim.keymap.set('n', '<leader>ns', '<Cmd>Autosession search<CR>', { desc = '[S]earch sessions' })
+vim.keymap.set('n', '<leader>Sv', '<Cmd>SessionSave<CR>', { desc = '[S]ession Sa[V]e ' })
+vim.keymap.set('n', '<leader>Sr', '<Cmd>SessionRestore<CR>', { desc = '[S]ession [R]estore' })
+vim.keymap.set('n', '<leader>Sd', '<Cmd>Autosession delete<CR>', { desc = '[S]ession [D]elete ' })
+vim.keymap.set('n', '<leader>Ss', '<Cmd>Autosession search<CR>', { desc = '[S]ession [S]earch' })
 -- Just use `:SessionSave` and `:SessionRestore` etc.
 
 -- [[ Basic Autocommands ]]
@@ -230,7 +231,7 @@ require('lazy').setup({
   require 'plugins.autopairs',
   require 'plugins.neo-tree',
   require 'plugins.git',
-  require 'plugins.leap',
+  require 'plugins.motion',
   require 'plugins.barbar',
   require 'plugins.codeium',
   require 'plugins.autosession',
