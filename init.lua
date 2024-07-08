@@ -87,8 +87,8 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -126,7 +126,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('i', 'jk', '<ESC>')
 
 -- Toggle aerial windows
-vim.keymap.set('n', '<leader>A', ':AerialToggle!<CR>', { desc = 'Toggle Aerial and stay' })
+-- vim.keymap.set('n', '<leader>A', ':AerialToggle!<CR>', { desc = 'Toggle Aerial and stay' })
 vim.keymap.set('n', '<leader>a', ':AerialToggle<CR>', { desc = 'Toggle Aerial' })
 
 -- Leap
@@ -162,7 +162,7 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', 'J', 'mzJ`z')
 
 -- Search and replace
-vim.keymap.set('n', '<leader>rw', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[R]eplace [W]ord' })
+vim.keymap.set('n', '<leader>rw', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[R]eplace [W]ord under cursor' })
 
 -- Newline with enter
 vim.keymap.set('n', '<CR>', 'o<Esc>')
@@ -174,6 +174,9 @@ vim.keymap.set('n', '<leader>Sr', '<Cmd>SessionRestore<CR>', { desc = '[S]ession
 vim.keymap.set('n', '<leader>Sd', '<Cmd>Autosession delete<CR>', { desc = '[S]ession [D]elete ' })
 vim.keymap.set('n', '<leader>Ss', '<Cmd>Autosession search<CR>', { desc = '[S]ession [S]earch' })
 -- Just use `:SessionSave` and `:SessionRestore` etc.
+
+-- NOTE: Remove keymaps due to duplication or redundancy
+-- vim.keymap.del('n', 'grr')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
