@@ -234,11 +234,12 @@ require('lazy').setup({
   require 'plugins.git',
   require 'plugins.motion',
   require 'plugins.barbar',
-  require 'plugins.codeium',
+  require 'plugins.ai',
   require 'plugins.autosession',
   require 'plugins.python-venv',
   require 'plugins.yanky',
   require 'plugins.undotree',
+  require 'plugins.notify',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
