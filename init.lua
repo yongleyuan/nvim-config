@@ -127,7 +127,7 @@ vim.keymap.set('i', 'jk', '<ESC>')
 
 -- Toggle aerial windows
 -- vim.keymap.set('n', '<leader>A', ':AerialToggle!<CR>', { desc = 'Toggle Aerial and stay' })
-vim.keymap.set('n', '<leader>a', ':AerialToggle<CR>', { desc = 'Toggle Aerial' })
+vim.keymap.set('n', '<leader>a', ':AerialToggle<CR>', { desc = '[A]erial' })
 
 -- Leap
 -- vim.keymap.set('n', '<leader>j', '<Plug>(leap)', { desc = 'Leap' })
@@ -149,14 +149,12 @@ vim.keymap.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>')
 vim.keymap.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>')
 vim.keymap.set('n', '<A-0>', '<Cmd>BufferGoto 0<CR>')
 vim.keymap.set('n', '<A-p>', '<Cmd>BufferPick<CR>')
-vim.keymap.set('n', '<A-c>', '<Cmd>BufferClose<CR>')
-vim.keymap.set('n', '<A-x>', '<Cmd>BufferClose!<CR>')
-vim.keymap.set('n', '<A-d>', '<Cmd>BufferDelete<CR>')
-vim.keymap.set('n', '<A-s>', '<Cmd>BufferDelete!<CR>')
+vim.keymap.set('n', '<A-c>', '<Cmd>BufferDelete<CR>')
+vim.keymap.set('n', '<A-x>', '<Cmd>BufferDelete!<CR>')
 
 -- Move selected text up/down in visual mode
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selected text up' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move selected text down' })
 
 -- Modified j command to hold cursor position
 vim.keymap.set('n', 'J', 'mzJ`z')
@@ -229,7 +227,7 @@ require('lazy').setup({
   require 'plugins.dashboard',
   require 'plugins.remote',
   require 'plugins.debug',
-  require 'plugins.indent_line',
+  require 'plugins.indent-line',
   require 'plugins.lint',
   require 'plugins.autopairs',
   require 'plugins.neo-tree',
@@ -238,6 +236,9 @@ require('lazy').setup({
   require 'plugins.barbar',
   require 'plugins.codeium',
   require 'plugins.autosession',
+  require 'plugins.python-venv',
+  require 'plugins.yanky',
+  require 'plugins.undotree',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

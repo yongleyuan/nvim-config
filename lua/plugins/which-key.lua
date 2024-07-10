@@ -13,6 +13,7 @@ return { -- Useful plugin to show you pending keybinds.
       ['<leader>S'] = { name = '[S]ession', _ = 'which_key_ignore' },
       ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
       ['<leader>d'] = { name = '[D]ebug', _ = 'which_key_ignore' },
+      ['<leader>v'] = { name = '[V]irtual env', _ = 'which_key_ignore' },
     }
     -- visual mode
     require('which-key').register({
