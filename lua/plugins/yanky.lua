@@ -10,24 +10,23 @@ return {
         telescope = {
           mappings = {
             i = {
-              ['<c-p>'] = mapping.put 'p',
+              ['<c-k>'] = mapping.put 'p',
+              ['<c-g>'] = mapping.put 'P',
             },
           },
         },
       },
+      ring = {
+        storage = 'sqlite',
+        history_length = 50,
+      },
+      highlight = {
+        on_put = false,
+        on_yank = false,
+        timer = 5000,
+      },
     }
   end,
-  opts = {
-    ring = {
-      storage = 'sqlite',
-      history_length = 50,
-    },
-    highlight = {
-      on_put = false,
-      on_yank = false,
-      timer = 170,
-    },
-  },
   keys = {
     {
       '<leader>p',
