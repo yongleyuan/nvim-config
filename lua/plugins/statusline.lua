@@ -6,9 +6,12 @@ return {
       options = { theme = 'auto' },
       sections = {
         lualine_x = {
-          -- function()
-          --   return vim.fn['codeium#GetStatusString']()
-          -- end,
+          {
+            function()
+              return vim.fn['codeium#GetStatusString']()
+            end,
+            separator = '',
+          },
           -- { -- last search
           --   require('noice').api.status.search.get,
           --   cond = require('noice').api.status.search.has,
@@ -33,7 +36,10 @@ return {
           'filetype',
         },
         lualine_z = {
-          'progress',
+          {
+            'progress',
+            separator = '',
+          },
           'location',
         },
       },

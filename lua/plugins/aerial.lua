@@ -6,4 +6,8 @@ return {
     'nvim-treesitter/nvim-treesitter',
     'nvim-tree/nvim-web-devicons',
   },
+  opts = {
+    hightlight_on_hover = true,
+    autojump = true,
+  },
 }

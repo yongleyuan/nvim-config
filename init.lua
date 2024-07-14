@@ -125,10 +125,6 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set('v', 'jk', '<ESC>')
 vim.keymap.set('i', 'jk', '<ESC>')
 
--- Toggle aerial windows
--- vim.keymap.set('n', '<leader>A', ':AerialToggle!<CR>', { desc = 'Toggle Aerial and stay' })
-vim.keymap.set('n', '<leader>a', ':AerialToggle<CR>', { desc = '[A]erial' })
-
 -- Leap
 -- vim.keymap.set('n', '<leader>j', '<Plug>(leap)', { desc = 'Leap' })
 vim.keymap.set('n', 'q', '<Plug>(leap)', { desc = 'Leap' })
@@ -167,10 +163,10 @@ vim.keymap.set('n', '<CR>', 'o<Esc>')
 vim.keymap.set('n', '<S-CR>', 'O<Esc>')
 
 -- Autosession keymaps
-vim.keymap.set('n', '<leader>Sv', '<Cmd>SessionSave<CR>', { desc = '[S]ession Sa[V]e ' })
-vim.keymap.set('n', '<leader>Sr', '<Cmd>SessionRestore<CR>', { desc = '[S]ession [R]estore' })
-vim.keymap.set('n', '<leader>Sd', '<Cmd>Autosession delete<CR>', { desc = '[S]ession [D]elete ' })
-vim.keymap.set('n', '<leader>Ss', '<Cmd>Autosession search<CR>', { desc = '[S]ession [S]earch' })
+vim.keymap.set('n', '<leader>nv', '<Cmd>SessionSave<CR>', { desc = ' Sa[V]e ' })
+vim.keymap.set('n', '<leader>nr', '<Cmd>SessionRestore<CR>', { desc = '[R]estore' })
+vim.keymap.set('n', '<leader>nd', '<Cmd>Autosession delete<CR>', { desc = '[D]elete ' })
+vim.keymap.set('n', '<leader>ns', '<Cmd>Autosession search<CR>', { desc = '[S]earch' })
 -- Just use `:SessionSave` and `:SessionRestore` etc.
 
 -- NOTE: Remove keymaps due to duplication or redundancy

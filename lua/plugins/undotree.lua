@@ -4,9 +4,9 @@ return {
   config = function()
     require('undotree').setup {
       position = 'bottom',
+      keymaps = {
+        ['<ESC><ESC>'] = 'quit', -- 'q' quit as well
+      },
     }
   end,
-  keys = { -- load the plugin only when using it's keybinding:
-    { '<leader>u', "<cmd>lua require('undotree').toggle()<cr>", desc = '[U]ndotree' },
-  },
 }

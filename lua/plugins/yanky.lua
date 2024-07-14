@@ -28,13 +28,6 @@ return {
     }
   end,
   keys = {
-    {
-      '<leader>p',
-      function()
-        require('telescope').extensions.yank_history.yank_history {}
-      end,
-      desc = '[P]ut yank history',
-    },
     { 'y', '<Plug>(YankyYank)', mode = { 'n', 'x' }, desc = 'Yank text' },
     { 'p', '<Plug>(YankyPutAfter)', mode = { 'n', 'x' }, desc = 'Put yanked text after cursor' },
     { 'P', '<Plug>(YankyPutBefore)', mode = { 'n', 'x' }, desc = 'Put yanked text before cursor' },

@@ -5,11 +5,9 @@ return {
     opts = {
       cmdline = {
         enabled = true,
-        view = 'cmdline_popup',
+        view = 'cmdline',
         format = {
           cmdline = { pattern = '^:', icon = ':', lang = 'vim' },
-          -- search_down = { kind = 'search', pattern = '^/', icon = '', lang = 'regex' },
-          -- search_up = { kind = 'search', pattern = '^%?', icon = '', lang = 'regex' },
           search_down = { kind = 'search', pattern = '^/', icon = '/', lang = 'regex' },
           search_up = { kind = 'search', pattern = '^%?', icon = '?', lang = 'regex' },
           filter = { pattern = '^:%s*!', icon = '$', lang = 'bash' },
@@ -29,6 +27,7 @@ return {
         'rcarriga/nvim-notify',
         opts = {
           stages = 'fade',
+          render = 'minimal',
         },
       },
     },
