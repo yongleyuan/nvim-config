@@ -18,7 +18,7 @@ return {
       },
       ring = {
         storage = 'sqlite',
-        history_length = 50,
+        history_length = 100,
       },
       highlight = {
         on_put = false,
