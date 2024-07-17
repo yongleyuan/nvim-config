@@ -3,7 +3,7 @@ return { -- Useful plugin to show you pending keybinds.
   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
   config = function() -- This is the function that runs, AFTER loading
     require('which-key').setup {
-      preset = 'classic',
+      preset = 'modern',
       -- delay = 500,
       sort = { 'manual', 'local', 'order', 'group', 'alphanum', 'mod', 'lower', 'icase' },
       icons = {
