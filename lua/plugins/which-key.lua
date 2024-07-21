@@ -50,7 +50,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<S-CR>', 'O<ESC>', desc = '' },
         { 'cp', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = '[C]hange [P]hrase under cursor' },
         { '\\', '<CMD>Neotree toggle<CR>', desc = 'Toggle Neotree' },
-        { '\'', '<CMD>AerialToggle<CR>', desc = 'Toggle Aerial' },
+        { "'", '<CMD>AerialToggle<CR>', desc = 'Toggle Aerial' },
       },
       {
         mode = 'i',
@@ -144,10 +144,17 @@ return { -- Useful plugin to show you pending keybinds.
       },
     }
 
-    -- [S]earch
+    -- [S]earch (Telescope)
     wk.add {
       mode = 'n',
       { '<leader>s', group = '[S]earch' },
+      {
+        '<leader>s<leader>',
+        function()
+          tb.resume()
+        end,
+        desc = '[ ] Resume',
+      },
       {
         '<leader>sg',
         function()
@@ -189,18 +196,16 @@ return { -- Useful plugin to show you pending keybinds.
         desc = '[D]iagnostics',
       },
       {
-        '<leader>s<leader>',
-        function()
-          tb.resume()
-        end,
-        desc = 'Re[S]ume',
-      },
-      {
         '<leader>sc',
         function()
           tb.command_history()
         end,
         desc = '[C]ommand history',
+      },
+      {
+        '<leader>sm',
+        '<CMD>Telescope notify<CR>',
+        desc = '[M]essages',
       },
       {
         '<leader>sb',
@@ -335,24 +340,24 @@ return { -- Useful plugin to show you pending keybinds.
     local dap = require 'dap'
     wk.add {
       mode = 'n',
-      { '[d', vim.diagnostic.goto_prev, desc = 'Go to previous [D]iagnostic message', mode = 'n' },
-      { ']d', vim.diagnostic.goto_next, desc = 'Go to previous [D]iagnostic message', mode = 'n' },
+      { '[d', vim.diagnostic.jump { count = -1 }, desc = 'Go to previous [D]iagnostic message', mode = 'n' },
+      { ']d', vim.diagnostic.jump { count = 1 }, desc = 'Go to previous [D]iagnostic message', mode = 'n' },
       { '<leader>d', group = '[D]iagnostic / [D]ebug' },
-      { '<leader>de', vim.diagnostic.open_float, desc = 'Show diagnostic [E]rror messages' },
-      { '<leader>dq', vim.diagnostic.setloclist, desc = 'Open diagnostic [Q]uickfix list' },
+      { '<leader>de', vim.diagnostic.open_float, desc = 'Diagnostic: Show [E]rror messages' },
+      { '<leader>dq', vim.diagnostic.setloclist, desc = 'Diagnostic: Open [Q]uickfix list' },
       {
-        '<leader>db',
+        '<leader>dl',
         function()
-          dap.toggle_breakpoint()
+          dap.list_breakpoints()
         end,
-        desc = 'Debug: [B]reakpoint toggle',
+        desc = 'Debug: [L]ist breakpoints',
       },
       {
         '<leader>dc',
         function()
-          dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+          dap.clear_breakpoints()
         end,
-        desc = 'Debug: Breakpoint [C]onditional',
+        desc = 'Debug: [C]lear breakpoints',
       },
       {
         '<F1>',
@@ -376,6 +381,13 @@ return { -- Useful plugin to show you pending keybinds.
         desc = 'Debug: Step out',
       },
       {
+        '<F4>',
+        function()
+          dap.step_back()
+        end,
+        desc = 'Debug: Step back',
+      },
+      {
         '<F5>',
         function()
           dap.continue()
@@ -383,11 +395,32 @@ return { -- Useful plugin to show you pending keybinds.
         desc = 'Debug: start/continue',
       },
       {
+        '<F6>',
+        function()
+          dap.restart()
+        end,
+        desc = 'Debug: restart',
+      },
+      {
         '<F7>',
+        function()
+          dap.terminate()
+        end,
+        desc = 'Debug: terminate',
+      },
+      {
+        '<F10>',
         function()
           require('dapui').toggle()
         end,
         desc = 'Debug: toggle dapui',
+      },
+      {
+        '<F12>',
+        function()
+          dap.toggle_breakpoint()
+        end,
+        desc = 'Debug: toggle breakpoint',
       },
     }
 
@@ -444,12 +477,18 @@ return { -- Useful plugin to show you pending keybinds.
         function()
           require('venv-selector').deactivate()
         end,
+        -- '<Plug>(deactivate)',
         desc = '[D]eactivate vitural env',
       },
       {
         '<leader>v<leader>',
         function()
-          vim.notify('Activated virtual env: \n' .. require('venv-selector').venv(), vim.log.levels.INFO)
+          local venv = require('venv-selector').venv()
+          if not venv then
+            vim.notify 'No virtual env activated'
+          else
+            vim.notify('Activated virtual env: \n' .. require('venv-selector').venv(), vim.log.levels.INFO)
+          end
         end,
         desc = '[ ] Current vitural env',
       },

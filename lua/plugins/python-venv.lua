@@ -27,8 +27,4 @@ return {
       },
     }
   end,
-  keys = {
-    { '<leader>vs', '<cmd>VenvSelect<cr>', desc = '[S]elect venv' },
-    { '<leader>vd', '<Plug>(deactivate)', desc = '[D]activate venv' },
-  },
 }
