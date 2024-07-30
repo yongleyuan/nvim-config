@@ -28,29 +28,17 @@ return { -- Useful plugin to show you pending keybinds.
         { '<C-l>', '<C-w><C-l>', desc = 'Move focus to the right window' },
         { '<C-j>', '<C-w><C-j>', desc = 'Move focus to the lower window' },
         { '<C-k>', '<C-w><C-k>', desc = 'Move focus to the upper window' },
-        { '<A-j>', '<CMD>BufferPrevious<CR>', desc = '' },
-        { '<A-k>', '<CMD>BufferNext<CR>', desc = '' },
-        { '<A-h>', '<CMD>BufferMovePrevious<CR>', desc = '' },
-        { '<A-l>', '<CMD>BufferMoveNext<CR>', desc = '' },
-        { '<A-1>', '<CMD>BufferGoto 1<CR>', desc = '' },
-        { '<A-2>', '<CMD>BufferGoto 2<CR>', desc = '' },
-        { '<A-3>', '<CMD>BufferGoto 3<CR>', desc = '' },
-        { '<A-4>', '<CMD>BufferGoto 4<CR>', desc = '' },
-        { '<A-5>', '<CMD>BufferGoto 5<CR>', desc = '' },
-        { '<A-6>', '<CMD>BufferGoto 6<CR>', desc = '' },
-        { '<A-7>', '<CMD>BufferGoto 7<CR>', desc = '' },
-        { '<A-8>', '<CMD>BufferGoto 8<CR>', desc = '' },
-        { '<A-9>', '<CMD>BufferGoto 9<CR>', desc = '' },
-        { '<A-0>', '<CMD>BufferGoto 0<CR>', desc = '' },
-        { '<A-p>', '<CMD>BufferPick<CR>', desc = '' },
-        { '<A-c>', '<CMD>BufferDelete<CR>', desc = '' },
-        { '<A-x>', '<CMD>BufferDelete!<CR>', desc = '' },
+        { '<A-j>', '<CMD>bnext<CR>', desc = '' },
+        { '<A-k>', '<CMD>bprev<CR>', desc = '' },
+        { '<A-c>', '<CMD>Bdelete<CR>', desc = '' },
+        { '<A-x>', '<CMD>Bdelete!<CR>', desc = '' },
+        { '\\', '<CMD>Neotree toggle<CR>', desc = 'Toggle Neotree' },
         { 'J', 'mzJ`z', desc = '' },
         { '<CR>', 'o<ESC>', desc = '' },
         { '<S-CR>', 'O<ESC>', desc = '' },
         { 'cp', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = '[C]hange [P]hrase under cursor' },
-        { '\\', '<CMD>Neotree toggle<CR>', desc = 'Toggle Neotree' },
-        { "'", '<CMD>AerialToggle<CR>', desc = 'Toggle Aerial' },
+        { ',', '<CMD>AerialToggle<CR>', desc = 'Toggle Aerial' },
+        { "'", '<Plug>(leap)', desc = 'Leap' },
       },
       {
         mode = 'i',
@@ -83,6 +71,13 @@ return { -- Useful plugin to show you pending keybinds.
           end,
           desc = '',
         },
+        {
+          '<C-x>',
+          function()
+            cmp.abort()
+          end,
+          desc = '',
+        },
       },
       { '<Esc><Esc>', '<C-\\><C-n>', desc = 'Exit terminal mode', mode = 't' },
     }
@@ -98,7 +93,22 @@ return { -- Useful plugin to show you pending keybinds.
             -- previewer = false,
           })
         end,
-        desc = 'Fuzzy find [ ] in current buffer',
+        desc = 'Fuzzy find text in current buffer',
+        mode = 'n',
+      },
+      {
+        '<leader>,',
+        function()
+          tb.buffers()
+        end,
+        desc = 'Fuzzy find buffers',
+      },
+      {
+        '<leader>.',
+        function()
+          tb.oldfiles()
+        end,
+        desc = 'Fuzzy find recent files',
         mode = 'n',
       },
       {
@@ -106,15 +116,7 @@ return { -- Useful plugin to show you pending keybinds.
         function()
           tb.find_files()
         end,
-        desc = 'Fuzzy find file [/] in dir',
-        mode = 'n',
-      },
-      {
-        '<leader>.',
-        function()
-          tb.oldfiles()
-        end,
-        desc = 'Fuzzy find file [.] recent files ',
+        desc = 'Fuzzy find file in dir',
         mode = 'n',
       },
       {
@@ -125,7 +127,7 @@ return { -- Useful plugin to show you pending keybinds.
         desc = '[F]ormat buffer',
         mode = 'n',
       },
-      { '<leader>l', '<Plug>(leap)', desc = '[L]eap', mode = 'n' },
+      -- { '<leader>l', '<Plug>(leap)', desc = '[L]eap', mode = 'n' },
       {
         '<leader>p',
         function()
@@ -208,13 +210,6 @@ return { -- Useful plugin to show you pending keybinds.
         desc = '[M]essages',
       },
       {
-        '<leader>sb',
-        function()
-          tb.buffers()
-        end,
-        desc = '[B]uffers',
-      },
-      {
         '<leader>sh',
         function()
           tb.help_tags()
@@ -282,8 +277,16 @@ return { -- Useful plugin to show you pending keybinds.
 
     -- [G]it
     local gs = require 'gitsigns'
-    wk.add { '<leader>g', group = '[G]it hunk', mode = { 'n', 'v' } }
+    wk.add { '<leader>g', group = '[G]it', mode = { 'n', 'v' } }
     wk.add { '<leader>gt', group = '[T]oggle' }
+    wk.add {
+      '<leader>gs',
+      function()
+        tb.git_status()
+      end,
+      desc = '[G]it [S]tatus',
+      mode = 'n',
+    }
     gs.setup {
       on_attach = function(bufnr)
         local function gsmap(mode, l, r, opts)
@@ -421,19 +424,6 @@ return { -- Useful plugin to show you pending keybinds.
           dap.toggle_breakpoint()
         end,
         desc = 'Debug: toggle breakpoint',
-      },
-    }
-
-    -- [G]it
-    wk.add {
-      mode = 'n',
-      { '<leader>g', group = '[G]it' },
-      {
-        '<leader>gs',
-        function()
-          tb.git_status()
-        end,
-        desc = '[G]it [S]tatus',
       },
     }
 

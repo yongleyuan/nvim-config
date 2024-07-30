@@ -5,13 +5,16 @@ return {
     require('lualine').setup {
       options = { theme = 'auto' },
       sections = {
-        lualine_x = {
+        lualine_c = {
           {
             function()
               return vim.fn['codeium#GetStatusString']()
             end,
-            separator = '',
+            icon = '',
+            -- separator = '',
           },
+        },
+        lualine_x = {
           -- { -- last search
           --   require('noice').api.status.search.get,
           --   cond = require('noice').api.status.search.has,
@@ -33,14 +36,37 @@ return {
         lualine_y = {
           -- 'encoding',
           -- 'fileformat',
-          'filetype',
+          -- 'filetype',
+          'progress',
         },
         lualine_z = {
-          {
-            'progress',
-            separator = '',
-          },
+          -- {
+          --   'progress',
+          --   separator = '',
+          -- },
           'location',
+        },
+      },
+      inactive_sections = {
+        lualine_c = {},
+      },
+      winbar = {
+        lualine_b = { 'filetype' },
+        lualine_c = {
+          {
+            'filename',
+            path = 3,
+          },
+        },
+      },
+      inactive_winbar = {
+        -- lualine_b = { 'filetype' },
+        lualine_c = {
+          {
+            'filename',
+            path = 0,
+            shorting_target = 80,
+          },
         },
       },
     }

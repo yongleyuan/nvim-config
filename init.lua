@@ -140,7 +140,7 @@ require('lazy').setup({
   require 'plugins.neo-tree',
   require 'plugins.git',
   require 'plugins.motion',
-  require 'plugins.barbar',
+  require 'plugins.bufdelete',
   require 'plugins.codeium',
   require 'plugins.gp',
   require 'plugins.autosession',
