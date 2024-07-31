@@ -32,12 +32,12 @@ return { -- Useful plugin to show you pending keybinds.
         { '<A-k>', '<CMD>bprev<CR>', desc = '' },
         { '<A-c>', '<CMD>Bdelete<CR>', desc = '' },
         { '<A-x>', '<CMD>Bdelete!<CR>', desc = '' },
-        { '\\', '<CMD>Neotree toggle<CR>', desc = 'Toggle Neotree' },
+        { ',', '<CMD>Neotree toggle<CR>', desc = 'Toggle Neotree' },
         { 'J', 'mzJ`z', desc = '' },
-        { '<CR>', 'o<ESC>', desc = '' },
-        { '<S-CR>', 'O<ESC>', desc = '' },
+        { '<CR>', 'o<ESC><UP>', desc = '' },
+        { '<S-CR>', 'O<ESC><DOWN>', desc = '' },
         { 'cp', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = '[C]hange [P]hrase under cursor' },
-        { ',', '<CMD>AerialToggle<CR>', desc = 'Toggle Aerial' },
+        { '\\', '<CMD>AerialToggle<CR>', desc = 'Toggle Aerial' },
         { "'", '<Plug>(leap)', desc = 'Leap' },
       },
       {
@@ -48,35 +48,60 @@ return { -- Useful plugin to show you pending keybinds.
           function()
             cmp.complete {}
           end,
-          desc = '',
+          desc = 'Force cmp',
         },
         {
           '<C-p>',
           function()
             cmp.select_prev_item()
           end,
-          desc = '',
+          desc = 'Selecte previous item',
         },
         {
           '<C-n>',
           function()
             cmp.select_next_item()
           end,
-          desc = '',
+          desc = 'Selecte next item',
         },
         {
           '<C-y>',
           function()
             cmp.confirm { select = true }
           end,
-          desc = '',
+          desc = 'Confirm cmp',
         },
         {
           '<C-x>',
           function()
             cmp.abort()
           end,
-          desc = '',
+          desc = 'Abort cmp',
+        },
+        {
+          '<C-h>',
+          function()
+            if cmp.visible_docs() then
+              cmp.close_docs()
+            else
+              cmp.open_docs()
+            end
+          end,
+          desc = 'Toggle cmp hover docs',
+        },
+        {
+          '<C-i>',
+          function()
+            cmp.scroll_docs(-4)
+          end,
+          desc = 'Scroll cmp hover docs up',
+        },
+        {
+          '<C-o>',
+          function()
+            cmp.scroll_docs(4)
+          end,
+          desc = 'Scroll cmp hover docs down',
         },
       },
       { '<Esc><Esc>', '<C-\\><C-n>', desc = 'Exit terminal mode', mode = 't' },
@@ -98,17 +123,16 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         '<leader>,',
-        function()
-          tb.buffers()
-        end,
-        desc = 'Fuzzy find buffers',
+        '<CMD>Neotree buffers toggle<CR>',
+        desc = 'Toggle Neotree buffers',
+        mode = 'n',
       },
       {
         '<leader>.',
         function()
-          tb.oldfiles()
+          tb.buffers()
         end,
-        desc = 'Fuzzy find recent files',
+        desc = 'Fuzzy find buffers',
         mode = 'n',
       },
       {
@@ -174,14 +198,7 @@ return { -- Useful plugin to show you pending keybinds.
             prompt_title = 'Live Grep in Open Buffers',
           }
         end,
-        desc = 'Grep in [O]pen buffers',
-      },
-      {
-        '<leader>sk',
-        function()
-          tb.keymaps()
-        end,
-        desc = '[K]eymaps',
+        desc = '[O]pen buffers grep',
       },
       {
         '<leader>sw',
@@ -206,15 +223,22 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         '<leader>sm',
-        '<CMD>Telescope notify<CR>',
+        '<CMD>Telescope noice<CR>',
         desc = '[M]essages',
       },
       {
-        '<leader>sh',
+        '<leader>sk',
         function()
-          tb.help_tags()
+          tb.keymaps()
         end,
-        desc = '[H]elp',
+        desc = '[K]eymaps',
+      },
+      {
+        '<leader>sb',
+        function()
+          tb.buffers()
+        end,
+        desc = '[B]uffer fuzzy find',
       },
       {
         '<leader>sn',
@@ -224,6 +248,13 @@ return { -- Useful plugin to show you pending keybinds.
           }
         end,
         desc = '[N]eovim files',
+      },
+      {
+        '<leader>sh',
+        function()
+          tb.help_tags()
+        end,
+        desc = '[H]elp',
       },
     }
 

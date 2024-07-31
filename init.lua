@@ -120,7 +120,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
 
   require 'plugins.autotab',
-  require 'plugins.statusline',
+  require 'plugins.lualine',
   require 'plugins.comment',
   require 'plugins.which-key',
   require 'plugins.telescope',
@@ -148,6 +148,8 @@ require('lazy').setup({
   require 'plugins.yanky',
   require 'plugins.undotree',
   require 'plugins.noice',
+  require 'plugins.grug-far',
+  require 'plugins.focus',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

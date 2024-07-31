@@ -1,3 +1,29 @@
+local custom_extensions = {
+  sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {},
+  },
+  winbar = {
+    lualine_b = { 'filetype' },
+  },
+  inactive_winbar = {
+    lualine_b = { 'filetype' },
+  },
+  filetypes = {
+    'aerial',
+    'neo-tree',
+    'dapui_scopes',
+    'dapui_breakpoints',
+    'dapui_stacks',
+    'dapui_watches',
+    'dapui_repl',
+    'dapui_console',
+  },
+}
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -29,8 +55,12 @@ return {
             -- cond = require('noice').api.status.command.has,
             -- color = { fg = '#ff9e64' },
             color = nil,
-            -- icons_enabled = true,
-            -- icon = '',
+            icons_enabled = true,
+            icon = {
+              '󰅮',
+              align = 'right',
+              -- color = { fg = 'green' },
+            },
           },
         },
         lualine_y = {
@@ -58,6 +88,7 @@ return {
             path = 3,
           },
         },
+        lualine_x = { "aerial" },
       },
       inactive_winbar = {
         -- lualine_b = { 'filetype' },
@@ -68,6 +99,13 @@ return {
             shorting_target = 80,
           },
         },
+      },
+
+      -- Extensions
+      extensions = {
+        -- 'fugitive',
+        custom_extensions,
+        'nvim-dap-ui',
       },
     }
   end,
