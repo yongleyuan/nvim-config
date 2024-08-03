@@ -22,6 +22,7 @@ local custom_extensions = {
     'dapui_watches',
     'dapui_repl',
     'dapui_console',
+    'dashboard',
   },
 }
 return {
@@ -100,6 +101,16 @@ return {
           },
         },
       },
+      -- tabline = {
+      --   lualine_b = { 'filetype' },
+      --   lualine_c = {
+      --     {
+      --       'filename',
+      --       path = 3,
+      --     },
+      --   },
+      --   lualine_x = { "aerial" },
+      -- },
 
       -- Extensions
       extensions = {

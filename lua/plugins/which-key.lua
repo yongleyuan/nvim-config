@@ -36,7 +36,6 @@ return { -- Useful plugin to show you pending keybinds.
         { 'J', 'mzJ`z', desc = '' },
         { '<CR>', 'o<ESC><UP>', desc = '' },
         { '<S-CR>', 'O<ESC><DOWN>', desc = '' },
-        { 'cp', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = '[C]hange [P]hrase under cursor' },
         { '\\', '<CMD>AerialToggle<CR>', desc = 'Toggle Aerial' },
         { "'", '<Plug>(leap)', desc = 'Leap' },
       },
@@ -151,7 +150,6 @@ return { -- Useful plugin to show you pending keybinds.
         desc = '[F]ormat buffer',
         mode = 'n',
       },
-      -- { '<leader>l', '<Plug>(leap)', desc = '[L]eap', mode = 'n' },
       {
         '<leader>p',
         function()
@@ -258,6 +256,22 @@ return { -- Useful plugin to show you pending keybinds.
       },
     }
 
+    -- Replace
+    wk.add {
+      mode = 'n',
+      { '<leader>r', group = '[R]ename' },
+      {
+        '<leader>rn',
+        ':IncRename ',
+        desc = '[R]e[N]ame with IncRename',
+      },
+      {
+        '<leader>rp',
+        [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+        desc = '[R]ename [P]hrase under cursor',
+      },
+    }
+
     -- LSP autocommands (mianly [G]oto)
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
@@ -273,7 +287,7 @@ return { -- Useful plugin to show you pending keybinds.
         maplsp('gh', vim.lsp.buf.hover, '[G]oto [H]over documentation', 'n')
         maplsp('<leader>ss', tb.lsp_document_symbols, '[S]ymbols in current buffer', 'n')
         maplsp('<leader>sS', tb.lsp_dynamic_workspace_symbols, '[S]ymbols in directory', 'n')
-        maplsp('<leader>sr', vim.lsp.buf.rename, '[R]ename symbol under cursor', 'n')
+        maplsp('<leader>rs', vim.lsp.buf.rename, '[R]ename [S]ymbol under cursor', 'n')
         maplsp('<C-a>', vim.lsp.buf.code_action, 'Code action', { 'n', 'x' })
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -305,70 +319,6 @@ return { -- Useful plugin to show you pending keybinds.
         -- end
       end,
     })
-
-    -- [G]it
-    local gs = require 'gitsigns'
-    wk.add { '<leader>g', group = '[G]it', mode = { 'n', 'v' } }
-    wk.add { '<leader>gt', group = '[T]oggle' }
-    wk.add {
-      '<leader>gs',
-      function()
-        tb.git_status()
-      end,
-      desc = '[G]it [S]tatus',
-      mode = 'n',
-    }
-    gs.setup {
-      on_attach = function(bufnr)
-        local function gsmap(mode, l, r, opts)
-          opts = opts or {}
-          opts.buffer = bufnr
-          opts.desc = opts.desc .. ' (Git)'
-          vim.keymap.set(mode, l, r, opts)
-        end
-
-        -- Navigation
-        gsmap('n', ']c', function()
-          if vim.wo.diff then
-            vim.CMD.normal { ']c', bang = true }
-          else
-            gs.nav_hunk 'next'
-          end
-        end, { desc = 'Jump to next [C]hange' })
-
-        gsmap('n', '[c', function()
-          if vim.wo.diff then
-            vim.CMD.normal { '[c', bang = true }
-          else
-            gs.nav_hunk 'prev'
-          end
-        end, { desc = 'Jump to previous [C]hange' })
-
-        -- Actions
-        -- visual mode
-        gsmap('v', '<leader>gs', function()
-          gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = '[S]tage git hunk' })
-        gsmap('v', '<leader>gr', function()
-          gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = '[R]eset git hunk' })
-        -- normal mode
-        gsmap('n', '<leader>gs', gs.stage_hunk, { desc = '[S]tage hunk' })
-        gsmap('n', '<leader>gr', gs.reset_hunk, { desc = '[R]eset hunk' })
-        gsmap('n', '<leader>gS', gs.stage_buffer, { desc = '[S]tage buffer' })
-        gsmap('n', '<leader>gR', gs.reset_buffer, { desc = '[R]eset buffer' })
-        gsmap('n', '<leader>gu', gs.undo_stage_hunk, { desc = '[U]ndo stage hunk' })
-        gsmap('n', '<leader>gp', gs.preview_hunk, { desc = '[P]review hunk' })
-        gsmap('n', '<leader>gb', gs.blame_line, { desc = '[B]lame line' })
-        gsmap('n', '<leader>gd', gs.diffthis, { desc = '[D]iff against index' })
-        gsmap('n', '<leader>gD', function()
-          gs.diffthis '@'
-        end, { desc = '[D]iff against last commit' })
-        -- Toggles
-        gsmap('n', '<leader>gtb', gs.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
-        gsmap('n', '<leader>gtd', gs.toggle_deleted, { desc = '[T]oggle git show [D]eleted' })
-      end,
-    }
 
     -- [D]iagnostic / [D]ebug
     local dap = require 'dap'
@@ -456,6 +406,134 @@ return { -- Useful plugin to show you pending keybinds.
         end,
         desc = 'Debug: toggle breakpoint',
       },
+    }
+
+    -- [G]it
+    local gs = require 'gitsigns'
+    wk.add { '<leader>g', group = '[G]it', mode = { 'n', 'v' } }
+    wk.add { '<leader>gt', group = '[T]oggle' }
+    wk.add {
+      '<leader>gs',
+      function()
+        tb.git_status()
+      end,
+      desc = '[G]it [S]tatus',
+      mode = 'n',
+    }
+    gs.setup {
+      on_attach = function(bufnr)
+        local function gsmap(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          opts.desc = opts.desc .. ' (Git)'
+          vim.keymap.set(mode, l, r, opts)
+        end
+
+        -- Navigation
+        gsmap('n', ']c', function()
+          if vim.wo.diff then
+            vim.CMD.normal { ']c', bang = true }
+          else
+            gs.nav_hunk 'next'
+          end
+        end, { desc = 'Jump to next [C]hange' })
+
+        gsmap('n', '[c', function()
+          if vim.wo.diff then
+            vim.CMD.normal { '[c', bang = true }
+          else
+            gs.nav_hunk 'prev'
+          end
+        end, { desc = 'Jump to previous [C]hange' })
+
+        -- Actions
+        -- visual mode
+        gsmap('v', '<leader>gs', function()
+          gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
+        end, { desc = '[S]tage git hunk' })
+        gsmap('v', '<leader>gr', function()
+          gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
+        end, { desc = '[R]eset git hunk' })
+        -- normal mode
+        gsmap('n', '<leader>gs', gs.stage_hunk, { desc = '[S]tage hunk' })
+        gsmap('n', '<leader>gr', gs.reset_hunk, { desc = '[R]eset hunk' })
+        gsmap('n', '<leader>gS', gs.stage_buffer, { desc = '[S]tage buffer' })
+        gsmap('n', '<leader>gR', gs.reset_buffer, { desc = '[R]eset buffer' })
+        gsmap('n', '<leader>gu', gs.undo_stage_hunk, { desc = '[U]ndo stage hunk' })
+        gsmap('n', '<leader>gp', gs.preview_hunk, { desc = '[P]review hunk' })
+        gsmap('n', '<leader>gb', gs.blame_line, { desc = '[B]lame line' })
+        gsmap('n', '<leader>gd', gs.diffthis, { desc = '[D]iff against index' })
+        gsmap('n', '<leader>gD', function()
+          gs.diffthis '@'
+        end, { desc = '[D]iff against last commit' })
+        -- Toggles
+        gsmap('n', '<leader>gtb', gs.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
+        gsmap('n', '<leader>gtd', gs.toggle_deleted, { desc = '[T]oggle git show [D]eleted' })
+      end,
+    }
+
+    -- [G]it
+    local gs = require 'gitsigns'
+    wk.add { '<leader>g', group = '[G]it', mode = { 'n', 'v' } }
+    wk.add { '<leader>gt', group = '[T]oggle' }
+    wk.add {
+      '<leader>gs',
+      function()
+        tb.git_status()
+      end,
+      desc = '[G]it [S]tatus',
+      mode = 'n',
+    }
+    gs.setup {
+      on_attach = function(bufnr)
+        local function gsmap(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          opts.desc = opts.desc .. ' (Git)'
+          vim.keymap.set(mode, l, r, opts)
+        end
+
+        -- Navigation
+        gsmap('n', ']c', function()
+          if vim.wo.diff then
+            vim.CMD.normal { ']c', bang = true }
+          else
+            gs.nav_hunk 'next'
+          end
+        end, { desc = 'Jump to next [C]hange' })
+
+        gsmap('n', '[c', function()
+          if vim.wo.diff then
+            vim.CMD.normal { '[c', bang = true }
+          else
+            gs.nav_hunk 'prev'
+          end
+        end, { desc = 'Jump to previous [C]hange' })
+
+        -- Actions
+        -- visual mode
+        gsmap('v', '<leader>gs', function()
+          gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
+        end, { desc = '[S]tage git hunk' })
+        gsmap('v', '<leader>gr', function()
+          gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
+        end, { desc = '[R]eset git hunk' })
+        -- normal mode
+        gsmap('n', '<leader>gs', gs.stage_hunk, { desc = '[S]tage hunk' })
+        gsmap('n', '<leader>gr', gs.reset_hunk, { desc = '[R]eset hunk' })
+        gsmap('n', '<leader>gS', gs.stage_buffer, { desc = '[S]tage buffer' })
+        gsmap('n', '<leader>gR', gs.reset_buffer, { desc = '[R]eset buffer' })
+        gsmap('n', '<leader>gu', gs.undo_stage_hunk, { desc = '[U]ndo stage hunk' })
+        gsmap('n', '<leader>gp', gs.preview_hunk, { desc = '[P]review hunk' })
+        gsmap('n', '<leader>gb', gs.blame_line, { desc = '[B]lame line' })
+        gsmap('n', '<leader>gd', gs.diffthis, { desc = '[D]iff against index' })
+        gsmap('n', '<leader>gD', function()
+          gs.diffthis '@'
+        end, { desc = '[D]iff against last commit' })
+        -- Toggles
+        gsmap('n', '<leader>gtb', gs.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
+        gsmap('n', '<leader>gtd', gs.toggle_deleted, { desc = '[T]oggle git show [D]eleted' })
+      end,
     }
 
     -- Sessio[N]

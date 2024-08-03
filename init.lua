@@ -118,7 +118,6 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-
   require 'plugins.autotab',
   require 'plugins.lualine',
   require 'plugins.comment',
@@ -148,7 +147,7 @@ require('lazy').setup({
   require 'plugins.yanky',
   require 'plugins.undotree',
   require 'plugins.noice',
-  require 'plugins.grug-far',
+  -- require 'plugins.grug-far',
   require 'plugins.focus',
 }, {
   ui = {
