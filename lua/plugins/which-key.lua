@@ -34,8 +34,8 @@ return { -- Useful plugin to show you pending keybinds.
         { '<A-x>', '<CMD>Bdelete!<CR>', desc = '' },
         { ',', '<CMD>Neotree toggle<CR>', desc = 'Toggle Neotree' },
         { 'J', 'mzJ`z', desc = '' },
-        { '<CR>', 'o<ESC><UP>', desc = '' },
-        { '<S-CR>', 'O<ESC><DOWN>', desc = '' },
+        { '<CR>', 'o<ESC>', desc = '' },
+        { '<S-CR>', 'O<ESC>', desc = '' },
         { '\\', '<CMD>AerialToggle<CR>', desc = 'Toggle Aerial' },
         { "'", '<Plug>(leap)', desc = 'Leap' },
       },
@@ -104,6 +104,11 @@ return { -- Useful plugin to show you pending keybinds.
         },
       },
       { '<Esc><Esc>', '<C-\\><C-n>', desc = 'Exit terminal mode', mode = 't' },
+      {
+        mode = 'v',
+        { 'J', ":m '>+1<CR>gv=gv", desc = 'Move selected text up' },
+        { 'K', ":m '<-2<CR>gv=gv", desc = 'Move selected text down' },
+      },
     }
 
     -- Standalone leader keybindings

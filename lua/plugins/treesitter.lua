@@ -31,5 +31,6 @@ return { -- Highlight, edit, and navigate code
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
+
   { 'HiPhish/rainbow-delimiters.nvim' },
 }

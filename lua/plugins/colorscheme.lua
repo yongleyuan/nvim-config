@@ -5,4 +5,14 @@ return {
   init = function()
     vim.cmd.colorscheme 'catppuccin-frappe'
   end,
+  config = function()
+    require('catppuccin').setup {
+      integrations = {
+        aerial = true,
+        leap = true,
+        neotree = true,
+        noice = true,
+      },
+    }
+  end,
 }
