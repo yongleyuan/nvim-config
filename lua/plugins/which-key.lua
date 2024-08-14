@@ -329,8 +329,10 @@ return { -- Useful plugin to show you pending keybinds.
     local dap = require 'dap'
     wk.add {
       mode = 'n',
-      { '[d', vim.diagnostic.jump { count = -1 }, desc = 'Go to previous [D]iagnostic message', mode = 'n' },
-      { ']d', vim.diagnostic.jump { count = 1 }, desc = 'Go to previous [D]iagnostic message', mode = 'n' },
+      -- { '[d', vim.diagnostic.jump { count = -1 }, desc = 'Go to previous [D]iagnostic message', mode = 'n' },
+      -- { ']d', vim.diagnostic.jump { count = 1 }, desc = 'Go to previous [D]iagnostic message', mode = 'n' },
+      { '[d', vim.diagnostic.goto_prev(), desc = 'Go to previous [D]iagnostic message', mode = 'n' },
+      { ']d', vim.diagnostic.goto_next(), desc = 'Go to previous [D]iagnostic message', mode = 'n' },
       { '<leader>d', group = '[D]iagnostic / [D]ebug' },
       { '<leader>de', vim.diagnostic.open_float, desc = 'Diagnostic: Show [E]rror messages' },
       { '<leader>dq', vim.diagnostic.setloclist, desc = 'Diagnostic: Open [Q]uickfix list' },
