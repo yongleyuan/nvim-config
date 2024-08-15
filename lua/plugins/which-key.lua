@@ -118,13 +118,13 @@ return { -- Useful plugin to show you pending keybinds.
       {
         '<leader><leader>',
         function()
-          tb.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-            winblend = 10,
-            -- previewer = false,
-          })
+          tb.current_buffer_fuzzy_find(
+            -- require('telescope.themes').get_dropdown {
+            --   winblend = 10,
+            --   -- previewer = false,
+            -- }
+          )
         end,
-        desc = 'Fuzzy find text in current buffer',
-        mode = 'n',
       },
       {
         '<leader>,',
@@ -481,7 +481,7 @@ return { -- Useful plugin to show you pending keybinds.
     }
 
     -- [G]it
-    local gs = require 'gitsigns'
+    -- local gs = require 'gitsigns'
     wk.add { '<leader>g', group = '[G]it', mode = { 'n', 'v' } }
     wk.add { '<leader>gt', group = '[T]oggle' }
     wk.add {
