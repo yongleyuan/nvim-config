@@ -41,7 +41,20 @@ return { -- LSP Configuration & Plugins
     local servers = {
       -- clangd = {},
       -- gopls = {},
-      pyright = {},
+      pyright = {
+        settings = {
+          python = {
+            analysis = {
+              diagnosticSeverityOverrides = {
+                reportUnusedClass = 'warning',
+                reportUnusedFunction = 'warning', -- TODO: This does not work!
+                reportUnusedImport = 'warning',
+                reportUnusedVariable = 'warning',
+              },
+            },
+          },
+        },
+      },
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
@@ -80,9 +93,16 @@ return { -- LSP Configuration & Plugins
     -- for you, so that they are available from within Neovim.
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
-      'stylua', -- Used to format Lua code
+      'black',
+      'debugpy',
+      'jsonlint',
+      'lua_ls',
       'markdownlint',
+      'pylint',
+      'pyright',
+      'stylua',
     })
+
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
     require('mason-lspconfig').setup {
@@ -93,11 +113,12 @@ return { -- LSP Configuration & Plugins
           -- by the server configuration above. Useful when disabling
           -- certain features of an LSP (for example, turning off formatting for tsserver)
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
+          -- vim.notify(server.settings.python.analysis.diagnosticSeverityOverrides.reportUnusedClass)
         end,
       },
     }
 
+    -- Disable unused default LSP keymaps
     if vim.fn.mapcheck('gra', 'n') ~= '' then
       vim.keymap.del('n', 'gra')
     end

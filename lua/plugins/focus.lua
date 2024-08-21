@@ -9,7 +9,7 @@ local ignore_filetypes = {
   'dapui_console',
   'dashboard',
 }
-local ignore_buftypes = { 'nofile', 'prompt', 'popup' }
+local ignore_buftypes = { 'nofile', 'prompt', 'popup', 'hover' }
 local augroup = vim.api.nvim_create_augroup('FocusDisable', { clear = true })
 
 return {
