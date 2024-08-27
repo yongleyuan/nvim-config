@@ -149,6 +149,7 @@ require('lazy').setup({
   require 'plugins.noice',
   -- require 'plugins.grug-far',
   require 'plugins.focus',
+  require 'plugins.jupyter',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

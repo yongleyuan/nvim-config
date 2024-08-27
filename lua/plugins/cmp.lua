@@ -86,6 +86,9 @@ return { -- Autocompletion
     config = function()
       require('neogen').setup {
         snippet_engine = 'luasnip',
+        vim.api.nvim_create_user_command('DocGen', function()
+          require('neogen').generate()
+        end, {}),
       }
     end,
   },
