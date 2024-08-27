@@ -294,7 +294,7 @@ return { -- Useful plugin to show you pending keybinds.
         maplsp('<leader>ss', tb.lsp_document_symbols, '[S]ymbols in current buffer', 'n')
         maplsp('<leader>sS', tb.lsp_dynamic_workspace_symbols, '[S]ymbols in directory', 'n')
         maplsp('<leader>rs', vim.lsp.buf.rename, '[R]ename [S]ymbol under cursor', 'n')
-        maplsp('<C-a>', vim.lsp.buf.code_action, 'Code action', { 'n', 'x' })
+        maplsp('<C-a>', vim.lsp.buf.code_action, 'Code action', { 'n', 'x', 'i' })
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.server_capabilities.documentHighlightProvider then
