@@ -10,6 +10,9 @@ return { -- Useful plugin to show you pending keybinds.
         rules = false,
         group = '',
       },
+      win = {
+        no_overlap = false,
+      },
     }
 
     local wk = require 'which-key'
@@ -126,6 +129,8 @@ return { -- Useful plugin to show you pending keybinds.
             -- }
           )
         end,
+        desc = 'Fuzzy find in current buffer',
+        mode = 'n',
       },
       {
         '<leader>,',
@@ -260,6 +265,11 @@ return { -- Useful plugin to show you pending keybinds.
           tb.help_tags()
         end,
         desc = '[H]elp',
+      },
+      {
+        '<leader>st',
+        ':TodoTelescope<CR>',
+        desc = '[T]odos',
       },
     }
 
@@ -599,6 +609,90 @@ return { -- Useful plugin to show you pending keybinds.
           end
         end,
         desc = '[ ] Current vitural env',
+      },
+    }
+
+    -- [O]bsidian
+    wk.add {
+      mode = 'n',
+      { '<leader>o', group = '[O]bsidian' },
+      {
+        '<leader>o<leader>',
+        '<CMD>ObsidianSearch<CR>',
+        desc = '[ ] Grep all notes',
+      },
+      {
+        '<leader>o.',
+        '<CMD>ObsidianQuickSwitch<CR>',
+        desc = '[.] Note name picker',
+      },
+      {
+        '<leader>ot',
+        '<CMD>ObsidianTags<CR>',
+        desc = '[T]ags picker',
+      },
+      {
+        '<leaderr>ow',
+        '<CMD>ObsidianWorkspace<CR>',
+        desc = '[W]orkspace switch',
+      },
+      {
+        '<leader>on',
+        '<CMD>ObsidianNew<CR>',
+        desc = '[N]ew note',
+      },
+      {
+        '<leader>or',
+        '<CMD>ObsidianRename<CR>',
+        desc = '[R]ename',
+      },
+      {
+        '<leader>oo',
+        '<CMD>ObsidianOpen<CR>',
+        desc = '[O]pen app',
+      },
+      {
+        '<leader>ol',
+        group = '[L]inks'
+      },
+      {
+        '<leader>ol<leader>',
+        '<CMD>ObsidianLinks<CR>',
+        desc = '[ ] picker',
+      },
+      {
+        '<leader>oll',
+        '<CMD>ObsidianLink<CR>',
+        desc = '[L]ink',
+      },
+      {
+        '<leader>oln',
+        '<CMD>ObsidianLinkNew<CR>',
+        desc = '[N]ew link',
+      },
+      {
+        '<leader>od',
+        group = '[D]aily notes',
+      },
+      {
+        '<leader>od<leader>',
+        '<CMD>ObsidianDailies<CR>',
+        desc = '[ ] Picker',
+      },
+      {
+        '<leader>odd',
+        '<CMD>ObsidianToday<CR>',
+        desc = '[D]aily',
+      },
+      {
+        '<leader>ody',
+        '<CMD>ObsidianYesterday<CR>',
+        desc = '[Y]esterday',
+      },
+      {
+        '<leader>odt',
+        '<CMD>ObsidianTomorrow<CR>',
+        desc = '[T]omorrow',
       },
     }
 

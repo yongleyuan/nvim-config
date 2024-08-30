@@ -83,6 +83,8 @@ vim.opt.termguicolors = true
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 
+vim.opt.conceallevel = 1
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -150,6 +152,7 @@ require('lazy').setup({
   -- require 'plugins.grug-far',
   require 'plugins.focus',
   require 'plugins.jupyter',
+  require 'plugins.obsidian',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

@@ -8,7 +8,7 @@ return {
     event = 'VimEnter',
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {
-      signs = false,
+      signs = true,
       highlight = {
         -- keyword = 'bg',
         -- pattern = [[(KEYWORDS)]],
