@@ -632,7 +632,7 @@ return { -- Useful plugin to show you pending keybinds.
         desc = '[T]ags picker',
       },
       {
-        '<leaderr>ow',
+        '<leader>ow',
         '<CMD>ObsidianWorkspace<CR>',
         desc = '[W]orkspace switch',
       },
