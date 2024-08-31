@@ -115,18 +115,30 @@ return {
       -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
       -- In this case a note with the title 'My new note' will be given an ID that looks
       -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
-      local suffix = ''
+      -- local suffix = ''
+      -- if title ~= nil then
+      --   -- If title is given, transform it into valid file name.
+      --   suffix = title:gsub(' ', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
+      -- else
+      --   -- If title is nil, just add 4 random uppercase letters to the suffix.
+      --   for _ = 1, 4 do
+      --     suffix = suffix .. string.char(math.random(65, 90))
+      --   end
+      -- end
+      -- return tostring(os.time()) .. '-' .. suffix
+
+      -- TODO: avoid Zettelkasten timestamp for now
+      local newtitle = ''
       if title ~= nil then
-        -- If title is given, transform it into valid file name.
-        suffix = title:gsub(' ', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
+        -- If title is given, use as is.
+        newtitle = title:gsub(' ', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
       else
-        -- If title is nil, just add 4 random uppercase letters to the suffix.
+        -- If title is nil, set it to the time.
         for _ = 1, 4 do
-          suffix = suffix .. string.char(math.random(65, 90))
+          newtitle = newtitle .. tostring(os.time())
         end
       end
-      -- return tostring(os.time()) .. '-' .. suffix
-      return suffix -- TODO: avoid Zettelkasten timestamp for now
+      return newtitle
     end,
 
     -- Optional, customize how note file names are generated given the ID, target directory, and title.
@@ -134,8 +146,10 @@ return {
     ---@return string|obsidian.Path The full path to the new note.
     note_path_func = function(spec)
       -- This is equivalent to the default behavior.
-      local path = spec.dir / tostring(spec.id)
-      return path:with_suffix '.md'
+      -- local path = spec.dir / tostring(spec.id)
+      -- return path:with_suffix '.md'
+      local path = tostring(spec.id)
+      return path .. '.md'
     end,
 
     -- Optional, customize how wiki links are formatted. You can set this to one of:
@@ -150,9 +164,9 @@ return {
     wiki_link_func = 'prepend_note_id',
 
     -- Optional, customize how markdown links are formatted.
-    markdown_link_func = function(opts)
-      return require('obsidian.util').markdown_link(opts)
-    end,
+    -- markdown_link_func = function(opts)
+    --   return require('obsidian.util').markdown_link(opts)
+    -- end,
 
     -- Either 'wiki' or 'markdown'.
     preferred_link_style = 'wiki',
