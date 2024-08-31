@@ -28,9 +28,9 @@ return {
       {
         name = 'personal',
         path = '/Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/personal',
-        overrides = {
-          notes_subdir = 'notes',
-        },
+        -- overrides = {
+        --   notes_subdir = 'notes',
+        -- },
       },
       {
         name = 'study',
@@ -47,7 +47,8 @@ return {
     -- dir = "~/vaults/work",
 
     -- Optional, if you keep notes in a specific subdirectory of your vault.
-    notes_subdir = 'notes',
+    -- notes_subdir = 'notes',
+    notes_subdir = vim.NIL,
 
     -- Optional, set the log level for obsidian.nvim. This is an integer corresponding to one of the log
     -- levels defined by "vim.log.levels.*".
