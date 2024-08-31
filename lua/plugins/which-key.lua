@@ -47,6 +47,7 @@ return { -- Useful plugin to show you pending keybinds.
         mode = 'i',
         { 'jk', '<ESC>', desc = 'Exit insert mode' },
         { '<Tab>', '<S-Tab>', desc = 'Print true tabs' }, -- NOTE: Not sure why but works
+        { '<C-v>', '<C-R>*', desc = 'Paste from clipboard' },
         {
           '<C-\\>',
           function()
@@ -178,6 +179,31 @@ return { -- Useful plugin to show you pending keybinds.
         desc = '[U]ndotree',
         mode = 'n',
       },
+    }
+
+    -- Yanky
+    wk.add {
+      mode = {'n', 'x'},
+      { 'y', '<Plug>(YankyYank)', desc = 'Yank text' },
+      { 'p', '<Plug>(YankyPutAfter)', desc = 'Put yanked text after cursor' },
+      { 'P', '<Plug>(YankyPutBefore)', desc = 'Put yanked text before cursor' },
+      { 'gp', '<Plug>(YankyGPutAfter)', desc = 'Put yanked text after selection' },
+      { 'gP', '<Plug>(YankyGPutBefore)', desc = 'Put yanked text before selection' },
+    }
+    wk.add {
+      mode = 'n',
+      { '<C-p>', '<Plug>(YankyPreviousEntry)', desc = 'Select previous entry through yank history' },
+      { '<C-n>', '<Plug>(YankyNextEntry)', desc = 'Select next entry through yank history' },
+      { ']p', '<Plug>(YankyPutIndentAfterLinewise)', desc = 'Put indented after cursor (linewise)' },
+      { '[p', '<Plug>(YankyPutIndentBeforeLinewise)', desc = 'Put indented before cursor (linewise)' },
+      { ']P', '<Plug>(YankyPutIndentAfterLinewise)', desc = 'Put indented after cursor (linewise)' },
+      { '[P', '<Plug>(YankyPutIndentBeforeLinewise)', desc = 'Put indented before cursor (linewise)' },
+      { '>p', '<Plug>(YankyPutIndentAfterShiftRight)', desc = 'Put and indent right' },
+      { '<p', '<Plug>(YankyPutIndentAfterShiftLeft)', desc = 'Put and indent left' },
+      { '>P', '<Plug>(YankyPutIndentBeforeShiftRight)', desc = 'Put before and indent right' },
+      { '<P', '<Plug>(YankyPutIndentBeforeShiftLeft)', desc = 'Put before and indent left' },
+      { '=p', '<Plug>(YankyPutAfterFilter)', desc = 'Put after applying a filter' },
+      { '=P', '<Plug>(YankyPutBeforeFilter)', desc = 'Put before applying a filter' },
     }
 
     -- [S]earch (Telescope)
@@ -648,7 +674,7 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         '<leader>ol',
-        group = '[L]inks'
+        group = '[L]inks',
       },
       {
         '<leader>ol<leader>',
