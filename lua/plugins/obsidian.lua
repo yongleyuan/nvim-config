@@ -27,20 +27,19 @@ return {
     workspaces = {
       {
         name = 'personal',
-        path = '~/Obsidian/personal',
+        path = '/Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/personal',
+        overrides = {
+          notes_subdir = 'notes',
+        },
       },
       {
         name = 'study',
-        path = '~/Obsidian/study',
-        -- Optional, override certain settings.
-        -- overrides = {
-        --   notes_subdir = "notes",
-        -- },
+        path = '/Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/study',
       },
       {
-        name = 'scratchpad',
-        path = '~/Obsidian/scratchpad',
-      }
+        name = 'research',
+        path = '/Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/research',
+      },
     },
 
     -- Alternatively - and for backwards compatibility - you can set 'dir' to a single path instead of
@@ -48,7 +47,7 @@ return {
     -- dir = "~/vaults/work",
 
     -- Optional, if you keep notes in a specific subdirectory of your vault.
-    -- notes_subdir = 'notes',
+    notes_subdir = 'notes',
 
     -- Optional, set the log level for obsidian.nvim. This is an integer corresponding to one of the log
     -- levels defined by "vim.log.levels.*".

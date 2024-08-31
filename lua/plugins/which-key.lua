@@ -622,19 +622,19 @@ return { -- Useful plugin to show you pending keybinds.
         desc = '[ ] Grep all notes',
       },
       {
-        '<leader>o.',
+        '<leader>o/',
         '<CMD>ObsidianQuickSwitch<CR>',
-        desc = '[.] Note name picker',
+        desc = '[/] Note name picker',
+      },
+      {
+        '<leader>ow',
+        '<CMD>ObsidianWorkspace<CR>',
+        desc = '[W]orkspace picker',
       },
       {
         '<leader>ot',
         '<CMD>ObsidianTags<CR>',
         desc = '[T]ags picker',
-      },
-      {
-        '<leader>ow',
-        '<CMD>ObsidianWorkspace<CR>',
-        desc = '[W]orkspace switch',
       },
       {
         '<leader>on',
@@ -647,11 +647,6 @@ return { -- Useful plugin to show you pending keybinds.
         desc = '[R]ename',
       },
       {
-        '<leader>oo',
-        '<CMD>ObsidianOpen<CR>',
-        desc = '[O]pen app',
-      },
-      {
         '<leader>ol',
         group = '[L]inks'
       },
@@ -659,6 +654,11 @@ return { -- Useful plugin to show you pending keybinds.
         '<leader>ol<leader>',
         '<CMD>ObsidianLinks<CR>',
         desc = '[ ] picker',
+      },
+      {
+        '<leader>olb',
+        '<CMD>ObsidianBacklinks<CR>',
+        desc = '[B]ack links',
       },
       {
         '<leader>oll',
@@ -677,7 +677,7 @@ return { -- Useful plugin to show you pending keybinds.
       {
         '<leader>od<leader>',
         '<CMD>ObsidianDailies<CR>',
-        desc = '[ ] Picker',
+        desc = '[ ] Daily note picker',
       },
       {
         '<leader>odd',
@@ -693,6 +693,11 @@ return { -- Useful plugin to show you pending keybinds.
         '<leader>odt',
         '<CMD>ObsidianTomorrow<CR>',
         desc = '[T]omorrow',
+      },
+      {
+        '<leader>o<CR>',
+        '<CMD>ObsidianOpen<CR>',
+        desc = 'Open app',
       },
     }
 
