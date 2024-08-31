@@ -62,7 +62,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
         sorting_strategy = 'ascending',
         layout_config = {
           prompt_position = 'top',
-          preview_width = 0.55,
+          horizontal = { preview_width = 0.55 },
         },
       },
       -- pickers = {}
