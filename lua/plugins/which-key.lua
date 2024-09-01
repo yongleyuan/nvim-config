@@ -47,7 +47,7 @@ return { -- Useful plugin to show you pending keybinds.
         mode = 'i',
         { 'jk', '<ESC>', desc = 'Exit insert mode' },
         { '<Tab>', '<S-Tab>', desc = 'Print true tabs' }, -- NOTE: Not sure why but works
-        { '<C-v>', '<C-R>*', desc = 'Paste from clipboard' },
+        -- { '<C-v>', '<C-R>*', desc = 'Paste from clipboard' },
         {
           '<C-\\>',
           function()
