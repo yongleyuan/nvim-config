@@ -72,6 +72,9 @@ return { -- LSP Configuration & Plugins
       harper_ls = {
         settings = {
           ['harper-ls'] = {
+            linters = {
+              sentence_capitalization = false,
+            },
             codeActions = {
               -- forceStable = true,
             },
