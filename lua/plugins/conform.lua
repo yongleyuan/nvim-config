@@ -2,7 +2,7 @@ return { -- Autoformat
   'stevearc/conform.nvim',
   lazy = false,
   opts = {
-    notify_on_error = false,
+    notify_on_error = true,
     -- Disable "format_on_save lsp_fallback" for languages that don't
     -- format_on_save = function(bufnr)
     --   -- have a well standardized coding style. You can add additional
@@ -17,7 +17,7 @@ return { -- Autoformat
 
     formatters_by_ft = {
       lua = { 'stylua' },
-      python = { 'ruff' },
+      python = { 'ruff', 'black', 'isort' },
       json = { 'prettier' },
     },
   },
