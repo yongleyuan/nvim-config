@@ -1,6 +1,7 @@
 return { -- Autoformat
   'stevearc/conform.nvim',
-  lazy = false,
+  event = { 'BufReadPre' },
+  cmd = { 'ConformInfo' },
   opts = {
     notify_on_error = true,
     -- Disable "format_on_save lsp_fallback" for languages that don't
