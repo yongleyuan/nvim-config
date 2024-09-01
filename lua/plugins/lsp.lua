@@ -53,7 +53,7 @@ return { -- LSP Configuration & Plugins
                 reportMissingImports = 'none',
               },
             },
-            venvPath = "/Users/jack/miniconda3/envs/",
+            venvPath = '/Users/jack/miniconda3/envs/',
           },
         },
       },
@@ -66,6 +66,15 @@ return { -- LSP Configuration & Plugins
             },
             -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
             -- diagnostics = { disable = { 'missing-fields' } },
+          },
+        },
+      },
+      harper_ls = {
+        settings = {
+          ['harper-ls'] = {
+            codeActions = {
+              -- forceStable = true,
+            },
           },
         },
       },
@@ -84,6 +93,7 @@ return { -- LSP Configuration & Plugins
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'lua_ls',
+      'harper_ls',
     })
 
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }

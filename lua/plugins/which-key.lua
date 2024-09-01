@@ -42,6 +42,13 @@ return { -- Useful plugin to show you pending keybinds.
         { '<S-CR>', 'O<ESC>', desc = '' },
         { '\\', '<CMD>AerialToggle<CR>', desc = 'Toggle Aerial' },
         { "'", '<Plug>(leap)', desc = 'Leap' },
+        {
+          '<C-f>',
+          function()
+            require('conform').format { async = true, lsp_fallback = true }
+          end,
+          desc = '[F]ormat buffer',
+        },
       },
       {
         mode = 'i',
@@ -156,14 +163,6 @@ return { -- Useful plugin to show you pending keybinds.
         mode = 'n',
       },
       {
-        '<leader>f',
-        function()
-          require('conform').format { async = true, lsp_fallback = true }
-        end,
-        desc = '[F]ormat buffer',
-        mode = 'n',
-      },
-      {
         '<leader>p',
         function()
           require('telescope').extensions.yank_history.yank_history {}
@@ -183,7 +182,7 @@ return { -- Useful plugin to show you pending keybinds.
 
     -- Yanky
     wk.add {
-      mode = {'n', 'x'},
+      mode = { 'n', 'x' },
       { 'y', '<Plug>(YankyYank)', desc = 'Yank text' },
       { 'p', '<Plug>(YankyPutAfter)', desc = 'Put yanked text after cursor' },
       { 'P', '<Plug>(YankyPutBefore)', desc = 'Put yanked text before cursor' },
