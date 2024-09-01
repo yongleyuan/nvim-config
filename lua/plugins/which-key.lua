@@ -730,7 +730,7 @@ return { -- Useful plugin to show you pending keybinds.
     -- AI
     --
     -- Codeium
-    vim.keymap.set('i', '<S-Space>', function()
+    vim.keymap.set('i', '<C-CR>', function()
       return vim.fn['codeium#Accept']()
     end, { expr = true, silent = true, desc = 'Codeium accept' })
     vim.keymap.set('i', '<C-k>', function()

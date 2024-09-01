@@ -95,7 +95,7 @@ return {
         opts = { buffer = true },
       },
       -- Smart action depending on context, either follow link or toggle checkbox.
-      ['<C-cr>'] = {
+      ['<C-CR>'] = {
         action = function()
           return require('obsidian').util.smart_action()
         end,
