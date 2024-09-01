@@ -161,7 +161,7 @@ return {
     -- wiki_link_func = function(opts)
     --   return require('obsidian.util').wiki_link_id_prefix(opts)
     -- end,
-    wiki_link_func = 'prepend_note_id',
+    wiki_link_func = 'use_alias_only',
 
     -- Optional, customize how markdown links are formatted.
     -- markdown_link_func = function(opts)

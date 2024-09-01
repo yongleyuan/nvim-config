@@ -42,13 +42,6 @@ return { -- Useful plugin to show you pending keybinds.
         { '<S-CR>', 'O<ESC>', desc = '' },
         { '\\', '<CMD>AerialToggle<CR>', desc = 'Toggle Aerial' },
         { "'", '<Plug>(leap)', desc = 'Leap' },
-        {
-          '<C-f>',
-          function()
-            require('conform').format { async = true, lsp_fallback = true }
-          end,
-          desc = '[F]ormat buffer',
-        },
       },
       {
         mode = 'i',
@@ -160,6 +153,14 @@ return { -- Useful plugin to show you pending keybinds.
           tb.find_files()
         end,
         desc = 'Fuzzy find file in dir',
+        mode = 'n',
+      },
+      {
+        '<leader>f',
+        function()
+          require('conform').format { async = true, lsp_fallback = true }
+        end,
+        desc = '[F]ormat buffer',
         mode = 'n',
       },
       {
