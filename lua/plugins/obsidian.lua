@@ -124,16 +124,18 @@ return {
       --   end
       -- end
       -- return tostring(os.time()) .. '-' .. suffix
-
-      -- TODO: avoid Zettelkasten timestamp for now
+      -- NOTE: avoid Zettelkasten timestamp for now
       local newtitle = ''
       if title ~= nil then
         -- If title is given, use as is.
         newtitle = title:gsub(' ', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
+        if string.len(newtitle) == 0 then
+          newtitle = 'untitled-' .. tostring(os.time())
+        end
       else
         -- If title is nil, set it to the time.
         for _ = 1, 4 do
-          newtitle = newtitle .. tostring(os.time())
+          newtitle = 'untitled-' .. tostring(os.time())
         end
       end
       return newtitle
