@@ -88,6 +88,12 @@ return { -- Highlight, edit, and navigate code
           breakindentopt = { default = '', rendered = '' },
         },
 
+        -- List bullets
+        bullet = {
+          enabled = true,
+          icons = { '󰧟', '', '', '', '' },
+        },
+
         -- Indentation
         indent = {
           enabled = true,

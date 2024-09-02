@@ -6,7 +6,7 @@ return { -- Autoformat
     notify_on_error = true,
     -- Disable "format_on_save lsp_fallback" for languages that don't
     -- format_on_save = function(bufnr)
-    --   -- have a well standardized coding style. You can add additional
+    --   -- have a well standardized coding style. You can add additionalform
     --   -- languages here or re-enable it for the disabled ones.
     --   local disable_filetypes = { c = true, cpp = true }
     --   return {

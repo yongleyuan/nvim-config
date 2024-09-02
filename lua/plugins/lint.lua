@@ -14,7 +14,8 @@ return {
       local markdownlint = require('lint').linters.markdownlint
       markdownlint.args = {
         '--disable',
-        'MD013',
+        'MD012', -- multiple consecutive blank lines
+        'MD013', -- line length
         '--', -- required
       }
 
