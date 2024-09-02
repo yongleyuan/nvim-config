@@ -47,10 +47,14 @@ return { -- Highlight, edit, and navigate code
 
         -- Heading
         heading = {
+          enabled = true,
           -- icons = { '󰬺 ', '󰬻 ', '󰬼 ', '󰬽 ', '󰬾 ', '󰬿 ' },
-          icons = { '', '', '', '', '', '' },
-          width = 'block',
-          min_width = 80,
+          icons = { '', '', '', '', '', '' },
+          position = 'inline',
+          -- width = 'block',
+          -- left_pad = 0,
+          -- right_pad = 2,
+          -- min_width = 0,
           -- -- background
           -- vim.cmd(string.format([[highlight Headline1Bg guifg=%s guibg=%s]], color_fg, color1_bg)),
           -- vim.cmd(string.format([[highlight Headline2Bg guifg=%s guibg=%s]], color_fg, color2_bg)),
@@ -58,14 +62,7 @@ return { -- Highlight, edit, and navigate code
           -- vim.cmd(string.format([[highlight Headline4Bg guifg=%s guibg=%s]], color_fg, color4_bg)),
           -- vim.cmd(string.format([[highlight Headline5Bg guifg=%s guibg=%s]], color_fg, color5_bg)),
           -- vim.cmd(string.format([[highlight Headline6Bg guifg=%s guibg=%s]], color_fg, color6_bg)),
-          -- backgrounds = {
-          --   'Headline1Bg',
-          --   'Headline2Bg',
-          --   'Headline3Bg',
-          --   'Headline4Bg',
-          --   'Headline5Bg',
-          --   'Headline6Bg',
-          -- },
+          backgrounds = { '', '', '', '', '', '' },
           -- -- foreground
           -- vim.cmd(string.format([[highlight Headline1Fg cterm=bold gui=bold guifg=%s]], color_fg)),
           -- vim.cmd(string.format([[highlight Headline2Fg cterm=bold gui=bold guifg=%s]], color_fg)),
@@ -89,6 +86,11 @@ return { -- Highlight, edit, and navigate code
           showbreak = { default = '', rendered = '  ' },
           breakindent = { default = false, rendered = true },
           breakindentopt = { default = '', rendered = '' },
+        },
+
+        -- Indentation
+        indent = {
+          enabled = true,
         },
       }
     end,
