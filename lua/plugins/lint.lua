@@ -19,7 +19,7 @@ return {
       }
 
       local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
-      local event = { 'BufReadPre', 'BufNewFile' }
+      local event = { 'BufEnter', 'BufReadPre', 'BufNewFile', 'InsertLeave' }
       vim.api.nvim_create_autocmd(event, {
         group = lint_augroup,
         callback = function()
