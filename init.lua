@@ -126,7 +126,7 @@ require('lazy').setup({
   require 'plugins.which-key',
   require 'plugins.telescope',
   require 'plugins.lsp',
-  require 'plugins.conform',
+  require 'plugins.format',
   require 'plugins.cmp',
   require 'plugins.colorscheme',
   require 'plugins.mini',
