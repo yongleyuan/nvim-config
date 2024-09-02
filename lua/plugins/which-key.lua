@@ -363,79 +363,43 @@ return { -- Useful plugin to show you pending keybinds.
       end,
     })
 
-    -- [D]iagnostic / [D]ebug
-    local dap = require 'dap'
+    -- [D]iagnostics
     wk.add {
       mode = 'n',
       -- { '[d', vim.diagnostic.jump { count = -1 }, desc = 'Go to previous [D]iagnostic message', mode = 'n' },
       -- { ']d', vim.diagnostic.jump { count = 1 }, desc = 'Go to previous [D]iagnostic message', mode = 'n' },
       { '[d', vim.diagnostic.goto_prev(), desc = 'Go to previous [D]iagnostic message', mode = 'n' },
       { ']d', vim.diagnostic.goto_next(), desc = 'Go to previous [D]iagnostic message', mode = 'n' },
-      { '<leader>d', group = '[D]iagnostic / [D]ebug' },
-      { '<leader>de', vim.diagnostic.open_float, desc = 'Diagnostic: Show [E]rror messages' },
-      { '<leader>dq', vim.diagnostic.setloclist, desc = 'Diagnostic: Open [Q]uickfix list' },
+      { '<leader>d', group = '[D]iagnostic' },
+      { '<leader>de', vim.diagnostic.open_float, desc = 'Show [E]rror messages' },
+      { '<leader>dq', vim.diagnostic.setloclist, desc = 'Open [Q]uickfix list' },
+    }
+
+    -- De[B]ug
+    local dap = require 'dap'
+    wk.add {
+      mode = 'n',
+      { '<leader>b', group = 'De[B]ug' },
       {
-        '<leader>dl',
+        '<leader>b<leader>',
         function()
-          dap.list_breakpoints()
+          dap.toggle_breakpoint()
         end,
-        desc = 'Debug: [L]ist breakpoints',
+        desc = 'Debug: toggle breakpoint',
       },
       {
-        '<leader>dc',
+        '<F12>',
         function()
-          dap.clear_breakpoints()
+          dap.toggle_breakpoint()
         end,
-        desc = 'Debug: [C]lear breakpoints',
+        desc = 'Debug: toggle breakpoint',
       },
       {
-        '<F1>',
+        '<leader>b<CR>',
         function()
-          dap.step_into()
+          require('dapui').toggle()
         end,
-        desc = 'Debug: Step into',
-      },
-      {
-        '<F2>',
-        function()
-          dap.step_over()
-        end,
-        desc = 'Debug: Step over',
-      },
-      {
-        '<F3>',
-        function()
-          dap.step_out()
-        end,
-        desc = 'Debug: Step out',
-      },
-      {
-        '<F4>',
-        function()
-          dap.step_back()
-        end,
-        desc = 'Debug: Step back',
-      },
-      {
-        '<F5>',
-        function()
-          dap.continue()
-        end,
-        desc = 'Debug: start/continue',
-      },
-      {
-        '<F6>',
-        function()
-          dap.restart()
-        end,
-        desc = 'Debug: restart',
-      },
-      {
-        '<F7>',
-        function()
-          dap.terminate()
-        end,
-        desc = 'Debug: terminate',
+        desc = 'Debug: toggle dapui',
       },
       {
         '<F10>',
@@ -445,11 +409,116 @@ return { -- Useful plugin to show you pending keybinds.
         desc = 'Debug: toggle dapui',
       },
       {
-        '<F12>',
+        '<leader>bi',
         function()
-          dap.toggle_breakpoint()
+          dap.step_into()
         end,
-        desc = 'Debug: toggle breakpoint',
+        desc = 'Debug: Step into',
+      },
+      {
+        '<F1>',
+        function()
+          dap.step_into()
+        end,
+        desc = 'Debug: Step into',
+      },
+      {
+        '<learder>bs',
+        function()
+          dap.step_over()
+        end,
+        desc = 'Debug: Step over',
+      },
+      {
+        '<F2>',
+        function()
+          dap.step_over()
+        end,
+        desc = 'Debug: Step over',
+      },
+      {
+        '<leader>bo',
+        function()
+          dap.step_out()
+        end,
+        desc = 'Debug: Step out',
+      },
+      {
+        '<F3>',
+        function()
+          dap.step_out()
+        end,
+        desc = 'Debug: Step out',
+      },
+      {
+        '<leader>bS',
+        function()
+          dap.step_back()
+        end,
+        desc = 'Debug: Step back',
+      },
+      {
+        '<F4>',
+        function()
+          dap.step_back()
+        end,
+        desc = 'Debug: Step back',
+      },
+      {
+        '<leader>bc',
+        function()
+          dap.continue()
+        end,
+        desc = 'Debug: start/continue',
+      },
+      {
+        '<F5>',
+        function()
+          dap.continue()
+        end,
+        desc = 'Debug: start/continue',
+      },
+      {
+        '<leader>br',
+        function()
+          dap.restart()
+        end,
+        desc = 'Debug: restart',
+      },
+      {
+        '<F6>',
+        function()
+          dap.restart()
+        end,
+        desc = 'Debug: restart',
+      },
+      {
+        '<leader>bt',
+        function()
+          dap.terminate()
+        end,
+        desc = 'Debug: terminate',
+      },
+      {
+        '<F7>',
+        function()
+          dap.terminate()
+        end,
+        desc = 'Debug: terminate',
+      },
+      {
+        '<leader>bl',
+        function()
+          dap.list_breakpoints()
+        end,
+        desc = 'Debug: [L]ist breakpoints',
+      },
+      {
+        '<leader>bc',
+        function()
+          dap.clear_breakpoints()
+        end,
+        desc = 'Debug: [C]lear breakpoints',
       },
     }
 
