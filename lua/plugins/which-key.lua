@@ -402,6 +402,13 @@ return { -- Useful plugin to show you pending keybinds.
         desc = 'Debug: toggle dapui',
       },
       {
+        '<leader>bb',
+        function()
+          dap.continue()
+        end,
+        desc = 'Debug: start/continue',
+      },
+      {
         '<F10>',
         function()
           require('dapui').toggle()
@@ -465,13 +472,6 @@ return { -- Useful plugin to show you pending keybinds.
         desc = 'Debug: Step back',
       },
       {
-        '<leader>bc',
-        function()
-          dap.continue()
-        end,
-        desc = 'Debug: start/continue',
-      },
-      {
         '<F5>',
         function()
           dap.continue()
@@ -511,14 +511,14 @@ return { -- Useful plugin to show you pending keybinds.
         function()
           dap.list_breakpoints()
         end,
-        desc = 'Debug: [L]ist breakpoints',
+        desc = 'Debug: List breakpoints',
       },
       {
         '<leader>bc',
         function()
           dap.clear_breakpoints()
         end,
-        desc = 'Debug: [C]lear breakpoints',
+        desc = 'Debug: Clear breakpoints',
       },
     }
 
