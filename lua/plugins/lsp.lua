@@ -27,20 +27,7 @@ return { -- LSP Configuration & Plugins
 
     local servers = {
       pyright = {
-        -- NOTE: CANNOT be in ~, otherwise will fail to load Pyright
-        root_dir = function(fname)
-          local util = require 'lspconfig.util'
-          -- local root_files = {
-          --   'pyproject.toml',
-          --   'setup.py',
-          --   'setup.cfg',
-          --   'requirements.txt',
-          --   'Pipfile',
-          --   'pyrightconfig.json',
-          -- }
-          -- return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
-          return util.find_git_ancestor(fname) or util.path.dirname(fname) -- NOTE: This sets git root dir or file's dir as root dir.
-        end,
+        root_dir = nil, -- single file mode
         settings = {
           python = {
             analysis = {
