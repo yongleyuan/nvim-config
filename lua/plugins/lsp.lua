@@ -31,36 +31,22 @@ return { -- LSP Configuration & Plugins
         -- root_dir = nil, -- this is single file mode, but cmp will not work for some reason
         root_dir = function(fname)
           local util = require 'lspconfig.util'
-          -- local root_files = {
-          --   'pyproject.toml',
-          --   'setup.py',
-          --   'setup.cfg',
-          --   'requirements.txt',
-          --   'Pipfile',
-          --   'pyrightconfig.json',
-          -- }
-          -- return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
           return util.find_git_ancestor(fname) or util.path.dirname(fname) -- NOTE: This sets git root dir or file's dir as root dir.
         end,
         settings = {
+          pyright = {
+            disableOrganizeImports = true,
+          },
           python = {
-            analysis = {
-              diagnosticSeverityOverrides = {
-                reportUndefinedVariable = 'none',
-                reportUnusedClass = 'none',
-                reportUnusedFunction = 'warning', -- TODO: This does not work! (maybe)
-                reportUnusedImport = 'none',
-                reportUnusedVariable = 'none',
-                reportUnusedExpression = 'none',
-                reportMissingImports = 'none',
-              },
-            },
             venvPath = '/Users/jack/miniconda3/envs/',
+            analysis = {
+              ignore = { '*' },
+            },
           },
         },
         single_file_support = true,
       },
-      -- ruff = {},
+      ruff = {},
       lua_ls = {
         settings = {
           Lua = {

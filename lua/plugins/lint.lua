@@ -7,7 +7,7 @@ return {
       lint.linters_by_ft = {
         markdown = { 'markdownlint' },
         json = { 'jsonlint' },
-        python = { 'ruff' },
+        -- python = { 'ruff' }, -- NOTE: ruff already in LSP
       }
 
       -- Markdownlint config

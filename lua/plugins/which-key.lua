@@ -37,7 +37,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<A-x>', '<CMD>Bdelete!<CR>', desc = '' },
         { ',', '<CMD>Neotree toggle<CR>', desc = 'Toggle Neotree' },
         { 'J', 'mzJ`z', desc = '' },
-        { 'K', 'i<CR><ESC>', desc = 'Insert new line under cursor' },
+        { 'H', 'i<CR><ESC>', desc = 'Insert new line under cursor' },
         { '<CR>', 'o<ESC>', desc = '' },
         { '<S-CR>', 'O<ESC>', desc = '' },
         { '\\', '<CMD>AerialToggle<CR>', desc = 'Toggle Aerial' },
@@ -158,7 +158,7 @@ return { -- Useful plugin to show you pending keybinds.
       {
         '<leader>f',
         function()
-          require('conform').format { async = true, lsp_fallback = true }
+          require('conform').format { async = true, lsp_format = 'fallback' }
         end,
         desc = '[F]ormat buffer',
         mode = 'n',
