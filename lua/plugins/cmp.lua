@@ -53,7 +53,14 @@ return { -- Autocompletion
         sources = {
           { name = 'luasnip' },
           { name = 'path' },
-          { name = 'nvim_lsp' },
+          {
+            name = 'nvim_lsp',
+            option = {
+              markdown_oxide = {
+                keyword_pattern = [[\(\k\| \|\/\|#\)\+]],
+              },
+            },
+          },
           { name = 'buffer' },
         },
       }

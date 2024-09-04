@@ -103,6 +103,18 @@ return { -- LSP Configuration & Plugins
       },
     }
 
+    -- Markdown-oxide integration
+    local markdown_oxide_capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    markdown_oxide_capabilities.workspace = {
+      didChangeWatchedFiles = {
+        dynamicRegistration = true,
+      },
+    }
+    require("lspconfig").markdown_oxide.setup({
+      capabilities = markdown_oxide_capabilities,
+      on_attach = on_attach
+    })
+
     -- Disable unused default LSP keymaps
     if vim.fn.mapcheck('gra', 'n') ~= '' then
       vim.keymap.del('n', 'gra')
