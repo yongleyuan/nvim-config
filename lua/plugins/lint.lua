@@ -14,8 +14,11 @@ return {
       local markdownlint = require('lint').linters.markdownlint
       markdownlint.args = {
         '--disable',
+        'MD007', -- unordered list indentation
         'MD012', -- multiple consecutive blank lines
         'MD013', -- line length
+        'MD029', -- ordered list prefix
+        'MD032', -- list surround with blank lines
         '--', -- required
       }
 
