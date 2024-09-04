@@ -120,6 +120,7 @@ return { -- Useful plugin to show you pending keybinds.
     -- Standalone leader keybindings
     local tb = require 'telescope.builtin'
     wk.add {
+      mode = 'n',
       {
         '<leader><leader>',
         function()
@@ -131,13 +132,11 @@ return { -- Useful plugin to show you pending keybinds.
           )
         end,
         desc = 'Fuzzy find in current buffer',
-        mode = 'n',
       },
       {
         '<leader>,',
         '<CMD>Neotree buffers toggle<CR>',
         desc = 'Toggle Neotree buffers',
-        mode = 'n',
       },
       {
         '<leader>.',
@@ -145,7 +144,6 @@ return { -- Useful plugin to show you pending keybinds.
           tb.buffers()
         end,
         desc = 'Fuzzy find buffers',
-        mode = 'n',
       },
       {
         '<leader>/',
@@ -153,7 +151,11 @@ return { -- Useful plugin to show you pending keybinds.
           tb.find_files()
         end,
         desc = 'Fuzzy find file in dir',
-        mode = 'n',
+      },
+      {
+        '<leader>a',
+        '<CMD>ASToggle<CR>',
+        desc = 'Toggle auto save',
       },
       {
         '<leader>f',
@@ -161,7 +163,6 @@ return { -- Useful plugin to show you pending keybinds.
           require('conform').format { async = true, lsp_format = 'fallback' }
         end,
         desc = '[F]ormat buffer',
-        mode = 'n',
       },
       {
         '<leader>p',
@@ -169,7 +170,6 @@ return { -- Useful plugin to show you pending keybinds.
           require('telescope').extensions.yank_history.yank_history {}
         end,
         desc = '[P]aste yank history',
-        mode = 'n',
       },
       {
         '<leader>u',
@@ -177,7 +177,6 @@ return { -- Useful plugin to show you pending keybinds.
           require('undotree').toggle()
         end,
         desc = '[U]ndotree',
-        mode = 'n',
       },
     }
 
