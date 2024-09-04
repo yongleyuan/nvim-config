@@ -18,12 +18,6 @@ return {
     'nvim-treesitter/nvim-treesitter',
   },
   opts = {
-    -- A list of workspace names, paths, and configuration overrides.
-    -- If you use the Obsidian app, the 'path' of a workspace should generally be
-    -- your vault root (where the `.obsidian` folder is located).
-    -- When obsidian.nvim is loaded by your plugin manager, it will automatically set
-    -- the workspace to the first workspace in the list whose `path` is a parent of the
-    -- current markdown file being edited.
     workspaces = {
       {
         name = 'personal',
@@ -42,57 +36,42 @@ return {
       },
     },
 
-    -- Alternatively - and for backwards compatibility - you can set 'dir' to a single path instead of
-    -- 'workspaces'. For example:
+    -- Alternatively - and for backwards compatibility - you can set 'dir' to a single path instead of 'workspaces'. For example:
     -- dir = "~/vaults/work",
 
     -- Optional, if you keep notes in a specific subdirectory of your vault.
-    -- notes_subdir = 'notes',
     notes_subdir = vim.NIL,
 
-    -- Optional, set the log level for obsidian.nvim. This is an integer corresponding to one of the log
-    -- levels defined by "vim.log.levels.*".
+    -- Optional, set the log level for obsidian.nvim. This is an integer corresponding to one of the log levels defined by "vim.log.levels.*".
     log_level = vim.log.levels.INFO,
 
     daily_notes = {
-      -- Optional, if you keep daily notes in a separate directory.
-      -- folder = "notes/dailies",
       folder = 'dailies',
-      -- Optional, if you want to change the date format for the ID of daily notes.
       date_format = '%Y-%m-%d',
-      -- Optional, if you want to change the date format of the default alias of daily notes.
       alias_format = '%B %-d, %Y',
-      -- Optional, default tags to add to each new daily note created.
       default_tags = { 'daily-notes' },
-      -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
       template = nil,
     },
 
-    -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
     completion = {
       nvim_cmp = true,
       min_chars = 0,
     },
 
-    -- Optional, configure key mappings. These are the defaults. If you don't want to set any keymappings this
-    -- way then set 'mappings = {}'.
     -- NOTE: See which-key for more
     mappings = {
-      -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
       ['gf'] = {
         action = function()
           return require('obsidian').util.gf_passthrough()
         end,
         opts = { noremap = false, expr = true, buffer = true },
       },
-      -- Toggle check-boxes.
       ['<C-\\>'] = {
         action = function()
           return require('obsidian').util.toggle_checkbox()
         end,
         opts = { buffer = true },
       },
-      -- Smart action depending on context, either follow link or toggle checkbox.
       ['<C-CR>'] = {
         action = function()
           return require('obsidian').util.smart_action()
@@ -234,10 +213,7 @@ return {
     open_app_foreground = true,
 
     picker = {
-      -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', or 'mini.pick'.
       name = 'telescope.nvim',
-      -- Optional, configure key mappings for the picker. These are the defaults.
-      -- Not all pickers support all mappings.
       note_mappings = {
         -- Create a new note from your query.
         new = '<C-\\>',
@@ -253,8 +229,7 @@ return {
     },
 
     -- Optional, sort search results by "path", "modified", "accessed", or "created".
-    -- The recommend value is "modified" and `true` for `sort_reversed`, which means, for example,
-    -- that `:ObsidianQuickSwitch` will show the notes sorted by latest modified time
+    -- The recommend value is "modified" and `true` for `sort_reversed`, which means, for example, that `:ObsidianQuickSwitch` will show the notes sorted by latest modified time
     sort_by = 'modified',
     sort_reversed = true,
 
