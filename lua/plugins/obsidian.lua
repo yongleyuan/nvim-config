@@ -66,18 +66,18 @@ return {
         end,
         opts = { noremap = false, expr = true, buffer = true },
       },
-      ['<C-\\>'] = {
-        action = function()
-          return require('obsidian').util.toggle_checkbox()
-        end,
-        opts = { buffer = true },
-      },
-      ['<C-CR>'] = {
-        action = function()
-          return require('obsidian').util.smart_action()
-        end,
-        opts = { buffer = true, expr = true },
-      },
+      -- ['<C-\\>'] = {
+      --   action = function()
+      --     return require('obsidian').util.toggle_checkbox()
+      --   end,
+      --   opts = { buffer = true },
+      -- },
+      -- ['<C-CR>'] = {
+      --   action = function()
+      --     return require('obsidian').util.smart_action()
+      --   end,
+      --   opts = { buffer = true, expr = true },
+      -- },
     },
 
     -- Where to put new notes. Valid options are
