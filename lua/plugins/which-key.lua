@@ -42,6 +42,8 @@ return { -- Useful plugin to show you pending keybinds.
         { '<S-CR>', 'O<ESC>', desc = '' },
         { '\\', '<CMD>AerialToggle<CR>', desc = 'Toggle Aerial' },
         { "'", '<Plug>(leap)', desc = 'Leap' },
+        { 'vv', 'V', desc = 'Select line' },
+        { 'V', 'v$', desc = 'Select until end of line' },
       },
       {
         mode = 'i',
