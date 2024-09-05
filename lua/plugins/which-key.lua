@@ -37,7 +37,7 @@ return { -- Useful plugin to show you pending keybinds.
         { '<A-x>', '<CMD>Bdelete!<CR>', desc = '' },
         { ',', '<CMD>Neotree toggle<CR>', desc = 'Toggle Neotree' },
         { 'J', 'mzJ`z', desc = '' },
-        { 'H', 'i<CR><ESC>', desc = 'Insert new line under cursor' },
+        { 'U', 'i<CR><ESC>', desc = 'Insert new line under cursor' },
         { '<CR>', 'o<ESC>', desc = '' },
         { '<S-CR>', 'O<ESC>', desc = '' },
         { '\\', '<CMD>AerialToggle<CR>', desc = 'Toggle Aerial' },
