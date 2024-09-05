@@ -54,8 +54,8 @@ return {
     },
 
     completion = {
-      nvim_cmp = false,
-      min_chars = 0,
+      nvim_cmp = true,
+      min_chars = 2,
     },
 
     -- NOTE: See which-key for more
