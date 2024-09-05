@@ -104,16 +104,36 @@ return { -- LSP Configuration & Plugins
     }
 
     -- Markdown-oxide integration
-    local markdown_oxide_capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local markdown_oxide_capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
     markdown_oxide_capabilities.workspace = {
       didChangeWatchedFiles = {
         dynamicRegistration = true,
       },
     }
-    require("lspconfig").markdown_oxide.setup({
+    require('lspconfig').markdown_oxide.setup {
       capabilities = markdown_oxide_capabilities,
-      on_attach = on_attach
-    })
+      on_attach = function(_, bufnr)
+        local function check_codelens_support()
+          local clients = vim.lsp.get_active_clients { bufnr = 0 }
+          for _, c in ipairs(clients) do
+            if c.server_capabilities.codeLensProvider then
+              return true
+            end
+          end
+          return false
+        end
+        vim.api.nvim_create_autocmd({ 'TextChanged', 'InsertLeave', 'CursorHold', 'LspAttach', 'BufEnter' }, {
+          buffer = bufnr,
+          callback = function()
+            if check_codelens_support() then
+              vim.lsp.codelens.refresh { bufnr = 0 }
+            end
+          end,
+        })
+        -- Trigger codelens refresh
+        vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
+      end,
+    }
 
     -- Disable unused default LSP keymaps
     if vim.fn.mapcheck('gra', 'n') ~= '' then
