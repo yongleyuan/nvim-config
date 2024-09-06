@@ -19,6 +19,7 @@ return {
         'MD013', -- line length
         'MD029', -- ordered list prefix
         'MD032', -- list surround with blank lines
+        'MD018', -- no space after after hash
         '--', -- required
       }
 

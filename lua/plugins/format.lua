@@ -9,7 +9,7 @@ return { -- Autoformat
       lua = { 'stylua' },
       -- python = { 'black' }, -- NOTE: ruff already in LSP
       json = { 'prettier' },
-      markdown = { 'markdownlint', 'prettier' },
+      markdown = { 'prettier' },
     },
   },
 }

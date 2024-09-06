@@ -98,9 +98,9 @@ return { -- Highlight, edit, and navigate code
         indent = {
           enabled = true,
         },
-        
+
         -- Table
-        pipe_table = { alignment_indicator = '󰮸' }
+        pipe_table = { alignment_indicator = '󰮸' },
       }
     end,
   },
