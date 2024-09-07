@@ -102,6 +102,10 @@ return { -- Highlight, edit, and navigate code
         -- Table
         pipe_table = { alignment_indicator = '󰮸' },
       }
+
+      -- Tag highlight
+      vim.cmd [[ highlight MarkdownTag guifg=#b49edb cterm=italic gui=italic ]]
+      vim.cmd [[ match MarkdownTag "#\w\+" ]]
     end,
   },
 }
