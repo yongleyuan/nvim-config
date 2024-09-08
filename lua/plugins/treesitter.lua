@@ -41,6 +41,21 @@ return { -- Highlight, edit, and navigate code
       -- 'echasnovski/mini.nvim',
     },
     config = function()
+      -- Highlight
+      vim.cmd [[ highligh @markup.quote guifg=#fab4da cterm=italic gui=italic ]]
+      vim.cmd [[ highlight MarkdownTag guifg=#9adbaa cterm=italic gui=italic ]]
+      vim.api.nvim_create_autocmd('BufWinEnter', {
+        desc = 'Highlight markdown tags',
+        group = vim.api.nvim_create_augroup('FormatMarkdownTag', { clear = true }),
+        callback = function(opts)
+          if vim.bo[opts.buf].filetype == 'markdown' then
+            vim.cmd [[ match MarkdownTag "^#\w\+\S*\|\s\+#\w\+\S*" ]]
+          else
+            vim.cmd [[ match none ]]
+          end
+        end,
+      })
+
       require('render-markdown').setup {
         file_types = { 'markdown' },
         render_modes = { 'n', 'c', 'i', 'v' },
@@ -51,33 +66,7 @@ return { -- Highlight, edit, and navigate code
           -- icons = { '󰬺 ', '󰬻 ', '󰬼 ', '󰬽 ', '󰬾 ', '󰬿 ' },
           icons = { '', '', '', '', '', '' },
           position = 'inline',
-          -- width = 'block',
-          -- left_pad = 0,
-          -- right_pad = 2,
-          -- min_width = 0,
-          -- -- background
-          -- vim.cmd(string.format([[highlight Headline1Bg guifg=%s guibg=%s]], color_fg, color1_bg)),
-          -- vim.cmd(string.format([[highlight Headline2Bg guifg=%s guibg=%s]], color_fg, color2_bg)),
-          -- vim.cmd(string.format([[highlight Headline3Bg guifg=%s guibg=%s]], color_fg, color3_bg)),
-          -- vim.cmd(string.format([[highlight Headline4Bg guifg=%s guibg=%s]], color_fg, color4_bg)),
-          -- vim.cmd(string.format([[highlight Headline5Bg guifg=%s guibg=%s]], color_fg, color5_bg)),
-          -- vim.cmd(string.format([[highlight Headline6Bg guifg=%s guibg=%s]], color_fg, color6_bg)),
           backgrounds = { '', '', '', '', '', '' },
-          -- -- foreground
-          -- vim.cmd(string.format([[highlight Headline1Fg cterm=bold gui=bold guifg=%s]], color_fg)),
-          -- vim.cmd(string.format([[highlight Headline2Fg cterm=bold gui=bold guifg=%s]], color_fg)),
-          -- vim.cmd(string.format([[highlight Headline3Fg cterm=bold gui=bold guifg=%s]], color_fg)),
-          -- vim.cmd(string.format([[highlight Headline4Fg cterm=bold gui=bold guifg=%s]], color_fg)),
-          -- vim.cmd(string.format([[highlight Headline5Fg cterm=bold gui=bold guifg=%s]], color_fg)),
-          -- vim.cmd(string.format([[highlight Headline6Fg cterm=bold gui=bold guifg=%s]], color_fg)),
-          -- foregrounds = {
-          --   'Headline1Fg',
-          --   'Headline2Fg',
-          --   'Headline3Fg',
-          --   'Headline4Fg',
-          --   'Headline5Fg',
-          --   'Headline6Fg',
-          -- },
         },
 
         -- Block quote
@@ -101,11 +90,37 @@ return { -- Highlight, edit, and navigate code
 
         -- Table
         pipe_table = { alignment_indicator = '󰮸' },
-      }
 
-      -- Tag highlight
-      vim.cmd [[ highlight MarkdownTag guifg=#b49edb cterm=italic gui=italic ]]
-      vim.cmd [[ match MarkdownTag "^#\w\+" ]]
+        callout = {
+          note = { raw = '' },
+          tip = { raw = '' },
+          important = { raw = '' },
+          warning = { raw = '' },
+          caution = { raw = '' },
+          abstract = { raw = '' },
+          summary = { raw = '' },
+          tldr = { raw = '' },
+          info = { raw = '' },
+          todo = { raw = '' },
+          hint = { raw = '' },
+          success = { raw = '' },
+          check = { raw = '' },
+          done = { raw = '' },
+          question = { raw = '' },
+          help = { raw = '' },
+          faq = { raw = '' },
+          attention = { raw = '' },
+          failure = { raw = '' },
+          fail = { raw = '' },
+          missing = { raw = '' },
+          danger = { raw = '' },
+          error = { raw = '' },
+          bug = { raw = '' },
+          example = { raw = '' },
+          quote = { raw = '' },
+          cite = { raw = '' },
+        },
+      }
     end,
   },
 }
