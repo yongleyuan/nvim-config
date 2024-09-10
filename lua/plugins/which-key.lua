@@ -431,7 +431,7 @@ return { -- Useful plugin to show you pending keybinds.
         desc = 'Debug: Step into',
       },
       {
-        '<learder>bs',
+        '<leader>bs',
         function()
           dap.step_over()
         end,
