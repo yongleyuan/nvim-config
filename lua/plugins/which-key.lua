@@ -802,5 +802,99 @@ return { -- Useful plugin to show you pending keybinds.
 
     vim.keymap.set({ 'n', 'i', 'v', 'x' }, '<C-g>s', '<cmd>GpStop<cr>', keymapOptions 'Stop')
     vim.keymap.set({ 'n', 'i', 'v', 'x' }, '<C-g>n', '<cmd>GpNextAgent<cr>', keymapOptions 'Next Agent')
+
+    -- IronRepl (Jupyter Notebook)
+    local iron = require 'iron.core'
+    wk.add {
+      cond = function()
+        if vim.bo.filetype == 'python' then
+          return true
+        end
+        return false
+      end,
+      {
+        '<leader>j',
+        group = '[J]upyter',
+      },
+      {
+        '<leader>jj',
+        '<CMD>IronRepl<CR>j',
+        desc = 'Start with split',
+        mode = 'n',
+      },
+      {
+        '<leader>jh',
+        '<CMD>IronReplHere<CR>j',
+        desc = 'Start [H]ere',
+        mode = 'n',
+      },
+      {
+        '<leader>jr',
+        '<CMD>IronRestart<CR>j',
+        desc = '[R]estart',
+        mode = 'n',
+      },
+      {
+        '<leader>jx',
+        function()
+          iron.close_repl 'python'
+        end,
+        desc = '[X] Close',
+        mode = 'n',
+      },
+      {
+        '<leader>jd',
+        '<CMD>IronHide<CR>',
+        desc = 'Hi[D]e',
+        mode = 'n',
+      },
+      {
+        '<leader>jo',
+        '<CMD>IronFocus<CR>',
+        desc = 'F[O]cus',
+        mode = 'n',
+      },
+      {
+        '<leader>jl',
+        function()
+          iron.send_line()
+        end,
+        desc = 'Send [L]ine',
+        mode = 'n',
+      },
+      {
+        '<leader>js',
+        function()
+          iron.visual_send()
+        end,
+        desc = '[S]end',
+        mode = 'v',
+      },
+      {
+        '<leader>jc',
+        function()
+          iron.send_until_cursor()
+        end,
+        desc = 'Send until [C]ursor',
+        mode = 'n',
+      },
+      {
+        '<leader>jp',
+        function()
+          iron.send_paragraph()
+        end,
+        desc = 'Send [P]aragraph',
+        mode = 'n',
+      },
+      {
+        '<leader>jf',
+        function()
+          local filetype = vim.bo.filetype
+          iron.send_file(filetype)
+        end,
+        desc = 'Send [F]ile',
+        mode = 'n',
+      },
+    }
   end,
 }
