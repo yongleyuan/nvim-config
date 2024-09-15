@@ -27,14 +27,74 @@ return { -- Useful plugin to show you pending keybinds.
         { '<right>', '<CMD>echo "Use l to move!!"<CR>', desc = '' },
         { '<up>', '<CMD>echo "Use k to move!!"<CR>', desc = '' },
         { '<down>', '<CMD>echo "Use j to move!!"<CR>', desc = '' },
-        { '<C-h>', '<C-w><C-h>', desc = 'Move focus to the left window' },
-        { '<C-l>', '<C-w><C-l>', desc = 'Move focus to the right window' },
-        { '<C-j>', '<C-w><C-j>', desc = 'Move focus to the lower window' },
-        { '<C-k>', '<C-w><C-k>', desc = 'Move focus to the upper window' },
-        { '<A-j>', '<CMD>bnext<CR>', desc = '' },
-        { '<A-k>', '<CMD>bprev<CR>', desc = '' },
-        { '<A-c>', '<CMD>Bdelete<CR>', desc = '' },
-        { '<A-x>', '<CMD>Bdelete!<CR>', desc = '' },
+        {
+          '<C-h>',
+          function()
+            require('tmux').move_left()
+          end,
+          desc = 'Move focus to the left window',
+        },
+        {
+          '<C-l>',
+          function()
+            require('tmux').move_right()
+          end,
+          desc = 'Move focus to the right window',
+        },
+        {
+          '<C-j>',
+          function()
+            require('tmux').move_bottom()
+          end,
+          desc = 'Move focus to the upper window',
+        },
+        {
+          '<C-k>',
+          function()
+            require('tmux').move_top()
+          end,
+          desc = 'Move focus to the lower window',
+        },
+        -- { '<C-k>', '<C-w><C-k>', desc = 'Move focus to the left window' },
+        -- { '<C-l>', '<C-w><C-l>', desc = 'Move focus to the right window' },
+        -- { '<C-j>', '<C-w><C-j>', desc = 'Move focus to the lower window' },
+        -- { '<C-k>', '<C-w><C-k>', desc = 'Move focus to the upper window' },
+        { '<A-i>', '<CMD>bnext<CR>', desc = 'Next buffer' },
+        { '<A-o>', '<CMD>bprev<CR>', desc = 'Previous buffer' },
+        { '<A-c>', '<CMD>Bdelete<CR>', desc = 'Delete buffer' },
+        { '<A-x>', '<CMD>Bdelete!<CR>', desc = 'Delete buffer!' },
+        {
+          '<A-h>',
+          function()
+            require('tmux').resize_left()
+          end,
+          desc = 'Resize to the left',
+        },
+        {
+          '<A-l>',
+          function()
+            require('tmux').resize_right()
+          end,
+          desc = 'Resize to the right',
+        },
+        {
+          '<A-j>',
+          function()
+            require('tmux').resize_bottom()
+          end,
+          desc = 'Resize to the bottom',
+        },
+        {
+          '<A-k>',
+          function()
+            require('tmux').resize_top()
+          end,
+          desc = 'Resize to the top',
+        },
+        -- { '<A-h>', '<CMD>vertical resize +5<CR>', desc = 'Make win bigger vertically' },
+        -- { '<A-l>', '<CMD>vertical resize -5<CR>', desc = 'Make win smaller vertically' },
+        -- { '<A-j>', '<CMD>horizontal resize +5<CR>', desc = 'Make win bigger horizontally' },
+        -- { '<A-k>', '<CMD>horizontal resize -5<CR>', desc = 'Make win smaller horizontally' },
         { ',', '<CMD>Neotree toggle<CR>', desc = 'Toggle Neotree' },
         { 'J', 'mzJ`z', desc = '' },
         { 'U', 'i<CR><ESC>', desc = 'Insert new line under cursor' },
@@ -734,7 +794,7 @@ return { -- Useful plugin to show you pending keybinds.
     }
 
     -- AI
-    --
+
     -- Codeium
     vim.keymap.set('i', '<C-CR>', function()
       return vim.fn['codeium#Accept']()
