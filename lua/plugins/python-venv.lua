@@ -14,11 +14,11 @@ return {
         search = {
           anaconda_envs = {
             -- change path here to your anaconda envs
-            command = 'fd python$ ~/miniconda3/bin --full-path --color never -E /proc',
+            command = 'fd python$ ~/miniconda3/envs --full-path --color never -E /proc',
           },
           anaconda_base = {
             -- change path here to your anaconda base
-            command = 'fd bin/python$ ~/miniconda3/envs --full-path --color never -E /proc',
+            command = 'fd bin/python$ ~/miniconda3/bin --full-path --color never -E /proc',
           },
         },
         options = {
