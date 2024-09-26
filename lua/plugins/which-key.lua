@@ -729,6 +729,11 @@ return { -- Useful plugin to show you pending keybinds.
         desc = '[T]ags picker',
       },
       {
+        '<leader>oi',
+        '<CMD>ObsidianTemplate<CR>',
+        desc = '[I]nsert template',
+      },
+      {
         '<leader>on',
         '<CMD>ObsidianNew<CR>',
         desc = '[N]ew note',

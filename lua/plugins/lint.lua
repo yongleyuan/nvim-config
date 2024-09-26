@@ -20,6 +20,7 @@ return {
         'MD029', -- ordered list prefix
         'MD032', -- list surround with blank lines
         'MD018', -- no space after after hash
+        'MD024', -- duplicated headings
         '--', -- required
       }
 
