@@ -734,6 +734,11 @@ return { -- Useful plugin to show you pending keybinds.
         desc = '[I]nsert template',
       },
       {
+        '<leader>op',
+        '<CMD>ObsidianPasteImg<CR>',
+        desc = '[P]aste image',
+      },
+      {
         '<leader>on',
         '<CMD>ObsidianNew<CR>',
         desc = '[N]ew note',

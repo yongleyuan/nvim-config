@@ -85,7 +85,7 @@ return { -- Highlight, edit, and navigate code
 
         -- Indentation
         indent = {
-          enabled = false,
+          enabled = true,
         },
 
         -- Table
