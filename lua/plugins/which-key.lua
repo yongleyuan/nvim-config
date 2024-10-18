@@ -182,6 +182,14 @@ return { -- Useful plugin to show you pending keybinds.
     -- Standalone leader keybindings
     local tb = require 'telescope.builtin'
     wk.add {
+      mode = 'v',
+      '<leader>f',
+      function()
+        require('conform').format { async = true, lsp_format = 'fallback' }
+      end,
+      desc = '[F]ormat',
+    }
+    wk.add {
       mode = 'n',
       {
         '<leader><leader>',
