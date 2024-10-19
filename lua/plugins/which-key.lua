@@ -17,6 +17,7 @@ return { -- Useful plugin to show you pending keybinds.
 
     local wk = require 'which-key'
 
+
     -- Standalone keybindings
     local cmp = require 'cmp'
     wk.add {
@@ -222,11 +223,11 @@ return { -- Useful plugin to show you pending keybinds.
         end,
         desc = 'Fuzzy find file in dir',
       },
-      {
-        '<leader>a',
-        '<CMD>ASToggle<CR>',
-        desc = 'Toggle auto save',
-      },
+      -- {
+      --   '<leader>a',
+      --   '<CMD>ASToggle<CR>',
+      --   desc = 'Toggle auto save',
+      -- },
       {
         '<leader>f',
         function()
@@ -273,6 +274,69 @@ return { -- Useful plugin to show you pending keybinds.
       { '<P', '<Plug>(YankyPutIndentBeforeShiftLeft)', desc = 'Put before and indent left' },
       { '=p', '<Plug>(YankyPutAfterFilter)', desc = 'Put after applying a filter' },
       { '=P', '<Plug>(YankyPutBeforeFilter)', desc = 'Put before applying a filter' },
+    }
+
+    -- [H]arpoon
+    local harpoon = require 'harpoon'
+    wk.add {
+      mode = 'n',
+      { '<leader>a', group = 'H[A]rpoon' },
+      {
+        '<leader>a<leader>',
+        function()
+          harpoon.ui:toggle_quick_menu(harpoon:list())
+        end,
+        desc = '[ ] Menu',
+      },
+      {
+        '<leader>aa',
+        function()
+          harpoon:list():add()
+        end,
+        desc = '[A]dd mark',
+      },
+      {
+        '<leader>ah',
+        function()
+          harpoon:list():select(1)
+        end,
+        desc = 'Harpoon mark 1',
+      },
+      {
+        '<leader>aj',
+        function()
+          harpoon:list():select(2)
+        end,
+        desc = 'Harpoon mark 2',
+      },
+      {
+        '<leader>ak',
+        function()
+          harpoon:list():select(3)
+        end,
+        desc = 'Harpoon mark 3',
+      },
+      {
+        '<leader>al',
+        function()
+          harpoon:list():select(4)
+        end,
+        desc = 'Harpoon mark 4',
+      },
+      {
+        '<leader>ai',
+        function()
+          harpoon:list():select(5)
+        end,
+        desc = 'Harpoon mark 5',
+      },
+      {
+        '<leader>ao',
+        function()
+          harpoon:list():select(6)
+        end,
+        desc = 'Harpoon mark 6',
+      },
     }
 
     -- [S]earch (Telescope)
@@ -655,31 +719,31 @@ return { -- Useful plugin to show you pending keybinds.
       end,
     }
 
-    -- Sessio[N]
-    wk.add {
-      mode = 'n',
-      { '<leader>n', group = 'Sessio[N]' },
-      {
-        '<leader>n<leader>',
-        '<CMD>SessionSave<CR>',
-        desc = '[ ] Save session',
-      },
-      {
-        '<leader>nr',
-        '<CMD>SessionRestore<CR>',
-        desc = '[R]estore session',
-      },
-      {
-        '<leader>nd',
-        '<CMD>Autosession delete<CR>',
-        desc = '[D]elete session',
-      },
-      {
-        '<leader>ns',
-        '<CMD>Autosession search<CR>',
-        desc = '[S]earch session',
-      },
-    }
+    -- -- Sessio[N]
+    -- wk.add {
+    --   mode = 'n',
+    --   { '<leader>n', group = 'Sessio[N]' },
+    --   {
+    --     '<leader>n<leader>',
+    --     '<CMD>SessionSave<CR>',
+    --     desc = '[ ] Save session',
+    --   },
+    --   {
+    --     '<leader>nr',
+    --     '<CMD>SessionRestore<CR>',
+    --     desc = '[R]estore session',
+    --   },
+    --   {
+    --     '<leader>nd',
+    --     '<CMD>Autosession delete<CR>',
+    --     desc = '[D]elete session',
+    --   },
+    --   {
+    --     '<leader>ns',
+    --     '<CMD>Autosession search<CR>',
+    --     desc = '[S]earch session',
+    --   },
+    -- }
 
     -- [V]env
     wk.add {

@@ -123,6 +123,7 @@ require('lazy').setup({
   require 'plugins.autotab',
   require 'plugins.lualine',
   require 'plugins.comment',
+  require 'plugins.harpoon',
   require 'plugins.which-key',
   require 'plugins.telescope',
   require 'plugins.lsp',
@@ -144,7 +145,7 @@ require('lazy').setup({
   require 'plugins.bufdelete',
   require 'plugins.codeium',
   require 'plugins.gp',
-  require 'plugins.autosession',
+  -- require 'plugins.autosession',
   require 'plugins.python-venv',
   require 'plugins.yanky',
   require 'plugins.undotree',
@@ -155,7 +156,6 @@ require('lazy').setup({
   require 'plugins.obsidian',
   require 'plugins.auto-save',
   require 'plugins.tmux',
-  require 'plugins.harpoon',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
