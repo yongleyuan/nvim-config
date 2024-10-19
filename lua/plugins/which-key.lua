@@ -814,16 +814,16 @@ return { -- Useful plugin to show you pending keybinds.
     -- AI
 
     -- Codeium
-    vim.keymap.set('i', '<C-CR>', function()
+    vim.keymap.set('i', '<M-CR>', function()
       return vim.fn['codeium#Accept']()
     end, { expr = true, silent = true, desc = 'Codeium accept' })
-    vim.keymap.set('i', '<C-k>', function()
+    vim.keymap.set('i', '<M-k>', function()
       return vim.fn['codeium#CycleCompletions'](-1)
     end, { expr = true, silent = true, desc = 'Codeium cycle previous' })
-    vim.keymap.set('i', '<C-j>', function()
+    vim.keymap.set('i', '<M-j>', function()
       return vim.fn['codeium#CycleCompletions'](1)
     end, { expr = true, silent = true, desc = 'Codeium cycle next' })
-    vim.keymap.set('i', '<C-x>', function()
+    vim.keymap.set('i', '<M-x>', function()
       return vim.fn['codeium#Clear']()
     end, { expr = true, silent = true, desc = 'Codeium clear' })
 
