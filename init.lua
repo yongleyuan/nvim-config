@@ -133,7 +133,6 @@ require('lazy').setup({
   require 'plugins.mini',
   require 'plugins.treesitter',
   require 'plugins.aerial',
-  require 'plugins.dashboard',
   require 'plugins.remote',
   require 'plugins.dap',
   require 'plugins.indent-line',
