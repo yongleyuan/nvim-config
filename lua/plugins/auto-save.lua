@@ -20,6 +20,7 @@ return {
       then
         return true
       end
+      return false
     end,
     write_all_buffers = false,
     noautocmd = false,
@@ -27,18 +28,18 @@ return {
     debounce_delay = 2000,
     debug = false,
   },
-  config = function()
-    require('auto-save').setup {
-      vim.api.nvim_create_autocmd('User', {
-        pattern = 'AutoSaveWritePost',
-        group = vim.api.nvim_create_augroup('autosave', {}),
-        callback = function(opts)
-          if opts.data.saved_buffer ~= nil then
-            -- local fn = vim.api.nvim_buf_get_name(opts.data.saved_buffer)
-            vim.notify('AutoSave: saved file at ' .. vim.fn.strftime '%H:%M:%S')
-          end
-        end,
-      }),
-    }
-  end,
+  -- config = function()
+  --   require('auto-save').setup {
+  --     vim.api.nvim_create_autocmd('User', {
+  --       pattern = 'AutoSaveWritePost',
+  --       group = vim.api.nvim_create_augroup('autosave', {}),
+  --       callback = function(opts)
+  --         if opts.data.saved_buffer ~= nil then
+  --           -- local fn = vim.api.nvim_buf_get_name(opts.data.saved_buffer)
+  --           vim.notify('AutoSave: saved file at ' .. vim.fn.strftime '%H:%M:%S')
+  --         end
+  --       end,
+  --     }),
+  --   }
+  -- end,
 }

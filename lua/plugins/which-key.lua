@@ -96,7 +96,7 @@ return { -- Useful plugin to show you pending keybinds.
         -- { '<A-l>', '<CMD>vertical resize -5<CR>', desc = 'Make win smaller vertically' },
         -- { '<A-j>', '<CMD>horizontal resize +5<CR>', desc = 'Make win bigger horizontally' },
         -- { '<A-k>', '<CMD>horizontal resize -5<CR>', desc = 'Make win smaller horizontally' },
-        { ',', '<CMD>Neotree toggle<CR>', desc = 'Toggle Neotree' },
+        { ',', '<CMD>Yazi<CR>', desc = 'Open Yazi current file' },
         { 'J', 'mzJ`z', desc = '' },
         { 'U', 'i<CR><ESC>', desc = 'Insert new line under cursor' },
         { '<CR>', 'o<ESC>', desc = '' },
@@ -172,7 +172,7 @@ return { -- Useful plugin to show you pending keybinds.
           desc = 'Scroll cmp hover docs down',
         },
       },
-      { '<Esc><Esc>', '<C-\\><C-n>', desc = 'Exit terminal mode', mode = 't' },
+      { '<C-\\>', '<C-\\><C-n>', desc = 'Exit terminal mode', mode = 't' },
       {
         mode = 'v',
         { 'J', ":m '>+1<CR>gv=gv", desc = 'Move selected text up' },
@@ -206,8 +206,9 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         '<leader>,',
-        '<CMD>Neotree buffers toggle<CR>',
-        desc = 'Toggle Neotree buffers',
+        -- '<CMD>Neotree buffers toggle<CR>',
+        '<CMD>Yazi cwd<CR>',
+        desc = 'Open Yazi in current working directory',
       },
       {
         '<leader>.',
@@ -296,42 +297,42 @@ return { -- Useful plugin to show you pending keybinds.
         desc = '[A]dd mark',
       },
       {
-        '<leader>ah',
+        '<leader>ai',
         function()
           harpoon:list():select(1)
         end,
         desc = 'Harpoon mark 1',
       },
       {
-        '<leader>aj',
+        '<leader>ao',
         function()
           harpoon:list():select(2)
         end,
         desc = 'Harpoon mark 2',
       },
       {
-        '<leader>ak',
+        '<leader>ah',
         function()
           harpoon:list():select(3)
         end,
         desc = 'Harpoon mark 3',
       },
       {
-        '<leader>al',
+        '<leader>aj',
         function()
           harpoon:list():select(4)
         end,
         desc = 'Harpoon mark 4',
       },
       {
-        '<leader>ai',
+        '<leader>ak',
         function()
           harpoon:list():select(5)
         end,
         desc = 'Harpoon mark 5',
       },
       {
-        '<leader>ao',
+        '<leader>al',
         function()
           harpoon:list():select(6)
         end,
