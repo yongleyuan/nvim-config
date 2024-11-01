@@ -149,7 +149,7 @@ require('lazy').setup({
   require 'plugins.undotree',
   require 'plugins.noice',
   require 'plugins.grug-far',
-  require 'plugins.focus',
+  -- require 'plugins.focus',
   require 'plugins.jupyter',
   require 'plugins.obsidian',
   require 'plugins.auto-save',
