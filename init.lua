@@ -120,6 +120,7 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
+  require 'plugins.dashboard',
   require 'plugins.autotab',
   require 'plugins.lualine',
   require 'plugins.comment',
