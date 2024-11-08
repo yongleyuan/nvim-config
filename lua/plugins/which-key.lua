@@ -224,11 +224,6 @@ return { -- Useful plugin to show you pending keybinds.
         end,
         desc = 'Fuzzy find file in dir',
       },
-      -- {
-      --   '<leader>a',
-      --   '<CMD>ASToggle<CR>',
-      --   desc = 'Toggle auto save',
-      -- },
       {
         '<leader>f',
         function()
@@ -237,18 +232,18 @@ return { -- Useful plugin to show you pending keybinds.
         desc = '[F]ormat buffer',
       },
       {
-        '<leader>p',
-        function()
-          require('telescope').extensions.yank_history.yank_history {}
-        end,
-        desc = '[P]aste yank history',
-      },
-      {
         '<leader>u',
         function()
           require('undotree').toggle()
         end,
         desc = '[U]ndotree',
+      },
+      {
+        '<leader>y',
+        function()
+          require('telescope').extensions.yank_history.yank_history {}
+        end,
+        desc = '[Y]ank history',
       },
     }
 
@@ -720,31 +715,31 @@ return { -- Useful plugin to show you pending keybinds.
       end,
     }
 
-    -- -- Sessio[N]
-    -- wk.add {
-    --   mode = 'n',
-    --   { '<leader>n', group = 'Sessio[N]' },
-    --   {
-    --     '<leader>n<leader>',
-    --     '<CMD>SessionSave<CR>',
-    --     desc = '[ ] Save session',
-    --   },
-    --   {
-    --     '<leader>nr',
-    --     '<CMD>SessionRestore<CR>',
-    --     desc = '[R]estore session',
-    --   },
-    --   {
-    --     '<leader>nd',
-    --     '<CMD>Autosession delete<CR>',
-    --     desc = '[D]elete session',
-    --   },
-    --   {
-    --     '<leader>ns',
-    --     '<CMD>Autosession search<CR>',
-    --     desc = '[S]earch session',
-    --   },
-    -- }
+    -- Sessio[N]
+    wk.add {
+      mode = 'n',
+      { '<leader>n', group = 'Sessio[N]' },
+      {
+        '<leader>n<leader>',
+        '<CMD>SessionSave<CR>',
+        desc = '[ ] Save session',
+      },
+      {
+        '<leader>nr',
+        '<CMD>SessionRestore<CR>',
+        desc = '[R]estore session',
+      },
+      {
+        '<leader>nd',
+        '<CMD>Autosession delete<CR>',
+        desc = '[D]elete session',
+      },
+      {
+        '<leader>ns',
+        '<CMD>Autosession search<CR>',
+        desc = '[S]earch session',
+      },
+    }
 
     -- [V]env
     wk.add {
