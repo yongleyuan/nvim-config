@@ -27,10 +27,6 @@ return {
         -- },
       },
       {
-        name = 'study',
-        path = '/Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/study',
-      },
-      {
         name = 'research',
         path = '/Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/research',
       },
