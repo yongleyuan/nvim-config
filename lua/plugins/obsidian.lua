@@ -20,15 +20,15 @@ return {
   opts = {
     workspaces = {
       {
+        name = 'research',
+        path = '/Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/research',
+      },
+      {
         name = 'personal',
         path = '/Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/personal',
         -- overrides = {
         --   notes_subdir = 'notes',
         -- },
-      },
-      {
-        name = 'research',
-        path = '/Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/research',
       },
     },
 
