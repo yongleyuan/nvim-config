@@ -17,7 +17,6 @@ return { -- Useful plugin to show you pending keybinds.
 
     local wk = require 'which-key'
 
-
     -- Standalone keybindings
     local cmp = require 'cmp'
     wk.add {
@@ -721,8 +720,13 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>n', group = 'Sessio[N]' },
       {
         '<leader>n<leader>',
+        '<CMD>Autosession search<CR>',
+        desc = '[ ] Search sessions',
+      },
+      {
+        '<leader>ns',
         '<CMD>SessionSave<CR>',
-        desc = '[ ] Save session',
+        desc = '[S]ave session',
       },
       {
         '<leader>nr',
@@ -731,13 +735,18 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         '<leader>nd',
-        '<CMD>Autosession delete<CR>',
-        desc = '[D]elete session',
+        '<CMD>SessionDelete<CR>',
+        desc = '[D]elete current session',
       },
       {
-        '<leader>ns',
-        '<CMD>Autosession search<CR>',
-        desc = '[S]earch session',
+        '<leader>nD',
+        '<CMD>Autosession delete<CR>',
+        desc = '[D]elete session search',
+      },
+      {
+        '<leader>np',
+        '<CMD>SessionPurgeOrphaned<CR>',
+        desc = '[P]urge orphaned session',
       },
     }
 
