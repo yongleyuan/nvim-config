@@ -455,7 +455,6 @@ return { -- Useful plugin to show you pending keybinds.
         maplsp('gi', tb.lsp_implementations, '[G]oto [I]mplementations', 'n')
         maplsp('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration', 'n')
         maplsp('gt', tb.lsp_type_definitions, '[G]oto [T]ype definitions', 'n')
-        maplsp('gh', vim.lsp.buf.hover, '[G]oto [H]over documentation', 'n')
         maplsp('<leader>ss', tb.lsp_document_symbols, '[S]ymbols in current buffer', 'n')
         maplsp('<leader>sS', tb.lsp_dynamic_workspace_symbols, '[S]ymbols in directory', 'n')
         maplsp('<leader>rs', vim.lsp.buf.rename, '[R]ename [S]ymbol under cursor', 'n')
