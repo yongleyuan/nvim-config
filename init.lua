@@ -142,7 +142,7 @@ require('lazy').setup({
   require 'plugins.git',
   require 'plugins.motion',
   require 'plugins.bufdelete',
-  require 'plugins.codeium',
+  -- require 'plugins.codeium',
   -- require 'plugins.gp',
   require 'plugins.autosession',
   require 'plugins.python-venv',
@@ -156,6 +156,7 @@ require('lazy').setup({
   require 'plugins.auto-save',
   require 'plugins.tmux',
   require 'plugins.yazi',
+  require 'plugins.avante',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
