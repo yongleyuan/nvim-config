@@ -880,8 +880,6 @@ return { -- Useful plugin to show you pending keybinds.
       },
     }
 
-    -- AI
-
     -- Codeium
     vim.keymap.set('i', '<M-CR>', function()
       return vim.fn['codeium#Accept']()
