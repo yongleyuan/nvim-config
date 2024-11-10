@@ -652,64 +652,52 @@ return { -- Useful plugin to show you pending keybinds.
     -- [G]it
     local gs = require 'gitsigns'
     wk.add { '<leader>g', group = '[G]it', mode = { 'n', 'v' } }
-    wk.add { '<leader>gt', group = '[T]oggle' }
     wk.add {
-      '<leader>gs',
-      function()
-        tb.git_status()
-      end,
-      desc = '[G]it [S]tatus',
       mode = 'n',
+      { '<leader>gi', '<CMD>diffget //2<CR>', desc = 'Git diff get left' },
+      { '<leader>go', '<CMD>diffget //3<CR>', desc = 'Git diff get right' },
     }
     gs.setup {
       on_attach = function(bufnr)
         local function gsmap(mode, l, r, opts)
           opts = opts or {}
           opts.buffer = bufnr
-          opts.desc = opts.desc .. ' (Git)'
+          opts.desc = opts.desc .. ' (Gitsigns)'
           vim.keymap.set(mode, l, r, opts)
         end
-
-        -- Navigation
         gsmap('n', ']c', function()
           if vim.wo.diff then
             vim.CMD.normal { ']c', bang = true }
           else
             gs.nav_hunk 'next'
           end
-        end, { desc = 'Jump to next [C]hange' })
-
+        end, { desc = 'Jump to next hunk' })
         gsmap('n', '[c', function()
           if vim.wo.diff then
             vim.CMD.normal { '[c', bang = true }
           else
             gs.nav_hunk 'prev'
           end
-        end, { desc = 'Jump to previous [C]hange' })
-
-        -- Actions
-        -- visual mode
+        end, { desc = 'Jump to previous hunk' })
         gsmap('v', '<leader>gs', function()
           gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
         end, { desc = '[S]tage git hunk' })
         gsmap('v', '<leader>gr', function()
           gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
         end, { desc = '[R]eset git hunk' })
-        -- normal mode
-        gsmap('n', '<leader>gs', gs.stage_hunk, { desc = '[S]tage hunk' })
-        gsmap('n', '<leader>gr', gs.reset_hunk, { desc = '[R]eset hunk' })
-        gsmap('n', '<leader>gS', gs.stage_buffer, { desc = '[S]tage buffer' })
-        gsmap('n', '<leader>gR', gs.reset_buffer, { desc = '[R]eset buffer' })
-        gsmap('n', '<leader>gu', gs.undo_stage_hunk, { desc = '[U]ndo stage hunk' })
-        gsmap('n', '<leader>gp', gs.preview_hunk, { desc = '[P]review hunk' })
-        gsmap('n', '<leader>gb', gs.blame_line, { desc = '[B]lame line' })
-        gsmap('n', '<leader>gd', gs.diffthis, { desc = '[D]iff against index' })
+        gsmap('n', '<leader>gs', gs.stage_hunk, { desc = 'Stage hunk' })
+        gsmap('n', '<leader>gr', gs.reset_hunk, { desc = 'Reset hunk' })
+        gsmap('n', '<leader>gS', gs.stage_buffer, { desc = 'Stage buffer' })
+        gsmap('n', '<leader>gR', gs.reset_buffer, { desc = 'Reset buffer' })
+        gsmap('n', '<leader>gu', gs.undo_stage_hunk, { desc = 'Undo stage hunk' })
+        gsmap('n', '<leader>gp', gs.preview_hunk, { desc = 'Preview hunk' })
+        gsmap('n', '<leader>gb', gs.blame_line, { desc = 'Blame current line' })
+        gsmap('n', '<leader>gB', gs.toggle_current_line_blame, { desc = 'Blame toggle' })
+        gsmap('n', '<leader>gv', gs.toggle_deleted, { desc = 'View deleted' })
+        gsmap('n', '<leader>gd', gs.diffthis, { desc = 'Diff against last index' })
         gsmap('n', '<leader>gD', function()
           gs.diffthis '@'
-        end, { desc = '[D]iff against last commit' })
-        -- Toggles
-        gsmap('n', '<leader>gtb', gs.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
-        gsmap('n', '<leader>gtd', gs.toggle_deleted, { desc = '[T]oggle git show [D]eleted' })
+        end, { desc = 'Diff against HEAD' })
       end,
     }
 
