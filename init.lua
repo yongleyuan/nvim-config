@@ -142,7 +142,7 @@ require('lazy').setup({
   require 'plugins.git',
   require 'plugins.motion',
   require 'plugins.bufdelete',
-  -- require 'plugins.codeium',
+  require 'plugins.codeium',
   require 'plugins.autosession',
   require 'plugins.python-venv',
   require 'plugins.yanky',
