@@ -1,7 +1,7 @@
-return { -- Useful plugin to show you pending keybinds.
+return {
   'folke/which-key.nvim',
-  event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-  config = function() -- This is the function that runs, AFTER loading
+  event = 'VimEnter',
+  config = function()
     require('which-key').setup {
       preset = 'modern',
       -- delay = 500,
@@ -55,46 +55,38 @@ return { -- Useful plugin to show you pending keybinds.
           end,
           desc = 'Move focus to the lower window',
         },
-        -- { '<C-k>', '<C-w><C-k>', desc = 'Move focus to the left window' },
-        -- { '<C-l>', '<C-w><C-l>', desc = 'Move focus to the right window' },
-        -- { '<C-j>', '<C-w><C-j>', desc = 'Move focus to the lower window' },
-        -- { '<C-k>', '<C-w><C-k>', desc = 'Move focus to the upper window' },
-        { '<A-i>', '<CMD>bnext<CR>', desc = 'Next buffer' },
-        { '<A-o>', '<CMD>bprev<CR>', desc = 'Previous buffer' },
-        { '<A-c>', '<CMD>Bdelete<CR>', desc = 'Delete buffer' },
-        { '<A-x>', '<CMD>Bdelete!<CR>', desc = 'Delete buffer!' },
         {
-          '<A-h>',
+          '<C-A-h>',
           function()
             require('tmux').resize_left()
           end,
           desc = 'Resize to the left',
         },
         {
-          '<A-l>',
+          '<C-A-l>',
           function()
             require('tmux').resize_right()
           end,
           desc = 'Resize to the right',
         },
         {
-          '<A-j>',
+          '<C-A-j>',
           function()
             require('tmux').resize_bottom()
           end,
           desc = 'Resize to the bottom',
         },
         {
-          '<A-k>',
+          '<C-A-k>',
           function()
             require('tmux').resize_top()
           end,
           desc = 'Resize to the top',
         },
-        -- { '<A-h>', '<CMD>vertical resize +5<CR>', desc = 'Make win bigger vertically' },
-        -- { '<A-l>', '<CMD>vertical resize -5<CR>', desc = 'Make win smaller vertically' },
-        -- { '<A-j>', '<CMD>horizontal resize +5<CR>', desc = 'Make win bigger horizontally' },
-        -- { '<A-k>', '<CMD>horizontal resize -5<CR>', desc = 'Make win smaller horizontally' },
+        { '<C-A-i>', '<CMD>bnext<CR>', desc = 'Next buffer' },
+        { '<C-A-o>', '<CMD>bprev<CR>', desc = 'Previous buffer' },
+        { '<C-c>', '<CMD>Bdelete<CR>', desc = 'Delete buffer' },
+        { '<C-A-c>', '<CMD>Bdelete!<CR>', desc = 'Delete buffer!' },
         { ',', '<CMD>Yazi<CR>', desc = 'Open Yazi current file' },
         { 'J', 'mzJ`z', desc = '' },
         { 'U', 'i<CR><ESC>', desc = 'Insert new line under cursor' },
@@ -868,16 +860,16 @@ return { -- Useful plugin to show you pending keybinds.
     }
 
     -- Codeium
-    vim.keymap.set('i', '<A-CR>', function()
+    vim.keymap.set('i', '<C-A-y>', function()
       return vim.fn['codeium#Accept']()
     end, { expr = true, silent = true, desc = 'Codeium accept' })
-    vim.keymap.set('i', '<A-[>', function()
+    vim.keymap.set('i', '<C-A-[>', function()
       return vim.fn['codeium#CycleCompletions'](-1)
     end, { expr = true, silent = true, desc = 'Codeium cycle previous' })
-    vim.keymap.set('i', '<A-]>', function()
+    vim.keymap.set('i', '<C-A-]>', function()
       return vim.fn['codeium#CycleCompletions'](1)
     end, { expr = true, silent = true, desc = 'Codeium cycle next' })
-    vim.keymap.set('i', '<A-x>', function()
+    vim.keymap.set('i', '<C-A-x>', function()
       return vim.fn['codeium#Clear']()
     end, { expr = true, silent = true, desc = 'Codeium clear' })
 

@@ -7,6 +7,10 @@ return {
       },
       navigation = {
         cycle_navigation = false,
+        enable_default_keybindings = false,
+      },
+      resize = {
+        enable_default_keybindings = false,
       },
     }
   end,
