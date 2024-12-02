@@ -16,7 +16,7 @@ return {
       if
         fn.getbufvar(buf, '&modifiable') == 1
         -- change here is adding harpoon file type to exclusion list 
-        and utils.not_in(fn.getbufvar(buf, '&filetype'), { 'harpoon' })
+        and utils.not_in(fn.getbufvar(buf, '&filetype'), { 'harpoon', 'oil' })
       then
         return true
       end
