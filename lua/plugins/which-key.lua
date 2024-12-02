@@ -87,7 +87,7 @@ return {
         { '<C-A-o>', '<CMD>bprev<CR>', desc = 'Previous buffer' },
         { '<C-c>', '<CMD>Bdelete<CR>', desc = 'Delete buffer' },
         { '<C-A-c>', '<CMD>Bdelete!<CR>', desc = 'Delete buffer!' },
-        { ',', '<CMD>Yazi<CR>', desc = 'Open Yazi current file' },
+        { ',', '<CMD>Oil --float<CR>', desc = 'Open Oil current file' },
         { 'J', 'mzJ`z', desc = '' },
         { 'U', 'i<CR><ESC>', desc = 'Insert new line under cursor' },
         { '<CR>', 'o<ESC>', desc = '' },
@@ -194,12 +194,6 @@ return {
           )
         end,
         desc = 'Fuzzy find in current buffer',
-      },
-      {
-        '<leader>,',
-        -- '<CMD>Neotree buffers toggle<CR>',
-        '<CMD>Yazi cwd<CR>',
-        desc = 'Open Yazi in current working directory',
       },
       {
         '<leader>.',

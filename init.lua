@@ -157,8 +157,8 @@ require('lazy').setup({
   require 'plugins.obsidian',
   require 'plugins.auto-save',
   require 'plugins.tmux',
-  require 'plugins.yazi',
   require 'plugins.avante',
+  require 'plugins.oil',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
