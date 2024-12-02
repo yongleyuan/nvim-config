@@ -88,6 +88,8 @@ vim.opt.hlsearch = true
 
 vim.opt.conceallevel = 1
 
+vim.keymap.set('n', 'q:', '<nop>', { silent = true })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
