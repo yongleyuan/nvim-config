@@ -64,7 +64,7 @@ return { -- Highlight, edit, and navigate code
         heading = {
           enabled = true,
           -- icons = { '󰬺 ', '󰬻 ', '󰬼 ', '󰬽 ', '󰬾 ', '󰬿 ' },
-          icons = { '', '', '', '', '', '' },
+          icons = { ' ', ' ', ' ', ' ', ' ', ' ' },
           position = 'inline',
           backgrounds = { '', '', '', '', '', '' },
         },
