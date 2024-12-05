@@ -640,6 +640,7 @@ return {
     wk.add { '<leader>g', group = '[G]it', mode = { 'n', 'v' } }
     wk.add {
       mode = 'n',
+      { '<leader>g<leader>', '<CMD>Git<CR>', desc = 'Git status' },
       { '<leader>gi', '<CMD>diffget //2<CR>', desc = 'Git diff get left' },
       { '<leader>go', '<CMD>diffget //3<CR>', desc = 'Git diff get right' },
     }
