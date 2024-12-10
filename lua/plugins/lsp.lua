@@ -11,6 +11,11 @@ return {
         require('inc_rename').setup()
       end,
     },
+    {
+      'barreiroleo/ltex_extra.nvim',
+      ft = { 'markdown', 'tex' },
+      dependencies = { 'neovim/nvim-lspconfig' },
+    },
   },
   config = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -100,6 +105,18 @@ return {
         })
         -- Trigger codelens refresh
         vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
+      end,
+    }
+
+    -- ltex extra integration
+    require('lspconfig').ltex.setup {
+      on_attach = function(client, bufnr)
+        require('ltex_extra').setup {
+          load_langs = { 'en-US' }, -- table <string> : languages for witch dictionaries will be loaded
+          init_check = true, -- boolean : whether to load dictionaries on startup
+          path = '$HOME/.local/share/nvim/.ltex', -- string : path to store dictionaries. Relative path uses current working directory
+          log_level = 'error', -- string : "none", "trace", "debug", "info", "warn", "error", "fatal"
+        }
       end,
     }
 
