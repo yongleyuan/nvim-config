@@ -1,5 +1,8 @@
-return { -- Autoformat
+return {
   'stevearc/conform.nvim',
+  dependencies = {
+    'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  },
   event = { 'BufReadPre' },
   cmd = { 'ConformInfo' },
   opts = {

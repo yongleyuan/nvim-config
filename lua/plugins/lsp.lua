@@ -47,15 +47,7 @@ return {
           },
         },
       },
-      harper_ls = {
-        settings = {
-          ['harper-ls'] = {
-            linters = {
-              sentence_capitalization = false,
-            },
-          },
-        },
-      },
+      ltex = {},
     }
 
     require('mason').setup()
@@ -63,7 +55,8 @@ return {
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'lua_ls',
-      'harper_ls',
+      'ruff',
+      'prettier',
     })
 
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
