@@ -142,7 +142,7 @@ require('lazy').setup({
   require 'plugins.lint',
   require 'plugins.autopairs',
   require 'plugins.git',
-  require 'plugins.motion',
+  require 'plugins.flash',
   require 'plugins.codeium',
   require 'plugins.autosession',
   require 'plugins.python-venv',

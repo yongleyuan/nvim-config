@@ -1,21 +1,22 @@
 return {
   'folke/which-key.nvim',
   event = 'VimEnter',
-  config = function()
-    require('which-key').setup {
-      preset = 'modern',
-      -- delay = 500,
-      sort = { 'manual', 'local', 'order', 'group', 'alphanum', 'mod', 'lower', 'icase' },
-      icons = {
-        rules = false,
-        group = '',
-      },
-      win = {
-        no_overlap = false,
-      },
-    }
 
+  opts = {
+    preset = 'modern',
+    sort = { 'manual', 'local', 'order', 'group', 'alphanum', 'mod', 'lower', 'icase' },
+    icons = {
+      rules = false,
+      group = '',
+    },
+    win = {
+      no_overlap = false,
+    },
+  },
+
+  config = function(_, opts)
     local wk = require 'which-key'
+    wk.setup(opts)
 
     -- Standalone keybindings
     local cmp = require 'cmp'
@@ -91,8 +92,7 @@ return {
         { 'J', 'mzJ`z', desc = '' },
         { 'U', 'i<CR><ESC>', desc = 'Insert new line under cursor' },
         { '<CR>', 'o<ESC>', desc = '' },
-        { '<S-CR>', 'O<ESC>', desc = '' },
-        { ';', '<Plug>(leap)', desc = 'Leap' },
+        { '<leader><CR>', 'O<ESC>', desc = '', hidden = true },
         { 'vv', 'V', desc = 'Select line' },
         { 'V', 'v$', desc = 'Select until end of line' },
         { '[d', vim.diagnostic.goto_prev(), desc = 'Go to previous [D]iagnostic message', mode = 'n' },
@@ -163,11 +163,36 @@ return {
           desc = 'Scroll cmp hover docs down',
         },
       },
-      { '<C-\\>', '<C-\\><C-n>', desc = 'Exit terminal mode', mode = 't' },
+      { '<ESC><ESC>', '<C-\\><C-n>', desc = 'Exit terminal mode', mode = 't' },
       {
         mode = 'v',
         { 'J', ":m '>+1<CR>gv=gv", desc = 'Move selected text up' },
         { 'K', ":m '<-2<CR>gv=gv", desc = 'Move selected text down' },
+      },
+      -- flash
+      {
+        's',
+        mode = { 'n', 'x', 'o' },
+        function()
+          require('flash').jump()
+        end,
+        desc = 'Flash',
+      },
+      {
+        'S',
+        mode = { 'n', 'x', 'o' },
+        function()
+          require('flash').treesitter()
+        end,
+        desc = 'Flash Treesitter',
+      },
+      {
+        ';',
+        mode = 'o',
+        function()
+          require('flash').remote()
+        end,
+        desc = 'Remote Flash',
       },
     }
 

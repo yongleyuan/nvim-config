@@ -1,6 +1,6 @@
 return {
   'folke/trouble.nvim',
-  event = 'VimEnter',
+  event = 'VeryLazy',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   opts = {
     focus = true,
@@ -16,7 +16,7 @@ return {
     trouble.setup(opts)
 
     local symbols = trouble.statusline {
-      mode = 'symbols',
+      mode = 'lsp_document_symbols',
       groups = {},
       title = false,
       filter = { range = true },
