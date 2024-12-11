@@ -14,14 +14,12 @@ local custom_extensions = {
     lualine_b = { 'filetype' },
   },
   filetypes = {
-    'aerial',
-    'neo-tree',
-    'dapui_scopes',
-    'dapui_breakpoints',
-    'dapui_stacks',
-    'dapui_watches',
-    'dapui_repl',
-    'dapui_console',
+    -- 'dapui_scopes',
+    -- 'dapui_breakpoints',
+    -- 'dapui_stacks',
+    -- 'dapui_watches',
+    -- 'dapui_repl',
+    -- 'dapui_console',
     'dashboard',
   },
 }
@@ -89,7 +87,6 @@ return {
             path = 3,
           },
         },
-        lualine_x = { "aerial" },
       },
       inactive_winbar = {
         -- lualine_b = { 'filetype' },
@@ -114,9 +111,11 @@ return {
 
       -- Extensions
       extensions = {
-        -- 'fugitive',
         custom_extensions,
         'nvim-dap-ui',
+        'fugitive',
+        'oil',
+        'trouble',
       },
     }
   end,

@@ -92,16 +92,16 @@ return {
         { 'U', 'i<CR><ESC>', desc = 'Insert new line under cursor' },
         { '<CR>', 'o<ESC>', desc = '' },
         { '<S-CR>', 'O<ESC>', desc = '' },
-        { '\\', '<CMD>AerialToggle<CR>', desc = 'Toggle Aerial' },
         { ';', '<Plug>(leap)', desc = 'Leap' },
         { 'vv', 'V', desc = 'Select line' },
         { 'V', 'v$', desc = 'Select until end of line' },
+        { '[d', vim.diagnostic.goto_prev(), desc = 'Go to previous [D]iagnostic message', mode = 'n' },
+        { ']d', vim.diagnostic.goto_next(), desc = 'Go to previous [D]iagnostic message', mode = 'n' },
       },
       {
         mode = 'i',
         { 'jk', '<ESC>', desc = 'Exit insert mode' },
         { '<Tab>', '<S-Tab>', desc = 'Print true tabs' }, -- NOTE: Not sure why but works
-        -- { '<C-v>', '<C-R>*', desc = 'Paste from clipboard' },
         {
           '<C-\\>',
           function()
@@ -216,6 +216,7 @@ return {
         end,
         desc = '[F]ormat buffer',
       },
+      { '<leader>e', vim.diagnostic.open_float, desc = '[E]rror message' },
       {
         '<leader>u',
         function()
@@ -476,16 +477,20 @@ return {
       end,
     })
 
-    -- [D]iagnostics
+    -- [T]rouble
     wk.add {
       mode = 'n',
-      -- { '[d', vim.diagnostic.jump { count = -1 }, desc = 'Go to previous [D]iagnostic message', mode = 'n' },
-      -- { ']d', vim.diagnostic.jump { count = 1 }, desc = 'Go to previous [D]iagnostic message', mode = 'n' },
-      { '[d', vim.diagnostic.goto_prev(), desc = 'Go to previous [D]iagnostic message', mode = 'n' },
-      { ']d', vim.diagnostic.goto_next(), desc = 'Go to previous [D]iagnostic message', mode = 'n' },
-      { '<leader>d', group = '[D]iagnostic' },
-      { '<leader>de', vim.diagnostic.open_float, desc = 'Show [E]rror messages' },
-      { '<leader>dq', vim.diagnostic.setloclist, desc = 'Open [Q]uickfix list' },
+      { '<leader>t', group = '[T]rouble' },
+      { '<leader>te', '<CMD>Trouble diagnostics<CR>', desc = '[T]rouble [E]rrors' },
+      { '<leader>ts', '<CMD>Trouble symbols<CR>', desc = '[T]rouble [S]ymbols' },
+      { '<leader>tS', '<CMD>Trouble lsp_document_symbols<CR>', desc = '[T]rouble [S]ymbols+' },
+      { '<leader>td', '<CMD>Trouble lsp_definitions<CR>', desc = '[T]rouble [D]efinitions' },
+      { '<leader>tD', '<CMD>Trouble lsp_declarations<CR>', desc = '[T]rouble [D]eclarations' },
+      { '<leader>ti', '<CMD>Trouble lsp_implementations<CR>', desc = '[T]rouble [I]mplementations' },
+      { '<leader>tr', '<CMD>Trouble lsp_references<CR>', desc = '[T]rouble [R]eferences' },
+      { '<leader>tT', '<CMD>Trouble lsp_type_definitions<CR>', desc = '[T]rouble [T]ype' },
+      { '<leader>tI', '<CMD>Trouble lsp_incoming_calls<CR>', desc = '[T]rouble [I]ncoming' },
+      { '<leader>tO', '<CMD>Trouble lsp_outgoing_calls<CR>', desc = '[T]rouble [O]utgoing' },
     }
 
     -- De[B]ug

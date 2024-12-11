@@ -137,7 +137,6 @@ require('lazy').setup({
   require 'plugins.colorscheme',
   require 'plugins.mini',
   require 'plugins.treesitter',
-  require 'plugins.aerial',
   require 'plugins.dap',
   require 'plugins.indent-line',
   require 'plugins.lint',
@@ -157,6 +156,7 @@ require('lazy').setup({
   require 'plugins.tmux',
   require 'plugins.avante',
   require 'plugins.oil',
+  require 'plugins.trouble',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
