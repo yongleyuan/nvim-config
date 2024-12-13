@@ -518,13 +518,13 @@ return {
       { '<leader>tO', '<CMD>Trouble lsp_outgoing_calls<CR>', desc = '[T]rouble [O]utgoing' },
     }
 
-    -- De[B]ug
+    -- [D]ebug
     local dap = require 'dap'
     wk.add {
       mode = 'n',
-      { '<leader>b', group = 'De[B]ug' },
+      { '<leader>d', group = '[D]ebug' },
       {
-        '<leader>b<leader>',
+        '<leader>d<leader>',
         function()
           dap.toggle_breakpoint()
         end,
@@ -538,20 +538,6 @@ return {
         desc = 'Debug: toggle breakpoint',
       },
       {
-        '<leader>b<CR>',
-        function()
-          require('dapui').toggle()
-        end,
-        desc = 'Debug: toggle dapui',
-      },
-      {
-        '<leader>bb',
-        function()
-          dap.continue()
-        end,
-        desc = 'Debug: start/continue',
-      },
-      {
         '<F10>',
         function()
           require('dapui').toggle()
@@ -559,7 +545,28 @@ return {
         desc = 'Debug: toggle dapui',
       },
       {
-        '<leader>bi',
+        '<leader>d<CR>',
+        function()
+          require('dapui').toggle()
+        end,
+        desc = 'Debug: toggle dapui',
+      },
+      {
+        '<F5>',
+        function()
+          dap.continue()
+        end,
+        desc = 'Debug: start/continue',
+      },
+      {
+        '<leader>dd',
+        function()
+          dap.continue()
+        end,
+        desc = 'Debug: start/continue',
+      },
+      {
+        '<leader>di',
         function()
           dap.step_into()
         end,
@@ -573,7 +580,7 @@ return {
         desc = 'Debug: Step into',
       },
       {
-        '<leader>bs',
+        '<leader>ds',
         function()
           dap.step_over()
         end,
@@ -587,7 +594,7 @@ return {
         desc = 'Debug: Step over',
       },
       {
-        '<leader>bo',
+        '<leader>do',
         function()
           dap.step_out()
         end,
@@ -601,7 +608,7 @@ return {
         desc = 'Debug: Step out',
       },
       {
-        '<leader>bS',
+        '<leader>dS',
         function()
           dap.step_back()
         end,
@@ -615,14 +622,7 @@ return {
         desc = 'Debug: Step back',
       },
       {
-        '<F5>',
-        function()
-          dap.continue()
-        end,
-        desc = 'Debug: start/continue',
-      },
-      {
-        '<leader>br',
+        '<leader>dr',
         function()
           dap.restart()
         end,
@@ -636,7 +636,7 @@ return {
         desc = 'Debug: restart',
       },
       {
-        '<leader>bt',
+        '<leader>dt',
         function()
           dap.terminate()
         end,
@@ -650,14 +650,14 @@ return {
         desc = 'Debug: terminate',
       },
       {
-        '<leader>bl',
+        '<leader>dl',
         function()
           dap.list_breakpoints()
         end,
         desc = 'Debug: List breakpoints',
       },
       {
-        '<leader>bc',
+        '<leader>dC',
         function()
           dap.clear_breakpoints()
         end,
