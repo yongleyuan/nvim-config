@@ -718,37 +718,37 @@ return {
       end,
     }
 
-    -- Sessio[N]
+    -- [S]ession
     wk.add {
       mode = 'n',
-      { '<leader>n', group = 'Sessio[N]' },
+      { '<leader>S', group = '[S]ession' },
       {
-        '<leader>n<leader>',
+        '<leader>S<leader>',
         '<CMD>Autosession search<CR>',
         desc = '[ ] Search sessions',
       },
       {
-        '<leader>ns',
+        '<leader>Ss',
         '<CMD>SessionSave<CR>',
         desc = '[S]ave session',
       },
       {
-        '<leader>nr',
+        '<leader>Sr',
         '<CMD>SessionRestore<CR>',
         desc = '[R]estore session',
       },
       {
-        '<leader>nd',
+        '<leader>Sd',
         '<CMD>SessionDelete<CR>',
         desc = '[D]elete current session',
       },
       {
-        '<leader>nD',
+        '<leader>SD',
         '<CMD>Autosession delete<CR>',
         desc = '[D]elete session search',
       },
       {
-        '<leader>np',
+        '<leader>SP',
         '<CMD>SessionPurgeOrphaned<CR>',
         desc = '[P]urge orphaned session',
       },
