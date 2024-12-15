@@ -52,7 +52,22 @@ return {
           },
         },
       },
-      ltex = {},
+      ltex = {
+        on_attach = function(client, bufnr)
+          require('ltex_extra').setup {
+            load_langs = { 'en-US' }, -- table <string> : languages for witch dictionaries will be loaded
+            init_check = true, -- boolean : whether to load dictionaries on startup
+            path = '$HOME/.local/share/nvim/.ltex', -- string : path to store dictionaries. Relative path uses current working directory
+            log_level = 'error', -- string : "none", "trace", "debug", "info", "warn", "error", "fatal"
+            vim.notify("DEBUG")
+          }
+        end,
+        settings = {
+          ltex = {
+            checkFrequency = 'save',
+          },
+        },
+      },
     }
 
     require('mason').setup()
@@ -108,36 +123,5 @@ return {
       end,
     }
 
-    -- ltex extra integration
-    require('lspconfig').ltex.setup {
-      on_attach = function(client, bufnr)
-        require('ltex_extra').setup {
-          load_langs = { 'en-US' }, -- table <string> : languages for witch dictionaries will be loaded
-          init_check = true, -- boolean : whether to load dictionaries on startup
-          path = '$HOME/.local/share/nvim/.ltex', -- string : path to store dictionaries. Relative path uses current working directory
-          log_level = 'error', -- string : "none", "trace", "debug", "info", "warn", "error", "fatal"
-        }
-      end,
-    }
-
-    -- Disable unused default LSP keymaps
-    -- if vim.fn.mapcheck('gra', 'n') ~= '' then
-    --   vim.keymap.del('n', 'gra')
-    -- end
-    -- if vim.fn.mapcheck('gra', 'x') ~= '' then
-    --   vim.keymap.del('x', 'gra')
-    -- end
-    -- if vim.fn.mapcheck('grn', 'n') ~= '' then
-    --   vim.keymap.del('n', 'grn')
-    -- end
-    -- if vim.fn.mapcheck('grr', 'n') ~= '' then
-    --   vim.keymap.del('n', 'grr')
-    -- end
-    -- if vim.fn.mapcheck('K', 'n') ~= '' then
-    --   vim.keymap.del('n', 'K')
-    -- end
-    -- if vim.fn.mapcheck('<C-S>', 'i') ~= '' then
-    --   vim.keymap.del('i', '<C-S>')
-    -- end
   end,
 }
