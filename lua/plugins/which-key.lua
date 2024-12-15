@@ -149,14 +149,14 @@ return {
           desc = 'Toggle cmp hover docs',
         },
         {
-          '<C-i>',
+          '<C-d>',
           function()
             cmp.scroll_docs(-4)
           end,
           desc = 'Scroll cmp hover docs up',
         },
         {
-          '<C-o>',
+          '<C-f>',
           function()
             cmp.scroll_docs(4)
           end,
