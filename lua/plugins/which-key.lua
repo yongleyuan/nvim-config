@@ -171,7 +171,7 @@ return {
       },
       -- flash
       {
-        'm',
+        't',
         mode = { 'n', 'x', 'o' },
         function()
           require('flash').jump()
@@ -179,7 +179,7 @@ return {
         desc = 'Flash',
       },
       {
-        'M',
+        'T',
         mode = { 'n' },
         function()
           require('flash').treesitter()
@@ -187,7 +187,7 @@ return {
         desc = 'Flash Treesitter',
       },
       {
-        'M',
+        'T',
         mode = {'o'},
         function()
           require('flash').remote()
