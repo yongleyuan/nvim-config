@@ -445,7 +445,7 @@ return {
       { '<leader>r', group = '[R]ename' },
       {
         '<leader>rn',
-        ':IncRename ',
+        '<CMD>IncRename ',
         desc = '[R]e[N]ame with IncRename',
       },
       {
