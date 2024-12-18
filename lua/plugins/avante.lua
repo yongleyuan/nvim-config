@@ -4,11 +4,7 @@ return {
   lazy = false,
   version = false,
   opts = {
-    provider = 'copilot',
-    auto_suggestions_provider = 'copilot',
-    behaviour = {
-      auto_suggestions = false,
-    },
+    provider = 'claude',
     mappings = {
       ask = '<C-A-a>a',
       edit = '<C-A-a>e',
