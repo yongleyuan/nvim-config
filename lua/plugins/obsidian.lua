@@ -14,7 +14,7 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     'hrsh7th/nvim-cmp',
-    'nvim-telescope/telescope.nvim',
+    'ibhagwan/fzf-lua',
     'nvim-treesitter/nvim-treesitter',
   },
   opts = {
@@ -209,7 +209,7 @@ return {
     open_app_foreground = true,
 
     picker = {
-      name = 'telescope.nvim',
+      name = 'fzf-lua',
       note_mappings = {
         -- Create a new note from your query.
         new = '<C-\\>',

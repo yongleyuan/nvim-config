@@ -50,8 +50,9 @@ return {
       },
       inactive_sections = { lualine_c = {} },
       winbar = {
-        lualine_b = { 'filetype' },
+        lualine_b = { { 'filetype' } },
         lualine_c = { { 'filename', path = 3 } },
+        lualine_x = { { 'aerial' } },
       },
       inactive_winbar = {
         lualine_c = {
@@ -66,12 +67,14 @@ return {
       -- Extensions
       extensions = {
         custom_extensions,
+        'aerial',
         'nvim-dap-ui',
         'fugitive',
         'oil',
-        'trouble',
         'lazy',
         'mason',
+        'quickfix',
+        'man',
       },
     }
   end,

@@ -23,6 +23,7 @@ return {
     wk.add {
       {
         mode = 'n',
+        { '\\', '<CMD>AerialToggle<CR>', desc = 'Aerial' },
         { '<Esc>', '<CMD>nohlsearch<CR>', desc = 'Clear search higlight' },
         { '<left>', '<CMD>echo "Use h to move!!"<CR>', desc = '' },
         { '<right>', '<CMD>echo "Use l to move!!"<CR>', desc = '' },
@@ -88,7 +89,6 @@ return {
         { '<C-A-o>', '<CMD>bprev<CR>', desc = 'Previous buffer' },
         { '<C-A-c>', '<CMD>bdelete<CR>', desc = 'Delete buffer' },
         { '<C-A-x>', '<CMD>bdelete!<CR>', desc = 'Delete buffer!' },
-        { ',', '<CMD>Oil --float<CR>', desc = 'Open Oil current file' },
         { 'J', 'mzJ`z', desc = '' },
         { 'U', 'i<CR><ESC>', desc = 'Insert new line under cursor' },
         { '<CR>', 'o<ESC>', desc = '' },
@@ -97,6 +97,16 @@ return {
         { 'V', 'v$', desc = 'Select until end of line' },
         { '[d', vim.diagnostic.goto_prev(), desc = 'Go to previous [D]iagnostic message', mode = 'n' },
         { ']d', vim.diagnostic.goto_next(), desc = 'Go to previous [D]iagnostic message', mode = 'n' },
+        { ',', function ()
+          local oil = require('oil')
+          oil.open_float()
+          vim.wait(1000, function ()
+            return oil.get_cursor_entry() ~= nil
+          end)
+          if oil.get_cursor_entry() then
+            oil.open_preview()
+          end
+        end, desc = 'Open Oil current file' },
       },
       {
         mode = 'i',
@@ -188,7 +198,7 @@ return {
       },
       {
         'T',
-        mode = {'o'},
+        mode = { 'o' },
         function()
           require('flash').remote()
         end,
@@ -197,43 +207,19 @@ return {
     }
 
     -- Standalone leader keybindings
-    local tb = require 'telescope.builtin'
     wk.add {
       mode = 'v',
       '<leader>f',
       function()
         require('conform').format { async = true, lsp_format = 'fallback' }
       end,
-      desc = '[F]ormat',
+      desc = '[F]ormat selection',
     }
     wk.add {
       mode = 'n',
-      {
-        '<leader><leader>',
-        function()
-          tb.current_buffer_fuzzy_find(
-            -- require('telescope.themes').get_dropdown {
-            --   winblend = 10,
-            --   -- previewer = false,
-            -- }
-          )
-        end,
-        desc = 'Fuzzy find in current buffer',
-      },
-      {
-        '<leader>.',
-        function()
-          tb.buffers()
-        end,
-        desc = 'Fuzzy find buffers',
-      },
-      {
-        '<leader>/',
-        function()
-          tb.find_files()
-        end,
-        desc = 'Fuzzy find file in dir',
-      },
+      { '<leader><leader>', '<CMD>FzfLua grep_curbuf<CR>', desc = 'Fuzzy find in current buffer' },
+      { '<leader>.', '<CMD>FzfLua buffers<CR>', desc = 'Fuzzy find buffers' },
+      { '<leader>/', '<CMD>FzfLua files<CR>', desc = 'Fuzzy find file in cwd' },
       {
         '<leader>f',
         function()
@@ -248,13 +234,6 @@ return {
           require('undotree').toggle()
         end,
         desc = '[U]ndotree',
-      },
-      {
-        '<leader>y',
-        function()
-          require('telescope').extensions.yank_history.yank_history {}
-        end,
-        desc = '[Y]ank history',
       },
     }
 
@@ -346,108 +325,34 @@ return {
       },
     }
 
-    -- [S]earch (Telescope)
+    -- [S]earch (Fzf-Lua)
     wk.add {
       mode = 'n',
       { '<leader>s', group = '[S]earch' },
-      {
-        '<leader>s<leader>',
-        function()
-          tb.resume()
-        end,
-        desc = '[ ] Resume',
-      },
-      {
-        '<leader>sg',
-        function()
-          tb.live_grep {
-            prompt_title = 'Live Grep in Current Directory',
-          }
-        end,
-        desc = '[G]rep in current directory',
-      },
-      {
-        '<leader>so',
-        function()
-          tb.live_grep {
-            grep_open_files = true,
-            prompt_title = 'Live Grep in Open Buffers',
-          }
-        end,
-        desc = '[O]pen buffers grep',
-      },
-      {
-        '<leader>sw',
-        function()
-          tb.grep_string()
-        end,
-        desc = '[W]ord under cursor',
-      },
-      {
-        '<leader>sd',
-        function()
-          tb.diagnostics()
-        end,
-        desc = '[D]iagnostics',
-      },
-      {
-        '<leader>sc',
-        function()
-          tb.command_history()
-        end,
-        desc = '[C]ommand history',
-      },
-      {
-        '<leader>sm',
-        '<CMD>Telescope noice<CR>',
-        desc = '[M]essages',
-      },
-      {
-        '<leader>sk',
-        function()
-          tb.keymaps()
-        end,
-        desc = '[K]eymaps',
-      },
-      {
-        '<leader>sb',
-        function()
-          tb.buffers()
-        end,
-        desc = '[B]uffer fuzzy find',
-      },
-      {
-        '<leader>sn',
-        function()
-          tb.find_files {
-            cwd = vim.fn.stdpath 'config',
-          }
-        end,
-        desc = '[N]eovim files',
-      },
-      {
-        '<leader>sh',
-        function()
-          tb.help_tags()
-        end,
-        desc = '[H]elp',
-      },
-      {
-        '<leader>st',
-        ':TodoTelescope<CR>',
-        desc = '[T]odos',
-      },
+      { '<leader>s<leader>', '<CMD>FzfLua<CR>', desc = '[ ] Fzf-Lua' },
+      { '<leader>sg', '<CMD>FzfLua live_grep<CR>', desc = '[G]rep in current directory' },
+      { '<leader>so', '<CMD>FzfLua lines<CR>', desc = '[O]pen buffers grep' },
+      { '<leader>sw', '<CMD>FzfLua grep_cword<CR>', desc = '[W]ord under cursor' },
+      { '<leader>sW', '<CMD>FzfLua grep_cWORD<CR>', desc = '[W]ORD under cursor' },
+      { '<leader>ss', '<CMD>FzfLua lsp_document_symbols<CR>', desc = '[S]ymbols in buffer' },
+      { '<leader>sS', '<CMD>FzfLua lsp_dynamic_workspace_symbols<CR>', desc = '[S]ymbols in workspace' },
+      { '<leader>sd', '<CMD>FzfLua lsp_document_diagnostics<CR>', desc = '[D]iagnostics document' },
+      { '<leader>sD', '<CMD>FzfLua lsp_workspace_diagnostics<CR>', desc = '[D]iagnostics workspace' },
+      { '<leader>sc', '<CMD>FzfLua command_history<CR>', desc = '[C]ommand history' },
+      { '<leader>sC', '<CMD>FzfLua commands<CR>', desc = '[C]ommands' },
+      { '<leader>sm', '<CMD>NoiceFzf<CR>', desc = '[M]essages' },
+      { '<leader>sk', '<CMD>FzfLua keymaps<CR>', desc = '[K]eymaps' },
+      { '<leader>sh', '<CMD>FzfLua helptags<CR>', desc = '[H]elp' },
+      { '<leader>st', '<CMD>TodoFzfLua<CR>', desc = '[T]odos' },
+      { '<leader>sr', '<CMD>FzfLua resume<CR>', desc = '[R]esume' },
     }
+    wk.add { '<leader>s', '<CMD>FzfLua grep_visual<CR>', desc = '[S]earch selection', mode = 'v' }
 
     -- Replace
     wk.add {
       mode = 'n',
       { '<leader>r', group = '[R]ename' },
-      {
-        '<leader>rn',
-        '<CMD>IncRename ',
-        desc = '[R]e[N]ame with IncRename',
-      },
+      { '<leader>rn', '<CMD>IncRename ', desc = '[R]e[N]ame with IncRename' },
       {
         '<leader>rp',
         [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
@@ -462,13 +367,11 @@ return {
         local maplsp = function(keys, func, desc, mode)
           wk.add { keys, func, desc = desc .. ' (LSP)', mode = mode }
         end
-        maplsp('gd', tb.lsp_definitions, '[G]oto [D]efinitions', 'n')
-        maplsp('gr', tb.lsp_references, '[G]oto [R]eferences', 'n')
-        maplsp('gi', tb.lsp_implementations, '[G]oto [I]mplementations', 'n')
-        maplsp('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration', 'n')
-        maplsp('gt', tb.lsp_type_definitions, '[G]oto [T]ype definitions', 'n')
-        maplsp('<leader>ss', tb.lsp_document_symbols, '[S]ymbols in current buffer', 'n')
-        maplsp('<leader>sS', tb.lsp_dynamic_workspace_symbols, '[S]ymbols in directory', 'n')
+        maplsp('gd', '<CMD>FzfLua lsp_definitions<CR>', '[G]oto [D]efinitions', 'n')
+        maplsp('gr', '<CMD>FzfLua lsp_references<CR>', '[G]oto [R]eferences', 'n')
+        maplsp('gi', '<CMD>FzfLua lsp_implementations<CR>', '[G]oto [I]mplementations', 'n')
+        maplsp('gD', '<CMD>FzfLua lsp_declarations<CR>', '[G]oto [D]eclaration', 'n')
+        maplsp('gt', '<CMD>FzfLua lsp_type_definitions<CR>', '[G]oto [T]ype definitions', 'n')
         maplsp('<leader>rs', vim.lsp.buf.rename, '[R]ename [S]ymbol under cursor', 'n')
         maplsp('<C-a>', vim.lsp.buf.code_action, 'Code action', { 'n', 'x', 'i' })
 
@@ -501,22 +404,6 @@ return {
         -- end
       end,
     })
-
-    -- [T]rouble
-    wk.add {
-      mode = 'n',
-      { '<leader>t', group = '[T]rouble' },
-      { '<leader>te', '<CMD>Trouble diagnostics<CR>', desc = '[T]rouble [E]rrors' },
-      { '<leader>ts', '<CMD>Trouble symbols<CR>', desc = '[T]rouble [S]ymbols' },
-      { '<leader>tS', '<CMD>Trouble lsp_document_symbols<CR>', desc = '[T]rouble [S]ymbols+' },
-      { '<leader>td', '<CMD>Trouble lsp_definitions<CR>', desc = '[T]rouble [D]efinitions' },
-      { '<leader>tD', '<CMD>Trouble lsp_declarations<CR>', desc = '[T]rouble [D]eclarations' },
-      { '<leader>ti', '<CMD>Trouble lsp_implementations<CR>', desc = '[T]rouble [I]mplementations' },
-      { '<leader>tr', '<CMD>Trouble lsp_references<CR>', desc = '[T]rouble [R]eferences' },
-      { '<leader>tT', '<CMD>Trouble lsp_type_definitions<CR>', desc = '[T]rouble [T]ype' },
-      { '<leader>tI', '<CMD>Trouble lsp_incoming_calls<CR>', desc = '[T]rouble [I]ncoming' },
-      { '<leader>tO', '<CMD>Trouble lsp_outgoing_calls<CR>', desc = '[T]rouble [O]utgoing' },
-    }
 
     -- [D]ebug
     local dap = require 'dap'
