@@ -128,7 +128,7 @@ require('lazy').setup({
   require 'plugins.autosave',
   require 'plugins.autosession',
   require 'plugins.avante',
-  require 'plugins.cmp',
+  require 'plugins.completion',
   require 'plugins.codeium',
   require 'plugins.colorscheme',
   require 'plugins.comment',

@@ -13,7 +13,6 @@ return {
   -- },
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'hrsh7th/nvim-cmp',
     'ibhagwan/fzf-lua',
     'nvim-treesitter/nvim-treesitter',
   },

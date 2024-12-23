@@ -19,7 +19,6 @@ return {
     wk.setup(opts)
 
     -- Standalone keybindings
-    local cmp = require 'cmp'
     wk.add {
       {
         mode = 'n',
@@ -112,66 +111,6 @@ return {
         mode = 'i',
         { 'jk', '<ESC>', desc = 'Exit insert mode' },
         { '<Tab>', '<S-Tab>', desc = 'Print true tabs' }, -- NOTE: Not sure why but works
-        {
-          '<C-\\>',
-          function()
-            cmp.complete {}
-          end,
-          desc = 'Force cmp',
-        },
-        {
-          '<C-p>',
-          function()
-            cmp.select_prev_item()
-          end,
-          desc = 'Selecte previous item',
-        },
-        {
-          '<C-n>',
-          function()
-            cmp.select_next_item()
-          end,
-          desc = 'Selecte next item',
-        },
-        {
-          '<C-y>',
-          function()
-            cmp.confirm { select = true }
-          end,
-          desc = 'Confirm cmp',
-        },
-        {
-          '<C-x>',
-          function()
-            cmp.abort()
-          end,
-          desc = 'Abort cmp',
-        },
-        {
-          '<C-h>',
-          function()
-            if cmp.visible_docs() then
-              cmp.close_docs()
-            else
-              cmp.open_docs()
-            end
-          end,
-          desc = 'Toggle cmp hover docs',
-        },
-        {
-          '<C-d>',
-          function()
-            cmp.scroll_docs(-4)
-          end,
-          desc = 'Scroll cmp hover docs up',
-        },
-        {
-          '<C-f>',
-          function()
-            cmp.scroll_docs(4)
-          end,
-          desc = 'Scroll cmp hover docs down',
-        },
       },
       { '<ESC><ESC>', '<C-\\><C-n>', desc = 'Exit terminal mode', mode = 't' },
       {
