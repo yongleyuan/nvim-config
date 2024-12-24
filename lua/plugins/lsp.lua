@@ -23,8 +23,6 @@ return {
 
     local servers = {
       pyright = {
-        -- NOTE: CANNOT be in ~, otherwise will fail to load Pyright
-        -- root_dir = nil, -- this is single file mode, but cmp will not work for some reason
         root_dir = function(fname)
           local util = require 'lspconfig.util'
           return util.find_git_ancestor(fname) or util.path.dirname(fname) -- NOTE: This sets git root dir or file's dir as root dir.
@@ -48,6 +46,12 @@ return {
           Lua = {
             completion = {
               callSnippet = 'Replace',
+            },
+            -- NOTE: hammerspoon annotation support
+            workspace = {
+              library = {
+                '$HOME/.hammerspoon/Spoons/EmmyLua.spoon/annotations',
+              },
             },
           },
         },
