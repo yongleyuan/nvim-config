@@ -141,6 +141,7 @@ require('lazy').setup({
   require 'plugins.grug-far',
   require 'plugins.harpoon',
   require 'plugins.indent',
+  require 'plugins.image',
   require 'plugins.ironrepl',
   require 'plugins.lualine',
   require 'plugins.lint',

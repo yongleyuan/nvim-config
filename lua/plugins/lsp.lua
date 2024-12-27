@@ -63,7 +63,6 @@ return {
             init_check = true,
             path = '$HOME/.local/share/nvim/.ltex',
             log_level = 'error',
-            vim.notify 'DEBUG',
           }
         end,
         settings = {
