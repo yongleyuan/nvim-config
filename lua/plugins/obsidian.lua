@@ -2,7 +2,6 @@ return {
   'epwalsh/obsidian.nvim',
   version = '*', -- recommended, use latest release instead of latest commit
   lazy = false,
-  ft = 'markdown',
   event = {
     'BufReadPre /Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/research',
     'BufNewFile /Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/research',
@@ -120,17 +119,7 @@ return {
 
     open_app_foreground = true,
 
-    picker = {
-      name = 'fzf-lua',
-      note_mappings = {
-        new = '<C-\\>',
-        insert_link = '<C-i>',
-      },
-      tag_mappings = {
-        tag_note = '<C-\\>',
-        insert_tag = '<C-i>',
-      },
-    },
+    picker = { name = 'fzf-lua' },
 
     sort_by = 'modified',
     sort_reversed = true,
