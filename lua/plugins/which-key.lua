@@ -291,7 +291,7 @@ return {
     wk.add {
       mode = 'n',
       { '<leader>r', group = '[R]ename' },
-      { '<leader>rn', '<CMD>IncRename ', desc = '[R]e[N]ame with IncRename' },
+      { '<leader>rn', ':IncRename ', desc = '[R]e[N]ame with IncRename' },
       {
         '<leader>rp',
         [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
