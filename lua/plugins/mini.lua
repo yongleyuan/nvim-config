@@ -12,15 +12,6 @@ return {
     require('mini.bufremove').setup()
     require('mini.comment').setup()
     require('mini.cursorword').setup()
-    require('mini.files').setup {
-      mappings = {
-        close = '<ESC>',
-        go_in = 'L',
-        go_in_plus = '',
-        go_out = 'H',
-        go_out_plus = '',
-      },
-    }
     require('mini.surround').setup()
   end,
 }

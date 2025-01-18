@@ -1,7 +1,5 @@
 return {
   'stevearc/oil.nvim',
-  ---@module 'oil'
-  ---@type oil.SetupOpts
   dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   opts = {
     skip_confirm_for_simple_edits = true,
