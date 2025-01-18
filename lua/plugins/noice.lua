@@ -16,20 +16,6 @@ return {
           input = { view = 'cmdline_input', icon = '󰥻 ' }, -- Used by input()
         },
       },
-      -- NOTE: Using mini with nvim-notify disabled
-      --
-      -- messages = { enabled = false },
-      -- popupmenu = { enabled = false },
-      notify = {
-        replace = true,
-        merge = true,
-      },
-      -- lsp = {
-      --   progress = { enabled = false},
-      --   hover = { enabed = false },
-      --   signature = { enabled = false },
-      --   message = { enabled = false },
-      -- }
       views = {
         cmdline_popup = {
           position = {
@@ -56,26 +42,12 @@ return {
       lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true,
+          ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+          ['vim.lsp.util.stylize_markdown'] = true,
+          ['cmp.entry.get_documentation'] = true,
         },
       },
     },
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      'MunifTanjim/nui.nvim',
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      -- {
-      --   'rcarriga/nvim-notify',
-      --   opts = {
-      --     stages = 'fade',
-      --     render = 'compact',
-      --     -- top_down = false,
-      --   },
-      -- },
-    },
+    dependencies = { 'MunifTanjim/nui.nvim' },
   },
 }

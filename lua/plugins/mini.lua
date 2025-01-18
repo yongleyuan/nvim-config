@@ -9,8 +9,8 @@ return {
         goto_right = ')',
       },
     }
-    require('mini.surround').setup()
     require('mini.bufremove').setup()
+    require('mini.comment').setup()
     require('mini.files').setup {
       mappings = {
         close = '<ESC>',
@@ -20,5 +20,6 @@ return {
         go_out_plus = '',
       },
     }
+    require('mini.surround').setup()
   end,
 }
