@@ -94,7 +94,6 @@ require('lazy').setup({
   require 'plugins.mini',
   require 'plugins.noice',
   require 'plugins.obsidian',
-  require 'plugins.oil',
   require 'plugins.python-venv',
   require 'plugins.tmux',
   require 'plugins.treesitter',

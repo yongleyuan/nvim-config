@@ -96,16 +96,13 @@ return {
         { 'V', 'v$', desc = 'Select until end of line' },
         { '[d', vim.diagnostic.goto_prev(), desc = 'Go to previous [D]iagnostic message', mode = 'n' },
         { ']d', vim.diagnostic.goto_next(), desc = 'Go to previous [D]iagnostic message', mode = 'n' },
-        { ',', function ()
-          local oil = require('oil')
-          oil.open_float()
-          vim.wait(1000, function ()
-            return oil.get_cursor_entry() ~= nil
-          end)
-          if oil.get_cursor_entry() then
-            oil.open_preview()
-          end
-        end, desc = 'Open Oil current file' },
+        {
+          ',',
+          function()
+            MiniFiles.open()
+          end,
+          desc = 'Open Oil current file',
+        },
       },
       {
         mode = 'i',

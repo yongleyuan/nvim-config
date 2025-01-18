@@ -11,5 +11,14 @@ return {
     }
     require('mini.surround').setup()
     require('mini.bufremove').setup()
+    require('mini.files').setup {
+      mappings = {
+        close = '<ESC>',
+        go_in = 'L',
+        go_in_plus = '',
+        go_out = 'H',
+        go_out_plus = '',
+      },
+    }
   end,
 }
