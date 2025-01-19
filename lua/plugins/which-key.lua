@@ -124,7 +124,7 @@ return {
       },
       -- flash
       {
-        't',
+        "'",
         mode = { 'n', 'x', 'o' },
         function()
           require('flash').jump()
@@ -132,20 +132,12 @@ return {
         desc = 'Flash',
       },
       {
-        'T',
-        mode = { 'n' },
+        ';',
+        mode = { 'n', 'x', 'o' },
         function()
           require('flash').treesitter()
         end,
         desc = 'Flash Treesitter',
-      },
-      {
-        'T',
-        mode = { 'o' },
-        function()
-          require('flash').remote()
-        end,
-        desc = 'Remote Flash',
       },
     }
 
