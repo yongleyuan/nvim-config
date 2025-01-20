@@ -4,7 +4,7 @@ return {
   lazy = false,
   version = false,
   opts = {
-    provider = 'claude',
+    provider = 'copilot',
     mappings = {
       ask = '<C-A-a>a',
       edit = '<C-A-a>e',
