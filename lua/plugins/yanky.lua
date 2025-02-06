@@ -4,7 +4,7 @@ return {
     { 'kkharji/sqlite.lua' },
   },
   config = function()
-    require('yanky').setup {
+    require('yanky').setup({
       ring = {
         storage = 'sqlite',
         history_length = 100,
@@ -14,6 +14,6 @@ return {
         on_yank = false,
         timer = 5000,
       },
-    }
+    })
   end,
 }

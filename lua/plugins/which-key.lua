@@ -15,11 +15,26 @@ return {
   },
 
   config = function(_, opts)
-    local wk = require 'which-key'
+    local wk = require('which-key')
     wk.setup(opts)
 
+    -- Imports
+    local tmux = require('tmux')
+    local snacks = require('snacks')
+    local gs = require('gitsigns')
+    local oil = require('oil')
+    local flash = require('flash')
+    local conform = require('conform')
+    local ut = require('undotree')
+    local harpoon = require('harpoon')
+    local dap = require('dap')
+    local dapui = require('dapui')
+    local ms = require('mini.sessions')
+    local vs = require('venv-selector')
+    local iron = require('iron.core')
+
     -- Standalone keybindings
-    wk.add {
+    wk.add({
       {
         mode = 'n',
         { '\\', '<CMD>AerialToggle<CR>', desc = 'Aerial' },
@@ -31,56 +46,56 @@ return {
         {
           '<C-h>',
           function()
-            require('tmux').move_left()
+            tmux.move_left()
           end,
           desc = 'Move focus to the left window',
         },
         {
           '<C-l>',
           function()
-            require('tmux').move_right()
+            tmux.move_right()
           end,
           desc = 'Move focus to the right window',
         },
         {
           '<C-j>',
           function()
-            require('tmux').move_bottom()
+            tmux.move_bottom()
           end,
           desc = 'Move focus to the upper window',
         },
         {
           '<C-k>',
           function()
-            require('tmux').move_top()
+            tmux.move_top()
           end,
           desc = 'Move focus to the lower window',
         },
         {
           '<C-A-h>',
           function()
-            require('tmux').resize_left()
+            tmux.resize_left()
           end,
           desc = 'Resize to the left',
         },
         {
           '<C-A-l>',
           function()
-            require('tmux').resize_right()
+            tmux.resize_right()
           end,
           desc = 'Resize to the right',
         },
         {
           '<C-A-j>',
           function()
-            require('tmux').resize_bottom()
+            tmux.resize_bottom()
           end,
           desc = 'Resize to the bottom',
         },
         {
           '<C-A-k>',
           function()
-            require('tmux').resize_top()
+            tmux.resize_top()
           end,
           desc = 'Resize to the top',
         },
@@ -99,7 +114,6 @@ return {
         {
           ',',
           function()
-            local oil = require 'oil'
             oil.open()
             vim.wait(1000, function()
               return oil.get_cursor_entry() ~= nil
@@ -108,13 +122,27 @@ return {
               oil.open_preview()
             end
           end,
-          desc = 'Open Oil current file',
+          desc = 'Oil files',
+        },
+        {
+          ']w',
+          function()
+            snacks.words.jump(1, true)
+          end,
+          desc = 'Jump to next treesitter word',
+        },
+        {
+          '[w',
+          function()
+            snacks.words.jump(-1, true)
+          end,
+          desc = 'Jump to previous treesitter word',
         },
       },
       {
         mode = 'i',
         { 'jk', '<ESC>', desc = 'Exit insert mode' },
-        { '<Tab>', '<S-Tab>', desc = 'Print true tabs' }, -- NOTE: Not sure why but works
+        { '<Tab>', '<S-Tab>', desc = 'Print true tabs' }, -- not sure why but works
       },
       { '<ESC><ESC>', '<C-\\><C-n>', desc = 'Exit terminal mode', mode = 't' },
       {
@@ -127,7 +155,7 @@ return {
         "'",
         mode = { 'n', 'x', 'o' },
         function()
-          require('flash').jump()
+          flash.jump()
         end,
         desc = 'Flash',
       },
@@ -135,30 +163,53 @@ return {
         ';',
         mode = { 'n', 'x', 'o' },
         function()
-          require('flash').treesitter()
+          flash.treesitter()
         end,
         desc = 'Flash Treesitter',
       },
-    }
+    })
 
     -- Standalone leader keybindings
-    wk.add {
+    wk.add({
       mode = 'v',
       '<leader>f',
       function()
-        require('conform').format { async = true, lsp_format = 'fallback' }
+        conform.format({ async = true, lsp_format = 'fallback' })
       end,
       desc = '[F]ormat selection',
-    }
-    wk.add {
+    })
+    wk.add({
       mode = 'n',
-      { '<leader><leader>', '<CMD>FzfLua grep_curbuf<CR>', desc = 'Fuzzy find in current buffer' },
-      { '<leader>.', '<CMD>FzfLua buffers<CR>', desc = 'Fuzzy find buffers' },
-      { '<leader>/', '<CMD>FzfLua files<CR>', desc = 'Fuzzy find file in cwd' },
+      {
+        '<leader><leader>',
+        function()
+          snacks.picker.lines()
+        end,
+        desc = 'Fuzzy find in current buffer',
+      },
+      {
+        '<leader>,',
+        '<CMD>lua MiniFiles.open()<CR>',
+        desc = 'Mini files',
+      },
+      {
+        '<leader>.',
+        function()
+          snacks.picker.buffers()
+        end,
+        desc = 'Fuzzy find buffers',
+      },
+      {
+        '<leader>/',
+        function()
+          snacks.picker.smart()
+        end,
+        desc = 'Fuzzy find file in cwd',
+      },
       {
         '<leader>f',
         function()
-          require('conform').format { async = true, lsp_format = 'fallback' }
+          conform.format({ async = true, lsp_format = 'fallback' })
         end,
         desc = '[F]ormat buffer',
       },
@@ -166,22 +217,22 @@ return {
       {
         '<leader>u',
         function()
-          require('undotree').toggle()
+          ut.toggle()
         end,
         desc = '[U]ndotree',
       },
-    }
+    })
 
     -- Yanky
-    wk.add {
+    wk.add({
       mode = { 'n', 'x' },
       { 'y', '<Plug>(YankyYank)', desc = 'Yank text' },
       { 'p', '<Plug>(YankyPutAfter)', desc = 'Put yanked text after cursor' },
       { 'P', '<Plug>(YankyPutBefore)', desc = 'Put yanked text before cursor' },
       { 'gp', '<Plug>(YankyGPutAfter)', desc = 'Put yanked text after selection' },
       { 'gP', '<Plug>(YankyGPutBefore)', desc = 'Put yanked text before selection' },
-    }
-    wk.add {
+    })
+    wk.add({
       mode = 'n',
       { '<C-p>', '<Plug>(YankyPreviousEntry)', desc = 'Select previous entry through yank history' },
       { '<C-n>', '<Plug>(YankyNextEntry)', desc = 'Select next entry through yank history' },
@@ -195,11 +246,10 @@ return {
       { '<P', '<Plug>(YankyPutIndentBeforeShiftLeft)', desc = 'Put before and indent left' },
       { '=p', '<Plug>(YankyPutAfterFilter)', desc = 'Put after applying a filter' },
       { '=P', '<Plug>(YankyPutBeforeFilter)', desc = 'Put before applying a filter' },
-    }
+    })
 
     -- [H]arpoon
-    local harpoon = require 'harpoon'
-    wk.add {
+    wk.add({
       mode = 'n',
       { '<leader>a', group = 'H[A]rpoon' },
       {
@@ -258,33 +308,115 @@ return {
         end,
         desc = 'Harpoon mark 6',
       },
-    }
+    })
 
-    -- [S]earch (Fzf-Lua)
-    wk.add {
+    -- [S]earch (Snack.picker)
+    wk.add({
       mode = 'n',
       { '<leader>s', group = '[S]earch' },
-      { '<leader>s<leader>', '<CMD>FzfLua<CR>', desc = '[ ] Fzf-Lua' },
-      { '<leader>sg', '<CMD>FzfLua live_grep<CR>', desc = '[G]rep in current directory' },
-      { '<leader>so', '<CMD>FzfLua lines<CR>', desc = '[O]pen buffers grep' },
-      { '<leader>sw', '<CMD>FzfLua grep_cword<CR>', desc = '[W]ord under cursor' },
-      { '<leader>sW', '<CMD>FzfLua grep_cWORD<CR>', desc = '[W]ORD under cursor' },
-      { '<leader>ss', '<CMD>FzfLua lsp_document_symbols<CR>', desc = '[S]ymbols in buffer' },
-      { '<leader>sS', '<CMD>FzfLua lsp_dynamic_workspace_symbols<CR>', desc = '[S]ymbols in workspace' },
-      { '<leader>sd', '<CMD>FzfLua lsp_document_diagnostics<CR>', desc = '[D]iagnostics document' },
-      { '<leader>sD', '<CMD>FzfLua lsp_workspace_diagnostics<CR>', desc = '[D]iagnostics workspace' },
-      { '<leader>sc', '<CMD>FzfLua command_history<CR>', desc = '[C]ommand history' },
-      { '<leader>sC', '<CMD>FzfLua commands<CR>', desc = '[C]ommands' },
-      { '<leader>sm', '<CMD>NoiceFzf<CR>', desc = '[M]essages' },
-      { '<leader>sk', '<CMD>FzfLua keymaps<CR>', desc = '[K]eymaps' },
-      { '<leader>sh', '<CMD>FzfLua helptags<CR>', desc = '[H]elp' },
-      { '<leader>st', '<CMD>TodoFzfLua<CR>', desc = '[T]odos' },
-      { '<leader>sr', '<CMD>FzfLua resume<CR>', desc = '[R]esume' },
-    }
-    wk.add { '<leader>s', '<CMD>FzfLua grep_visual<CR>', desc = '[S]earch selection', mode = 'v' }
+      {
+        '<leader>sg',
+        function()
+          snacks.picker.grep()
+        end,
+        desc = '[G]rep in current directory',
+      },
+      {
+        '<leader>so',
+        function()
+          snacks.picker.grep_buffers()
+        end,
+        desc = '[O]pen buffers grep',
+      },
+      {
+        '<leader>sw',
+        function()
+          snacks.picker.grep_word()
+        end,
+        desc = '[W]ord under cursor',
+      },
+      {
+        '<leader>ss',
+        function()
+          snacks.picker.lsp_symbols()
+        end,
+        desc = '[S]ymbols in buffer',
+      },
+      {
+        '<leader>sS',
+        function()
+          snacks.picker.lsp_workspace_symbols()
+        end,
+        desc = '[S]ymbols in workspace',
+      },
+      {
+        '<leader>sd',
+        function()
+          snacks.picker.diagnostics_buffer()
+        end,
+        desc = '[D]iagnostics document',
+      },
+      {
+        '<leader>sD',
+        function()
+          snacks.picker.diagnostics()
+        end,
+        desc = '[D]iagnostics workspace',
+      },
+      {
+        '<leader>sc',
+        function()
+          snacks.picker.command_history()
+        end,
+        desc = '[C]ommand history',
+      },
+      {
+        '<leader>sC',
+        function()
+          snacks.picker.commands()
+        end,
+        desc = '[C]ommands',
+      },
+      { '<leader>sm', '<CMD>NoiceHistory<CR>', desc = '[M]essages' },
+      {
+        '<leader>sk',
+        function()
+          snacks.picker.keymaps()
+        end,
+        desc = '[K]eymaps',
+      },
+      {
+        '<leader>sh',
+        function()
+          snacks.picker.help()
+        end,
+        desc = '[H]elp',
+      },
+      {
+        '<leader>st',
+        function()
+          snacks.picker.todo_comments({ keywords = { 'TODO', 'FIX', 'FIXME' } })
+        end,
+        desc = '[T]odos',
+      },
+      {
+        '<leader>sT',
+        function()
+          snacks.picker.todo_comments()
+        end,
+        desc = '[T]odos (all)',
+      },
+      {
+        '<leader>sr',
+        function()
+          snacks.picker.resume()
+        end,
+        desc = '[R]esume',
+      },
+    })
 
     -- Replace
-    wk.add {
+    wk.add({
       mode = 'n',
       { '<leader>r', group = '[R]ename' },
       { '<leader>rn', ':IncRename ', desc = '[R]e[N]ame with IncRename' },
@@ -293,28 +425,37 @@ return {
         [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
         desc = '[R]ename [P]hrase under cursor',
       },
-    }
+    })
 
     -- LSP autocommands (mianly [G]oto)
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
       callback = function(event)
         local maplsp = function(keys, func, desc, mode)
-          wk.add { keys, func, desc = desc .. ' (LSP)', mode = mode }
+          wk.add({ keys, func, desc = desc .. ' (LSP)', mode = mode })
         end
-        maplsp('gd', '<CMD>FzfLua lsp_definitions<CR>', '[G]oto [D]efinitions', 'n')
-        maplsp('gr', '<CMD>FzfLua lsp_references<CR>', '[G]oto [R]eferences', 'n')
-        maplsp('gi', '<CMD>FzfLua lsp_implementations<CR>', '[G]oto [I]mplementations', 'n')
-        maplsp('gD', '<CMD>FzfLua lsp_declarations<CR>', '[G]oto [D]eclaration', 'n')
-        maplsp('gt', '<CMD>FzfLua lsp_type_definitions<CR>', '[G]oto [T]ype definitions', 'n')
+        maplsp('gd', function()
+          snacks.picker.lsp_definitions()
+        end, '[G]oto [D]efinitions', 'n')
+        maplsp('gr', function()
+          snacks.picker.lsp_references()
+        end, '[G]oto [R]eferences', 'n')
+        maplsp('gi', function()
+          snacks.picker.lsp_implementations()
+        end, '[G]oto [I]mplementations', 'n')
+        maplsp('gD', function()
+          snacks.picker.lsp_declarations()
+        end, '[G]oto [D]eclaration', 'n')
+        maplsp('gt', function()
+          snacks.picker.lsp_type_definitions()
+        end, '[G]oto [T]ype definitions', 'n')
         maplsp('<leader>rs', vim.lsp.buf.rename, '[R]ename [S]ymbol under cursor', 'n')
         maplsp('<C-a>', vim.lsp.buf.code_action, 'Code action', { 'n', 'x', 'i' })
       end,
     })
 
     -- [D]ebug
-    local dap = require 'dap'
-    wk.add {
+    wk.add({
       mode = 'n',
       { '<leader>d', group = '[D]ebug' },
       {
@@ -334,14 +475,14 @@ return {
       {
         '<F10>',
         function()
-          require('dapui').toggle()
+          dapui.toggle()
         end,
         desc = 'Debug: toggle dapui',
       },
       {
         '<leader>d<CR>',
         function()
-          require('dapui').toggle()
+          dapui.toggle()
         end,
         desc = 'Debug: toggle dapui',
       },
@@ -457,18 +598,31 @@ return {
         end,
         desc = 'Debug: Clear breakpoints',
       },
-    }
+    })
 
     -- [G]it
-    local gs = require 'gitsigns'
-    wk.add { '<leader>g', group = '[G]it', mode = { 'n', 'v' } }
-    wk.add {
+    wk.add({ '<leader>g', group = '[G]it', mode = { 'n', 'v' } })
+    wk.add({
       mode = 'n',
       { '<leader>g<leader>', '<CMD>Git<CR>', desc = 'Git status' },
       { '<leader>gi', '<CMD>diffget //2<CR>', desc = 'Git diff get left' },
       { '<leader>go', '<CMD>diffget //3<CR>', desc = 'Git diff get right' },
-    }
-    gs.setup {
+      {
+        '<leader>gl',
+        function()
+          snacks.lazygit.log()
+        end,
+        desc = 'Git log',
+      },
+      {
+        '<leader>gL',
+        function()
+          snacks.lazygit()
+        end,
+        desc = 'Git lazygit',
+      },
+    })
+    gs.setup({
       on_attach = function(bufnr)
         local function gsmap(mode, l, r, opts)
           opts = opts or {}
@@ -478,23 +632,23 @@ return {
         end
         gsmap('n', ']c', function()
           if vim.wo.diff then
-            vim.CMD.normal { ']c', bang = true }
+            vim.CMD.normal({ ']c', bang = true })
           else
-            gs.nav_hunk 'next'
+            gs.nav_hunk('next')
           end
         end, { desc = 'Jump to next hunk' })
         gsmap('n', '[c', function()
           if vim.wo.diff then
-            vim.CMD.normal { '[c', bang = true }
+            vim.CMD.normal({ '[c', bang = true })
           else
-            gs.nav_hunk 'prev'
+            gs.nav_hunk('prev')
           end
         end, { desc = 'Jump to previous hunk' })
         gsmap('v', '<leader>gs', function()
-          gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
+          gs.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
         end, { desc = '[S]tage git hunk' })
         gsmap('v', '<leader>gr', function()
-          gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
+          gs.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
         end, { desc = '[R]eset git hunk' })
         gsmap('n', '<leader>gs', gs.stage_hunk, { desc = 'Stage hunk' })
         gsmap('n', '<leader>gr', gs.reset_hunk, { desc = 'Reset hunk' })
@@ -507,80 +661,185 @@ return {
         gsmap('n', '<leader>gv', gs.toggle_deleted, { desc = 'View deleted' })
         gsmap('n', '<leader>gd', gs.diffthis, { desc = 'Diff against last index' })
         gsmap('n', '<leader>gD', function()
-          gs.diffthis '@'
+          gs.diffthis('@')
         end, { desc = 'Diff against HEAD' })
       end,
-    }
+    })
 
     -- [S]ession
-    wk.add {
+    wk.add({
       mode = 'n',
       { '<leader>S', group = '[S]ession' },
       {
         '<leader>S<leader>',
-        '<CMD>Autosession search<CR>',
+        function()
+          local ms_dir = ms.config.directory
+          local handle = io.popen('fd .session$ ' .. ms_dir .. ' --full-path --color never')
+          if handle == nil then
+            vim.notify('Session dir ' .. ms_dir .. ' not found')
+            return
+          end
+          local output = handle:read('*a')
+          handle:close()
+          local items = {}
+          local i = 1
+          for session in output:gmatch('[^\n]+') do
+            table.insert(items, {
+              idx = i,
+              text = string.gsub(string.match(session, 'session/(.*)'), '=', '/'),
+              path = string.match(session, 'session/(.*)'),
+            })
+            i = i + 1
+          end
+          return snacks.picker({
+            title = 'Select session',
+            items = items,
+            format = function(item)
+              local ret = {}
+              ret[#ret + 1] = { item.text, 'SnacksPickerText' }
+              return ret
+            end,
+            confirm = function(picker, item)
+              picker:close()
+              ms.read(item.path)
+              vim.notify('Restored ' .. item.text)
+            end,
+            layout = { preset = 'select', preview = false },
+          })
+        end,
         desc = '[ ] Search sessions',
       },
       {
         '<leader>Ss',
-        '<CMD>SessionSave<CR>',
+        function()
+          local session_name = string.gsub(vim.fn.getcwd(), '/', '=') .. '.session'
+          ms.write(session_name)
+        end,
         desc = '[S]ave session',
       },
       {
         '<leader>Sr',
-        '<CMD>SessionRestore<CR>',
+        function()
+          local session_name = string.gsub(vim.fn.getcwd(), '/', '=') .. '.session'
+          ms.read(session_name)
+        end,
         desc = '[R]estore session',
       },
       {
         '<leader>Sd',
-        '<CMD>SessionDelete<CR>',
+        function()
+          local session_name = string.gsub(vim.fn.getcwd(), '/', '=') .. '.session'
+          ms.delete(session_name, { force = true })
+        end,
         desc = '[D]elete current session',
       },
       {
         '<leader>SD',
-        '<CMD>Autosession delete<CR>',
+        function()
+          local ms_dir = ms.config.directory
+          local handle = io.popen('fd .session$ ' .. ms_dir .. ' --full-path --color never')
+          if handle == nil then
+            vim.notify('Session dir ' .. ms_dir .. ' not found')
+            return
+          end
+          local output = handle:read('*a')
+          handle:close()
+          local items = {}
+          local i = 1
+          for session in output:gmatch('[^\n]+') do
+            table.insert(items, {
+              idx = i,
+              text = string.gsub(string.match(session, 'session/(.*)'), '=', '/'),
+              path = session,
+            })
+            i = i + 1
+          end
+          return snacks.picker({
+            title = 'Delete session',
+            items = items,
+            format = function(item)
+              local ret = {}
+              ret[#ret + 1] = { item.text, 'SnacksPickerText' }
+              return ret
+            end,
+            confirm = function(picker, item)
+              picker:close()
+              os.execute('rm ' .. item.path)
+              vim.notify('Deleted ' .. item.text)
+            end,
+            layout = { preset = 'select', preview = false },
+          })
+        end,
         desc = '[D]elete session search',
       },
-      {
-        '<leader>SP',
-        '<CMD>SessionPurgeOrphaned<CR>',
-        desc = '[P]urge orphaned session',
-      },
-    }
+    })
 
-    -- [V]env
-    wk.add {
+    -- [V]env Selector
+    wk.add({
       mode = 'n',
       { '<leader>v', group = '[V]irtual env' },
       {
+        '<leader>v<leader>',
+        function()
+          local venv = vs.venv()
+          if not venv then
+            vim.notify('No virtual env activated', vim.log.levels.INFO)
+          else
+            vim.notify('Current virtual env: \n' .. venv, vim.log.levels.INFO)
+          end
+        end,
+        desc = '[ ] Current vitural env',
+      },
+      {
         '<leader>vs',
-        '<CMD>VenvSelect<CR>',
+        function()
+          local handle = io.popen('fd /bin/python$ ~/miniconda3/envs --full-path --color never')
+          if handle == nil then
+            vim.notify('No virtual env found')
+            return
+          end
+          local output = handle:read('*a')
+          handle:close()
+          local items = {}
+          local i = 1
+          for venv in output:gmatch('[^\n]+') do
+            table.insert(items, {
+              idx = i,
+              name = venv,
+              text = string.match(venv, 'envs/(.*)/bin/python'),
+            })
+            i = i + 1
+          end
+          return snacks.picker({
+            title = 'Select virtual env',
+            items = items,
+            format = function(item)
+              local ret = {}
+              ret[#ret + 1] = { item.text, 'SnacksPickerText' }
+              ret[#ret + 1] = { ' @ ' .. item.name, 'SnacksPickerComment' }
+              return ret
+            end,
+            confirm = function(picker, item)
+              picker:close()
+              vs.activate_from_path(item.name)
+              vim.notify('Activated virtual env: ' .. item.text, vim.log.levels.INFO)
+            end,
+            layout = { preset = 'select', preview = false },
+          })
+        end,
         desc = '[S]elect vitural env',
       },
       {
         '<leader>vd',
         function()
-          require('venv-selector').deactivate()
+          vs.deactivate()
         end,
-        -- '<Plug>(deactivate)',
         desc = '[D]eactivate vitural env',
       },
-      {
-        '<leader>v<leader>',
-        function()
-          local venv = require('venv-selector').venv()
-          if not venv then
-            vim.notify 'No virtual env activated'
-          else
-            vim.notify('Activated virtual env: \n' .. require('venv-selector').venv(), vim.log.levels.INFO)
-          end
-        end,
-        desc = '[ ] Current vitural env',
-      },
-    }
+    })
 
     -- [O]bsidian
-    wk.add {
+    wk.add({
       mode = 'n',
       { '<leader>o', group = '[O]bsidian' },
       {
@@ -676,7 +935,7 @@ return {
         '<CMD>ObsidianOpen<CR>',
         desc = 'Open app',
       },
-    }
+    })
 
     -- Codeium
     vim.keymap.set('i', '<C-A-y>', function()
@@ -693,8 +952,7 @@ return {
     end, { expr = true, silent = true, desc = 'Codeium clear' })
 
     -- IronRepl (Jupyter Notebook)
-    local iron = require 'iron.core'
-    wk.add {
+    wk.add({
       cond = function()
         if vim.bo.filetype == 'python' then
           return true
@@ -726,7 +984,7 @@ return {
       {
         '<leader>jx',
         function()
-          iron.close_repl 'python'
+          iron.close_repl('python')
         end,
         desc = '[X] Close',
         mode = 'n',
@@ -784,6 +1042,6 @@ return {
         desc = 'Send [F]ile',
         mode = 'n',
       },
-    }
+    })
   end,
 }

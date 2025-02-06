@@ -10,7 +10,6 @@ return {
     format_on_save = false,
     formatters_by_ft = {
       lua = { 'stylua' },
-      -- python = { 'black' }, -- NOTE: ruff already in LSP
       json = { 'prettier' },
       markdown = { 'prettier' },
     },

@@ -13,37 +13,37 @@ return {
     },
     config = function(_, opts)
       require('nvim-treesitter.install').prefer_git = true
-      ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup(opts)
     end,
   },
   { 'HiPhish/rainbow-delimiters.nvim' },
   {
     'MeanderingProgrammer/render-markdown.nvim',
-    opts = {},
+    ft = { 'markdown', 'Avente' },
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
       'nvim-tree/nvim-web-devicons',
-      -- 'echasnovski/mini.nvim',
+      'echasnovski/mini.nvim',
     },
     config = function()
       -- Highlight
-      vim.cmd [[ highligh @markup.quote guifg=#fab4da cterm=italic gui=italic ]]
-      vim.cmd [[ highlight MarkdownTag guifg=#9adbaa cterm=italic gui=italic ]]
+      vim.cmd([[ highligh @markup.quote guifg=#fab4da cterm=italic gui=italic ]])
+      vim.cmd([[ highlight MarkdownTag guifg=#9adbaa cterm=italic gui=italic ]])
       vim.api.nvim_create_autocmd('BufWinEnter', {
         desc = 'Highlight markdown tags',
         group = vim.api.nvim_create_augroup('FormatMarkdownTag', { clear = true }),
         callback = function(opts)
           if vim.bo[opts.buf].filetype == 'markdown' then
-            vim.cmd [[ match MarkdownTag "^#\w\+\S*\|\s\+#\w\+\S*" ]]
+            vim.cmd([[ match MarkdownTag "^#\w\+\S*\|\s\+#\w\+\S*" ]])
           else
-            vim.cmd [[ match none ]]
+            vim.cmd([[ match none ]])
           end
         end,
       })
 
-      require('render-markdown').setup {
-        file_types = { 'markdown' },
+      require('render-markdown').setup({
+        file_types = { 'markdown', 'Avente' },
+        latex = { enabled = false },
         render_modes = { 'n', 'c', 'i', 'v' },
 
         -- Heading
@@ -76,7 +76,7 @@ return {
 
         -- Table
         pipe_table = { alignment_indicator = '󰮸' },
-      }
+      })
     end,
   },
 }

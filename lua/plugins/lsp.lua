@@ -1,14 +1,14 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+    { 'williamboman/mason.nvim', config = true },
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     { 'folke/neodev.nvim', opts = {} },
     {
       'smjonas/inc-rename.nvim',
       config = function()
-        require('inc_rename').setup {}
+        require('inc_rename').setup({})
       end,
     },
     {
@@ -16,7 +16,7 @@ return {
       ft = { 'markdown', 'tex' },
       dependencies = { 'neovim/nvim-lspconfig' },
     },
-    { 'saghen/blink.cmp' },
+    'saghen/blink.cmp',
   },
   config = function()
     local capabilities = require('blink.cmp').get_lsp_capabilities()
@@ -24,8 +24,7 @@ return {
     local servers = {
       pyright = {
         root_dir = function(fname)
-          local util = require 'lspconfig.util'
-          return util.find_git_ancestor(fname) or util.path.dirname(fname) -- NOTE: This sets git root dir or file's dir as root dir.
+          return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1]) or vim.fs.dirname(fname)
         end,
         settings = {
           pyright = {
@@ -47,7 +46,7 @@ return {
             completion = {
               callSnippet = 'Replace',
             },
-            -- NOTE: hammerspoon annotation support
+            -- hammerspoon annotation support
             workspace = {
               library = {
                 '$HOME/.hammerspoon/Spoons/EmmyLua.spoon/annotations',
@@ -58,12 +57,12 @@ return {
       },
       ltex = {
         on_attach = function(client, bufnr)
-          require('ltex_extra').setup {
+          require('ltex_extra').setup({
             load_langs = { 'en-US' },
             init_check = true,
             path = '$HOME/.local/share/nvim/.ltex',
             log_level = 'error',
-          }
+          })
         end,
         settings = {
           ltex = {
@@ -74,7 +73,7 @@ return {
       markdown_oxide = {
         on_attach = function(_, bufnr)
           local function check_codelens_support()
-            local clients = vim.lsp.get_active_clients { bufnr = 0 }
+            local clients = vim.lsp.get_active_clients({ bufnr = 0 })
             for _, c in ipairs(clients) do
               if c.server_capabilities.codeLensProvider then
                 return true
@@ -86,7 +85,7 @@ return {
             buffer = bufnr,
             callback = function()
               if check_codelens_support() then
-                vim.lsp.codelens.refresh { bufnr = 0 }
+                vim.lsp.codelens.refresh({ bufnr = 0 })
               end
             end,
           })
@@ -106,9 +105,9 @@ return {
       'markdown_oxide',
     })
 
-    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+    require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
-    require('mason-lspconfig').setup {
+    require('mason-lspconfig').setup({
       handlers = {
         function(server_name)
           local server = servers[server_name] or {}
@@ -116,6 +115,6 @@ return {
           require('lspconfig')[server_name].setup(server)
         end,
       },
-    }
+    })
   end,
 }

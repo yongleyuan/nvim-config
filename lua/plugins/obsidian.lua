@@ -10,7 +10,8 @@ return {
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'ibhagwan/fzf-lua',
+    -- 'ibhagwan/fzf-lua',
+    'echasnovski/mini.nvim',
     'nvim-treesitter/nvim-treesitter',
   },
   opts = {
@@ -25,13 +26,8 @@ return {
       },
     },
 
-    -- Alternatively - and for backwards compatibility - you can set 'dir' to a single path instead of 'workspaces'. For example:
-    -- dir = "~/vaults/work",
-
-    -- Optional, if you keep notes in a specific subdirectory of your vault.
     notes_subdir = vim.NIL,
 
-    -- Optional, set the log level for obsidian.nvim. This is an integer corresponding to one of the log levels defined by "vim.log.levels.*".
     log_level = vim.log.levels.INFO,
 
     daily_notes = {
@@ -59,7 +55,6 @@ return {
     new_notes_location = 'current_dir',
 
     note_id_func = function(title)
-      -- Avoid Zettelkasten timestamp for now
       local newtitle = ''
       if title ~= nil then
         -- If title is given, use as is.
@@ -108,18 +103,18 @@ return {
     },
 
     follow_url_func = function(url)
-      vim.fn.jobstart { 'open', url } -- Mac OS
+      vim.fn.jobstart({ 'open', url })
     end,
 
     follow_img_func = function(img)
-      vim.fn.jobstart { 'qlmanage', '-p', img } -- Mac OS quick look preview
+      vim.fn.jobstart({ 'qlmanage', '-p', img })
     end,
 
     use_advanced_uri = false,
 
     open_app_foreground = true,
 
-    picker = { name = 'fzf-lua' },
+    picker = { name = 'mini.pick' },
 
     sort_by = 'modified',
     sort_reversed = true,

@@ -9,14 +9,14 @@ local custom_extensions = {
   },
   winbar = { lualine_b = { 'filetype' } },
   inactive_winbar = { lualine_b = { 'filetype' } },
-  filetypes = { 'dashboard' },
+  filetypes = { 'snacks_dashboard' },
 }
 
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
-    require('lualine').setup {
+    require('lualine').setup({
       options = { theme = 'auto' },
       sections = {
         lualine_c = {
@@ -25,17 +25,16 @@ return {
               return vim.fn['codeium#GetStatusString']()
             end,
             icon = '',
-            -- separator = '',
           },
         },
         lualine_x = {
-          { -- recording macro
+          {
             require('noice').api.status.mode.get,
             cond = require('noice').api.status.mode.has,
             color = nil,
             icons_enabled = true,
           },
-          { -- last entered command
+          {
             require('noice').api.status.command.get,
             color = nil,
             icons_enabled = true,
@@ -76,6 +75,6 @@ return {
         'quickfix',
         'man',
       },
-    }
+    })
   end,
 }

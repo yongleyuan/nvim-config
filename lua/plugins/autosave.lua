@@ -12,7 +12,7 @@ return {
     },
     condition = function(buf)
       local fn = vim.fn
-      local utils = require 'auto-save.utils.data'
+      local utils = require('auto-save.utils.data')
       if
         fn.getbufvar(buf, '&modifiable') == 1
         -- change here is adding harpoon file type to exclusion list 

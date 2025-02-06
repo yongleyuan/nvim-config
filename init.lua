@@ -60,47 +60,43 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-  vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
+  vim.fn.system({ 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath })
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  require 'plugins.aerial',
-  require 'plugins.autopairs',
-  require 'plugins.autosave',
-  require 'plugins.autosession',
-  require 'plugins.avante',
-  require 'plugins.completion',
-  require 'plugins.codeium',
-  require 'plugins.colorscheme',
-  require 'plugins.comment',
-  require 'plugins.conform',
-  require 'plugins.dap',
-  require 'plugins.dashboard',
-  require 'plugins.flash',
-  require 'plugins.fzf',
-  require 'plugins.git',
-  require 'plugins.grug-far',
-  require 'plugins.harpoon',
-  require 'plugins.indent',
-  require 'plugins.image', -- NOTE: This plugin works best with Kitty/Ghostty
-  require 'plugins.ironrepl',
-  require 'plugins.lualine',
-  require 'plugins.lint',
-  require 'plugins.lsp',
-  require 'plugins.mini',
-  require 'plugins.noice',
-  require 'plugins.obsidian',
-  require 'plugins.oil',
-  require 'plugins.python-venv',
-  require 'plugins.tmux',
-  require 'plugins.treesitter',
-  require 'plugins.undotree',
-  require 'plugins.which-key',
-  require 'plugins.yanky',
+  require('plugins.aerial'),
+  require('plugins.autosave'),
+  require('plugins.avante'),
+  require('plugins.completion'),
+  require('plugins.codeium'),
+  require('plugins.colorscheme'),
+  require('plugins.conform'),
+  require('plugins.dap'),
+  require('plugins.flash'),
+  require('plugins.git'),
+  require('plugins.grug-far'),
+  require('plugins.harpoon'),
+  require('plugins.image'), -- NOTE: This plugin works best with Kitty/Ghostty
+  require('plugins.iron'),
+  require('plugins.lualine'),
+  require('plugins.lint'),
+  require('plugins.lsp'),
+  require('plugins.mini'),
+  require('plugins.noice'),
+  require('plugins.obsidian'),
+  require('plugins.oil'),
+  require('plugins.venv-selector'),
+  require('plugins.snacks'),
+  require('plugins.tmux'),
+  require('plugins.todo-comments'),
+  require('plugins.treesitter'),
+  require('plugins.undotree'),
+  require('plugins.which-key'),
+  require('plugins.yanky'),
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {

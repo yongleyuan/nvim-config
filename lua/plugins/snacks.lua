@@ -1,0 +1,61 @@
+return {
+  'folke/snacks.nvim',
+  priority = 1000,
+  lazy = false,
+  opts = {
+    bigfile = { enabled = true },
+    dashboard = {
+      enabled = true,
+      sections = {
+        { section = 'header' },
+        { pane = 1, icon = ' ', title = 'Recent Files', section = 'recent_files', indent = 2, padding = 1 },
+        { pane = 1, icon = ' ', title = 'Projects', section = 'projects', indent = 2, padding = 1 },
+        { section = 'startup' },
+      },
+    },
+    indent = { enabled = true, animate = { enabled = false } },
+    lazygit = { enabled = true },
+    picker = {
+      enabled = true,
+      win = {
+        input = {
+          keys = {
+            ['<leader>j'] = { 'history_forward', mode = { 'n' } },
+            ['<leader>k'] = { 'history_back', mode = { 'n' } },
+            ['<leader>i'] = { 'inspect', mode = { 'n' } },
+            ['<C-f>'] = 'toggle_focus',
+            ['<leader>I'] = { 'toggle_ignored', mode = { 'n' } },
+            ['<leader>F'] = { 'toggle_follow', mode = { 'n' } },
+            ['<leader>H'] = { 'toggle_hidden', mode = { 'n' } },
+            ['<leader>M'] = { 'toggle_maximize', mode = { 'n' } },
+            ['<leader>P'] = { 'toggle_preview', mode = { 'n' } },
+            ['<leader>W'] = { 'cycle_win', mode = { 'n' } },
+            ['<C-A-u>'] = { 'list_scroll_up', mode = { 'i', 'n' } },
+            ['<C-A-d>'] = { 'list_scroll_down', mode = { 'i', 'n' } },
+            ['<C-u>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
+            ['<C-d>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
+          },
+        },
+        list = {
+          keys = {
+            ['<leader>j'] = { 'history_forward', mode = { 'n' } },
+            ['<leader>k'] = { 'history_back', mode = { 'n' } },
+            ['<leader>i'] = { 'inspect', mode = { 'n' } },
+            ['<C-f>'] = 'toggle_focus',
+            ['<leader>I'] = { 'toggle_ignored', mode = { 'n' } },
+            ['<leader>F'] = { 'toggle_follow', mode = { 'n' } },
+            ['<leader>H'] = { 'toggle_hidden', mode = { 'n' } },
+            ['<leader>M'] = { 'toggle_maximize', mode = { 'n' } },
+            ['<leader>P'] = { 'toggle_preview', mode = { 'n' } },
+            ['<leader>W'] = { 'cycle_win', mode = { 'n' } },
+            ['<C-A-u>'] = { 'list_scroll_up', mode = { 'i', 'n' } },
+            ['<C-A-d>'] = { 'list_scroll_down', mode = { 'i', 'n' } },
+            ['<C-u>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
+            ['<C-d>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
+          },
+        },
+      },
+    },
+    words = { enabled = true },
+  },
+}

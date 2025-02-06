@@ -3,7 +3,7 @@ return {
   {
     'Vigemus/iron.nvim',
     config = function()
-      require('iron.core').setup {
+      require('iron.core').setup({
         config = {
           scratch_repl = true,
           repl_definition = {
@@ -19,7 +19,7 @@ return {
         },
         highlight = { italic = false },
         ignore_blank_lines = true,
-      }
+      })
     end,
   },
 }

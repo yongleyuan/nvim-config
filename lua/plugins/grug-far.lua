@@ -1,7 +1,7 @@
 return {
   'MagicDuck/grug-far.nvim',
   config = function()
-    require('grug-far').setup {
+    require('grug-far').setup({
       keymaps = {
         replace = { n = '<localleader>R' },
         qflist = { n = '<localleader>Q' },
@@ -21,7 +21,7 @@ return {
         gotoLocation = { n = '<enter>' },
         pickHistoryEntry = { n = '<enter>' },
         help = { n = 'g?' },
-      }
-    }
+      },
+    })
   end,
 }
