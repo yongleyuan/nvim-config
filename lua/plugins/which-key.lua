@@ -200,9 +200,16 @@ return {
         desc = 'Fuzzy find buffers',
       },
       {
-        '<leader>/',
+        "<leader>'",
         function()
           snacks.picker.smart()
+        end,
+        desc = 'Fuzzy smart find',
+      },
+      {
+        '<leader>/',
+        function()
+          snacks.picker.files()
         end,
         desc = 'Fuzzy find file in cwd',
       },
