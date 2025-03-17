@@ -40,6 +40,7 @@ return {
         single_file_support = true,
       },
       ruff = {},
+      clangd = {},
       lua_ls = {
         settings = {
           Lua = {

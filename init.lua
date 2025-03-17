@@ -75,6 +75,7 @@ require('lazy').setup({
   require('plugins.codeium'),
   require('plugins.colorscheme'),
   require('plugins.conform'),
+  require('plugins.distant'),
   require('plugins.dap'),
   require('plugins.flash'),
   require('plugins.git'),
