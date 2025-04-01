@@ -51,6 +51,7 @@ return {
             workspace = {
               library = {
                 '$HOME/.hammerspoon/Spoons/EmmyLua.spoon/annotations',
+                '$HOME/.wezterm/wezterm-types'
               },
             },
           },
