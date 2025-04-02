@@ -92,7 +92,7 @@ require('lazy').setup({
   require('plugins.oil'),
   require('plugins.venv-selector'),
   require('plugins.snacks'),
-  require('plugins.tmux'),
+  require('plugins.splits'),
   require('plugins.todo-comments'),
   require('plugins.treesitter'),
   require('plugins.undotree'),

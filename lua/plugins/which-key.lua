@@ -19,7 +19,7 @@ return {
     wk.setup(opts)
 
     -- Imports
-    local tmux = require('tmux')
+    local splits = require('smart-splits')
     local snacks = require('snacks')
     local gs = require('gitsigns')
     local oil = require('oil')
@@ -46,56 +46,56 @@ return {
         {
           '<C-h>',
           function()
-            tmux.move_left()
+            splits.move_cursor_left()
           end,
           desc = 'Move focus to the left window',
         },
         {
           '<C-l>',
           function()
-            tmux.move_right()
+            splits.move_cursor_right()
           end,
           desc = 'Move focus to the right window',
         },
         {
           '<C-j>',
           function()
-            tmux.move_bottom()
+            splits.move_cursor_down()
           end,
           desc = 'Move focus to the upper window',
         },
         {
           '<C-k>',
           function()
-            tmux.move_top()
+            splits.move_cursor_up()
           end,
           desc = 'Move focus to the lower window',
         },
         {
           '<C-A-h>',
           function()
-            tmux.resize_left()
+            splits.resize_left()
           end,
           desc = 'Resize to the left',
         },
         {
           '<C-A-l>',
           function()
-            tmux.resize_right()
+            splits.resize_right()
           end,
           desc = 'Resize to the right',
         },
         {
           '<C-A-j>',
           function()
-            tmux.resize_bottom()
+            splits.resize_down()
           end,
           desc = 'Resize to the bottom',
         },
         {
           '<C-A-k>',
           function()
-            tmux.resize_top()
+            splits.resize_up()
           end,
           desc = 'Resize to the top',
         },
@@ -227,6 +227,38 @@ return {
           ut.toggle()
         end,
         desc = '[U]ndotree',
+      },
+      {
+        '<leader><C-h>',
+        function()
+          splits.swap_buf_left({ move_cursor = true })
+        end,
+        desc = 'Swap buffer left',
+        hidden = true,
+      },
+      {
+        '<leader><C-l>',
+        function()
+          splits.swap_buf_right({ move_cursor = true })
+        end,
+        desc = 'Swap buffer right',
+        hidden = true,
+      },
+      {
+        '<leader><C-j>',
+        function()
+          splits.swap_buf_down({ move_cursor = true })
+        end,
+        hidden = true,
+        desc = 'Swap buffer down',
+      },
+      {
+        '<leader><C-k>',
+        function()
+          splits.swap_buf_up({ move_cursor = true })
+        end,
+        hidden = true,
+        desc = 'Swap buffer up',
       },
     })
 
