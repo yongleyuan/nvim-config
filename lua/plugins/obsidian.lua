@@ -3,10 +3,10 @@ return {
   version = '*', -- recommended, use latest release instead of latest commit
   lazy = false,
   event = {
-    'BufReadPre /Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/research',
-    'BufNewFile /Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/research',
-    'BufReadPre /Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/personal',
-    'BufNewFile /Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/personal',
+    'BufReadPre ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/research',
+    'BufNewFile ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/research',
+    'BufReadPre ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/personal',
+    'BufNewFile ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/personal',
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -18,11 +18,11 @@ return {
     workspaces = {
       {
         name = 'research',
-        path = '/Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/research',
+        path = '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/research',
       },
       {
         name = 'personal',
-        path = '/Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/personal',
+        path = '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/personal',
       },
     },
 
@@ -99,7 +99,7 @@ return {
     end,
 
     templates = {
-      folder = '/Users/jack/Library/Mobile Documents/iCloud~md~obsidian/Documents/template',
+      folder = '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/template',
     },
 
     follow_url_func = function(url)

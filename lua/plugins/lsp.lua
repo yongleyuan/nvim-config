@@ -4,7 +4,7 @@ return {
     { 'williamboman/mason.nvim', config = true },
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-    { 'folke/neodev.nvim', opts = {} },
+    { 'folke/neodev.nvim',       opts = {} },
     {
       'smjonas/inc-rename.nvim',
       config = function()
@@ -31,7 +31,7 @@ return {
             disableOrganizeImports = true,
           },
           python = {
-            venvPath = '/Users/jack/miniconda3/envs/',
+            venvPath = '~/miniconda3/envs/',
             analysis = {
               ignore = { '*' },
             },
