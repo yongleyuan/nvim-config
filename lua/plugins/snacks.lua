@@ -13,6 +13,7 @@ return {
         { section = 'startup' },
       },
     },
+    image = { enabled = true },
     indent = { enabled = true, animate = { enabled = false } },
     lazygit = { enabled = true },
     picker = {

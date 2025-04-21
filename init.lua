@@ -81,7 +81,6 @@ require('lazy').setup({
   require('plugins.git'),
   require('plugins.grug-far'),
   require('plugins.harpoon'),
-  require('plugins.image'), -- NOTE: This plugin works best with Kitty/Ghostty
   require('plugins.iron'),
   require('plugins.lualine'),
   require('plugins.lint'),
