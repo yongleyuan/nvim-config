@@ -70,7 +70,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   require('plugins.aerial'),
   require('plugins.autosave'),
-  require('plugins.avante'),
+  -- require('plugins.avante'),
   require('plugins.completion'),
   require('plugins.codeium'),
   require('plugins.colorscheme'),
