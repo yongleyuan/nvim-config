@@ -39,10 +39,6 @@ return {
         mode = 'n',
         { '\\', '<CMD>AerialToggle<CR>', desc = 'Aerial' },
         { '<Esc>', '<CMD>nohlsearch<CR>', desc = 'Clear search higlight' },
-        { '<left>', '<CMD>echo "Use h to move!!"<CR>', desc = '' },
-        { '<right>', '<CMD>echo "Use l to move!!"<CR>', desc = '' },
-        { '<up>', '<CMD>echo "Use k to move!!"<CR>', desc = '' },
-        { '<down>', '<CMD>echo "Use j to move!!"<CR>', desc = '' },
         {
           '<C-h>',
           function()
