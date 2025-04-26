@@ -1,5 +1,6 @@
 return {
   'MagicDuck/grug-far.nvim',
+  version = 'v1.6.3',
   config = function()
     require('grug-far').setup({
       keymaps = {
