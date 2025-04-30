@@ -71,7 +71,6 @@ require('lazy').setup({
   require('plugins.aerial'),
   require('plugins.ai'),
   require('plugins.autosave'),
-  -- require('plugins.avante'),
   require('plugins.completion'),
   require('plugins.colorscheme'),
   require('plugins.conform'),
