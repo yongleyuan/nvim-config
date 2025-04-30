@@ -22,7 +22,7 @@ return {
         lualine_c = {
           {
             function()
-              return vim.fn['codeium#GetStatusString']()
+              return require('codeium.virtual_text').status_string()
             end,
             icon = '',
           },

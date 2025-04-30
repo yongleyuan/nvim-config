@@ -972,19 +972,19 @@ return {
       },
     })
 
-    -- Codeium
-    vim.keymap.set('i', '<C-A-y>', function()
-      return vim.fn['codeium#Accept']()
-    end, { expr = true, silent = true, desc = 'Codeium accept' })
-    vim.keymap.set('i', '<C-A-[>', function()
-      return vim.fn['codeium#CycleCompletions'](-1)
-    end, { expr = true, silent = true, desc = 'Codeium cycle previous' })
-    vim.keymap.set('i', '<C-A-]>', function()
-      return vim.fn['codeium#CycleCompletions'](1)
-    end, { expr = true, silent = true, desc = 'Codeium cycle next' })
-    vim.keymap.set('i', '<C-A-x>', function()
-      return vim.fn['codeium#Clear']()
-    end, { expr = true, silent = true, desc = 'Codeium clear' })
+    -- -- Codeium
+    -- vim.keymap.set('i', '<C-A-y>', function()
+    --   return vim.fn['codeium#Accept']()
+    -- end, { expr = true, silent = true, desc = 'Codeium accept' })
+    -- vim.keymap.set('i', '<C-A-[>', function()
+    --   return vim.fn['codeium#CycleCompletions'](-1)
+    -- end, { expr = true, silent = true, desc = 'Codeium cycle previous' })
+    -- vim.keymap.set('i', '<C-A-]>', function()
+    --   return vim.fn['codeium#CycleCompletions'](1)
+    -- end, { expr = true, silent = true, desc = 'Codeium cycle next' })
+    -- vim.keymap.set('i', '<C-A-x>', function()
+    --   return vim.fn['codeium#Clear']()
+    -- end, { expr = true, silent = true, desc = 'Codeium clear' })
 
     -- IronRepl (Jupyter Notebook)
     wk.add({
