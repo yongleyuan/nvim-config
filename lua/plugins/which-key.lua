@@ -972,20 +972,6 @@ return {
       },
     })
 
-    -- -- Codeium
-    -- vim.keymap.set('i', '<C-A-y>', function()
-    --   return vim.fn['codeium#Accept']()
-    -- end, { expr = true, silent = true, desc = 'Codeium accept' })
-    -- vim.keymap.set('i', '<C-A-[>', function()
-    --   return vim.fn['codeium#CycleCompletions'](-1)
-    -- end, { expr = true, silent = true, desc = 'Codeium cycle previous' })
-    -- vim.keymap.set('i', '<C-A-]>', function()
-    --   return vim.fn['codeium#CycleCompletions'](1)
-    -- end, { expr = true, silent = true, desc = 'Codeium cycle next' })
-    -- vim.keymap.set('i', '<C-A-x>', function()
-    --   return vim.fn['codeium#Clear']()
-    -- end, { expr = true, silent = true, desc = 'Codeium clear' })
-
     -- IronRepl (Jupyter Notebook)
     wk.add({
       cond = function()
@@ -1075,6 +1061,39 @@ return {
           iron.send_file(filetype)
         end,
         desc = 'Send [F]ile',
+        mode = 'n',
+      },
+    })
+
+    -- CodeCompanion
+    wk.add({
+      {
+        '<leader>c',
+        group = '[C]odeCompanion',
+        mode = { 'n', 'v' },
+      },
+      {
+        '<leader>ca',
+        '<CMD>CodeCompanionActions<CR>',
+        desc = '[A]ctions',
+        mode = { 'n', 'v' },
+      },
+      {
+        '<leader>ci',
+        ':CodeCompanion ',
+        desc = '[I]nline',
+        mode = { 'n', 'v' },
+      },
+      {
+        '<leader>cc',
+        '<CMD>CodeCompanionChat<CR>',
+        desc = '[C]hat',
+        mode = { 'n', 'v' },
+      },
+      {
+        '<leader>cC',
+        '<CMD>CodeCompanionCmd<CR>',
+        desc = '[C]ommand',
         mode = 'n',
       },
     })

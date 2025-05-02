@@ -1,15 +1,7 @@
 local custom_extensions = {
-  sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {},
-  },
   winbar = { lualine_b = { 'filetype' } },
   inactive_winbar = { lualine_b = { 'filetype' } },
-  filetypes = { 'snacks_dashboard' },
+  filetypes = { 'snacks_dashboard', 'codecompanion' },
 }
 
 return {
@@ -26,6 +18,7 @@ return {
             end,
             icon = '',
           },
+          { require('plugins.codecompanion_lualine') },
         },
         lualine_x = {
           {
