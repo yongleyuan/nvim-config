@@ -1,14 +1,18 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    { 'williamboman/mason.nvim', config = true },
+    {
+      'williamboman/mason.nvim',
+      version = 'v1.11.0', -- pinned to v1.11.0 to avoid v2.0.0 breaking changes
+      config = true,
+    },
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-    { 'folke/neodev.nvim',       opts = {} },
+    { 'folke/neodev.nvim', opts = {} },
     {
       'smjonas/inc-rename.nvim',
       config = function()
-        require('inc_rename').setup({})
+        require('inc_rename').setup()
       end,
     },
     {
@@ -51,7 +55,7 @@ return {
             workspace = {
               library = {
                 '$HOME/.hammerspoon/Spoons/EmmyLua.spoon/annotations',
-                '$HOME/.wezterm/wezterm-types'
+                '$HOME/.wezterm/wezterm-types',
               },
             },
           },
