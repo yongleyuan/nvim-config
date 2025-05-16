@@ -3,10 +3,8 @@ return {
   version = '*', -- recommended, use latest release instead of latest commit
   lazy = false,
   event = {
-    'BufReadPre ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/research',
-    'BufNewFile ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/research',
-    'BufReadPre ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/personal',
-    'BufNewFile ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/personal',
+    'BufReadPre ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault_103',
+    'BufNewFile ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault_103',
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -17,12 +15,8 @@ return {
   opts = {
     workspaces = {
       {
-        name = 'research',
-        path = '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/research',
-      },
-      {
-        name = 'personal',
-        path = '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/personal',
+        name = 'vault_103',
+        path = '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vault_103',
       },
     },
 
