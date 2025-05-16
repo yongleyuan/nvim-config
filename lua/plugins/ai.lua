@@ -20,23 +20,39 @@ return {
     end,
   },
   {
+    'ravitemer/mcphub.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    cmd = 'MCPHub', -- lazy load
+    build = 'npm install -g mcp-hub@latest',
+    config = function()
+      require('mcphub').setup()
+    end,
+  },
+  {
     'olimorris/codecompanion.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
       'zbirenbaum/copilot.lua',
       'MeanderingProgrammer/render-markdown.nvim',
+      'ravitemer/mcphub.nvim', -- see above for more mcphub config
     },
     opts = {
       adapters = {
-        copilot = function()
-          return require('codecompanion.adapters').extend('copilot', {
-            schema = { model = { default = 'gemini-2.5-pro' } },
+        gemini = function()
+          return require('codecompanion.adapters').extend('gemini', {
+            env = { api_key = 'GEMINI_API_KEY' },
+            -- schema = {
+            --   model = { default = 'gemini-2.5-flash-preview' },
+            -- },
           })
         end,
       },
       strategies = {
         chat = {
+          adapter = 'gemini',
           keymaps = {
             debug = { modes = { n = '<leader>cd' }, description = 'Debug' },
             pin = { modes = { n = '<leader>cp' }, description = 'Pin Reference' },
@@ -53,14 +69,25 @@ return {
           },
         },
         inline = {
+          adapter = 'gemini',
           keymaps = {
             accept_change = { modes = { n = '<leader>cA' }, description = 'Accept the suggested change' },
             reject_change = { modes = { n = '<leader>cR' }, description = 'Reject the suggested change' },
           },
         },
+        cmd = { adapter = 'gemini' },
       },
-      -- have to set to default to use snacks.picker instead of mini.pick
-      display = { action_palette = { provider = 'default' } },
+      display = { action_palette = { provider = 'default' } }, -- have to set to default to use snacks.picker instead of mini.pick
+      extensions = {
+        mcphub = {
+          callback = 'mcphub.extensions.codecompanion',
+          opts = {
+            make_vars = true,
+            make_slash_commands = true,
+            show_result_in_chat = true,
+          },
+        },
+      },
     },
   },
 }
