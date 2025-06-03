@@ -1,5 +1,5 @@
 return {
-  'epwalsh/obsidian.nvim',
+  'obsidian-nvim/obsidian.nvim',
   version = '*', -- recommended, use latest release instead of latest commit
   lazy = false,
   event = {
@@ -8,8 +8,6 @@ return {
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
-    -- 'ibhagwan/fzf-lua',
-    'echasnovski/mini.nvim',
     'nvim-treesitter/nvim-treesitter',
   },
   opts = {
@@ -33,7 +31,8 @@ return {
     },
 
     completion = {
-      nvim_cmp = true,
+      nvim_cmp = false,
+      blink = true,
       min_chars = 0,
     },
 
@@ -108,7 +107,7 @@ return {
 
     open_app_foreground = true,
 
-    picker = { name = 'mini.pick' },
+    picker = { name = 'snacks.pick' },
 
     sort_by = 'modified',
     sort_reversed = true,
