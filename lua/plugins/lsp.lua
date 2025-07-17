@@ -3,7 +3,7 @@ return {
   dependencies = {
     {
       'williamboman/mason.nvim',
-      version = 'v1.11.0', -- pinned to v1.11.0 to avoid v2.0.0 breaking changes
+      -- version = 'v1.11.0', -- pinned to v1.11.0 to avoid v2.0.0 breaking changes
       config = true,
     },
     'williamboman/mason-lspconfig.nvim',

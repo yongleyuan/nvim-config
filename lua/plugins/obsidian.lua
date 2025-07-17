@@ -103,9 +103,9 @@ return {
       vim.fn.jobstart({ 'qlmanage', '-p', img })
     end,
 
-    use_advanced_uri = false,
+    -- use_advanced_uri = false,
 
-    open_app_foreground = true,
+    -- open_app_foreground = true,
 
     picker = { name = 'snacks.pick' },
 
