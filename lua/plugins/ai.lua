@@ -52,7 +52,7 @@ return {
       },
       strategies = {
         chat = {
-          adapter = 'gemini',
+          adapter = 'copilot',
           keymaps = {
             debug = { modes = { n = '<leader>cd' }, description = 'Debug' },
             pin = { modes = { n = '<leader>cp' }, description = 'Pin Reference' },
@@ -69,13 +69,13 @@ return {
           },
         },
         inline = {
-          adapter = 'gemini',
+          adapter = 'copilot',
           keymaps = {
             accept_change = { modes = { n = '<leader>cA' }, description = 'Accept the suggested change' },
             reject_change = { modes = { n = '<leader>cR' }, description = 'Reject the suggested change' },
           },
         },
-        cmd = { adapter = 'gemini' },
+        cmd = { adapter = 'copilot' },
       },
       display = { action_palette = { provider = 'default' } }, -- have to set to default to use snacks.picker instead of mini.pick
       extensions = {
