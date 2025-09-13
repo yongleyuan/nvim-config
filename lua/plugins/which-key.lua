@@ -815,53 +815,62 @@ return {
       { '<leader>v', group = '[V]irtual env' },
       {
         '<leader>v<leader>',
+        -- function()
+        --   local venv = vs.venv()
+        --   if not venv then
+        --     vim.notify('No virtual env activated', vim.log.levels.INFO)
+        --   else
+        --     vim.notify('Current virtual env: \n' .. venv, vim.log.levels.INFO)
+        --   end
+        -- end,
         function()
-          local venv = vs.venv()
-          if not venv then
-            vim.notify('No virtual env activated', vim.log.levels.INFO)
+          local venv_path = require('venv-selector').venv()
+          if venv_path then
+            print('Current venv: ' .. venv_path)
           else
-            vim.notify('Current virtual env: \n' .. venv, vim.log.levels.INFO)
+            print('No virtual environment selected')
           end
         end,
         desc = '[ ] Current vitural env',
       },
       {
         '<leader>vs',
-        function()
-          local handle = io.popen('fd /bin/python$ ~/miniconda3/envs --full-path --color never')
-          if handle == nil then
-            vim.notify('No virtual env found')
-            return
-          end
-          local output = handle:read('*a')
-          handle:close()
-          local items = {}
-          local i = 1
-          for venv in output:gmatch('[^\n]+') do
-            table.insert(items, {
-              idx = i,
-              name = venv,
-              text = string.match(venv, 'envs/(.*)/bin/python'),
-            })
-            i = i + 1
-          end
-          return snacks.picker({
-            title = 'Select virtual env',
-            items = items,
-            format = function(item)
-              local ret = {}
-              ret[#ret + 1] = { item.text, 'SnacksPickerText' }
-              ret[#ret + 1] = { ' @ ' .. item.name, 'SnacksPickerComment' }
-              return ret
-            end,
-            confirm = function(picker, item)
-              picker:close()
-              vs.activate_from_path(item.name)
-              vim.notify('Activated virtual env: ' .. item.text, vim.log.levels.INFO)
-            end,
-            layout = { preset = 'select', preview = false },
-          })
-        end,
+        -- function()
+        --   local handle = io.popen('fd /bin/python$ ~/miniconda3/envs --full-path --color never')
+        --   if handle == nil then
+        --     vim.notify('No virtual env found')
+        --     return
+        --   end
+        --   local output = handle:read('*a')
+        --   handle:close()
+        --   local items = {}
+        --   local i = 1
+        --   for venv in output:gmatch('[^\n]+') do
+        --     table.insert(items, {
+        --       idx = i,
+        --       name = venv,
+        --       text = string.match(venv, 'envs/(.*)/bin/python'),
+        --     })
+        --     i = i + 1
+        --   end
+        --   return snacks.picker({
+        --     title = 'Select virtual env',
+        --     items = items,
+        --     format = function(item)
+        --       local ret = {}
+        --       ret[#ret + 1] = { item.text, 'SnacksPickerText' }
+        --       ret[#ret + 1] = { ' @ ' .. item.name, 'SnacksPickerComment' }
+        --       return ret
+        --     end,
+        --     confirm = function(picker, item)
+        --       picker:close()
+        --       vs.activate_from_path(item.name)
+        --       vim.notify('Activated virtual env: ' .. item.text, vim.log.levels.INFO)
+        --     end,
+        --     layout = { preset = 'select', preview = false },
+        --   })
+        -- end,
+        '<CMD>VenvSelect<CR>',
         desc = '[S]elect vitural env',
       },
       {
@@ -879,42 +888,42 @@ return {
       { '<leader>o', group = '[O]bsidian' },
       {
         '<leader>o<leader>',
-        '<CMD>ObsidianSearch<CR>',
+        '<CMD>Obsidian search<CR>',
         desc = '[ ] Grep all notes',
       },
       {
         '<leader>o/',
-        '<CMD>ObsidianQuickSwitch<CR>',
+        '<CMD>Obsidian quick_switch<CR>',
         desc = '[/] Note name picker',
       },
       {
         '<leader>ow',
-        '<CMD>ObsidianWorkspace<CR>',
+        '<CMD>Obsidian workspace<CR>',
         desc = '[W]orkspace picker',
       },
       {
         '<leader>ot',
-        '<CMD>ObsidianTags<CR>',
+        '<CMD>Obsidian tags<CR>',
         desc = '[T]ags picker',
       },
       {
         '<leader>oi',
-        '<CMD>ObsidianTemplate<CR>',
+        '<CMD>Obsidian template<CR>',
         desc = '[I]nsert template',
       },
       {
         '<leader>op',
-        '<CMD>ObsidianPasteImg<CR>',
+        '<CMD>Obsidian paste_img<CR>',
         desc = '[P]aste image',
       },
       {
         '<leader>on',
-        '<CMD>ObsidianNew<CR>',
+        '<CMD>Obsidian new<CR>',
         desc = '[N]ew note',
       },
       {
         '<leader>or',
-        '<CMD>ObsidianRename<CR>',
+        '<CMD>Obsidian rename<CR>',
         desc = '[R]ename',
       },
       {
@@ -923,22 +932,22 @@ return {
       },
       {
         '<leader>ol<leader>',
-        '<CMD>ObsidianLinks<CR>',
+        '<CMD>Obsidian links<CR>',
         desc = '[ ] picker',
       },
       {
         '<leader>olb',
-        '<CMD>ObsidianBacklinks<CR>',
+        '<CMD>Obsidian backlinks<CR>',
         desc = '[B]ack links',
       },
       {
         '<leader>oll',
-        '<CMD>ObsidianLink<CR>',
+        '<CMD>Obsidian link ',
         desc = '[L]ink',
       },
       {
         '<leader>oln',
-        '<CMD>ObsidianLinkNew<CR>',
+        '<CMD>ObsidianLink new<CR>',
         desc = '[N]ew link',
       },
       {
@@ -947,27 +956,27 @@ return {
       },
       {
         '<leader>od<leader>',
-        '<CMD>ObsidianDailies<CR>',
+        '<CMD>Obsidian dailies<CR>',
         desc = '[ ] Daily note picker',
       },
       {
         '<leader>odd',
-        '<CMD>ObsidianToday<CR>',
+        '<CMD>Obsidian today<CR>',
         desc = '[D]aily',
       },
       {
         '<leader>ody',
-        '<CMD>ObsidianYesterday<CR>',
+        '<CMD>Obsidian yesterday<CR>',
         desc = '[Y]esterday',
       },
       {
         '<leader>odt',
-        '<CMD>ObsidianTomorrow<CR>',
+        '<CMD>Obsidian tomorrow<CR>',
         desc = '[T]omorrow',
       },
       {
         '<leader>o<CR>',
-        '<CMD>ObsidianOpen<CR>',
+        '<CMD>Obsidian open<CR>',
         desc = 'Open app',
       },
     })

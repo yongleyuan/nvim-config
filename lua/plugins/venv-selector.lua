@@ -6,9 +6,9 @@ return {
     'mfussenegger/nvim-dap-python',
     'nvim-lua/plenary.nvim',
   },
-  lazy = false,
-  branch = 'regexp',
-  config = function()
-    require('venv-selector').setup()
-  end,
+  opts = {
+    options = {
+      picker = "snacks",
+    }
+  }
 }

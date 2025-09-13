@@ -40,15 +40,17 @@ return {
       'ravitemer/mcphub.nvim', -- see above for more mcphub config
     },
     opts = {
-      adapters = {
-        gemini = function()
-          return require('codecompanion.adapters').extend('gemini', {
-            env = { api_key = 'GEMINI_API_KEY' },
-            -- schema = {
-            --   model = { default = 'gemini-2.5-flash-preview' },
-            -- },
-          })
-        end,
+      http = {
+        adapters = {
+          gemini = function()
+            return require('codecompanion.adapters').extend('gemini', {
+              env = { api_key = 'GEMINI_API_KEY' },
+              -- schema = {
+              --   model = { default = 'gemini-2.5-flash-preview' },
+              -- },
+            })
+          end,
+        },
       },
       strategies = {
         chat = {

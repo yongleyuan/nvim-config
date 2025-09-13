@@ -11,6 +11,8 @@ return {
     'nvim-treesitter/nvim-treesitter',
   },
   opts = {
+    legacy_commands = false,
+
     workspaces = {
       {
         name = 'vault_103',
@@ -34,15 +36,6 @@ return {
       nvim_cmp = false,
       blink = true,
       min_chars = 0,
-    },
-
-    mappings = {
-      ['gf'] = {
-        action = function()
-          return require('obsidian').util.gf_passthrough()
-        end,
-        opts = { noremap = false, expr = true, buffer = true },
-      },
     },
 
     new_notes_location = 'current_dir',
