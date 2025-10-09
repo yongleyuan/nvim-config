@@ -4,6 +4,7 @@ return {
   lazy = false,
   opts = {
     bigfile = { enabled = true },
+    bufdelete = { enabled = true },
     dashboard = {
       enabled = true,
       sections = {
@@ -57,6 +58,7 @@ return {
         },
       },
     },
+    rename = { enabled = true },
     words = { enabled = true },
   },
 }
