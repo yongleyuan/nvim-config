@@ -32,6 +32,7 @@ return {
     local ms = require('mini.sessions')
     local vs = require('venv-selector')
     local iron = require('iron.core')
+    local skcli = require('sidekick.cli')
 
     -- Standalone keybindings
     wk.add({
@@ -1104,6 +1105,56 @@ return {
         '<CMD>CodeCompanionCmd<CR>',
         desc = '[C]ommand',
         mode = 'n',
+      },
+    })
+
+    -- Sidekick
+    wk.add({
+      {
+        '<c-.>',
+        function()
+          skcli.toggle()
+        end,
+        desc = 'Sidekick Toggle',
+        mode = { 'n', 't', 'i', 'x' },
+      },
+      {
+        '<leader>k<leader>',
+        function()
+          skcli.toggle({ name = 'gemini', focus = true })
+        end,
+        desc = 'Sidekick Toggle Gemini CLI',
+      },
+      {
+        '<leader>kt',
+        function()
+          skcli.send({ msg = '{this}' })
+        end,
+        mode = { 'x', 'n' },
+        desc = 'Send This',
+      },
+      {
+        '<leader>kf',
+        function()
+          skcli.send({ msg = '{file}' })
+        end,
+        desc = 'Send File',
+      },
+      {
+        '<leader>kv',
+        function()
+          skcli.send({ msg = '{selection}' })
+        end,
+        mode = { 'x' },
+        desc = 'Send Visual Selection',
+      },
+      {
+        '<leader>kp',
+        function()
+          skcli.prompt()
+        end,
+        mode = { 'n', 'x' },
+        desc = 'Sidekick Select Prompt',
       },
     })
   end,

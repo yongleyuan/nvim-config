@@ -99,6 +99,7 @@ return {
           vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
         end,
       },
+      copilot = {},
     }
 
     require('mason').setup()
