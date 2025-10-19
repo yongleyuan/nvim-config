@@ -59,7 +59,6 @@ return {
             debug = { modes = { n = '<leader>cd' }, description = 'Debug' },
             pin = { modes = { n = '<leader>cp' }, description = 'Pin Reference' },
             clear = { modes = { n = '<leader>cx' }, description = 'Clear Chat' },
-            auto_tool_mode = { modes = { n = '<leader>ct' }, description = 'Toggle Auto Tool' },
             codeblock = { modes = { n = '<leader>ci' }, description = 'Insert Codeblock' },
             stop = { modes = { n = '<leader>cS' }, description = 'Stop Request' },
             change_adapter = { modes = { n = '<leader>cC' }, description = 'Change Adapter' },
