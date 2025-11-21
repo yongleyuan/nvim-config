@@ -66,7 +66,7 @@ return {
 
     preferred_link_style = 'wiki',
 
-    disable_frontmatter = false,
+    frontmatter = { enabled = true },
 
     formatter = {
       func = function(note)
@@ -104,10 +104,7 @@ return {
 
     picker = { name = 'snacks.pick' },
 
-    sort_by = 'modified',
-    sort_reversed = true,
-
-    search_max_lines = 1000,
+    search = { sort_by = 'modified', search_reversed = true, max_lines = 1000 },
 
     open_notes_in = 'current',
 

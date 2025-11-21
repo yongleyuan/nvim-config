@@ -106,8 +106,8 @@ return {
         { '<leader><CR>', 'O<ESC>', desc = '', hidden = true },
         { 'vv', 'V', desc = 'Select line' },
         { 'V', 'v$', desc = 'Select until end of line' },
-        { '[d', vim.diagnostic.goto_prev(), desc = 'Go to previous [D]iagnostic message', mode = 'n' },
-        { ']d', vim.diagnostic.goto_next(), desc = 'Go to next [D]iagnostic message', mode = 'n' },
+        { '[d', vim.diagnostic.jump({ count = 1, float = true }), desc = 'Go to previous [D]iagnostic message', mode = 'n' },
+        { ']d', vim.diagnostic.jump({ count = 1, float = true }), desc = 'Go to next [D]iagnostic message', mode = 'n' },
         {
           ',',
           function()
