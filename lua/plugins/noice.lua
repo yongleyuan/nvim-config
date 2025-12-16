@@ -47,5 +47,13 @@ return {
       },
     },
     dependencies = { 'MunifTanjim/nui.nvim' },
+    config = function()
+      require('noice').setup()
+      vim.keymap.set('i', '<C-c>', function()
+        local nldocs = require('noice.lsp.docs')
+        local message = nldocs.get('signature')
+        nldocs.hide(message)
+      end)
+    end,
   },
 }
