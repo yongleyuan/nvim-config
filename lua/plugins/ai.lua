@@ -40,43 +40,21 @@ return {
       'ravitemer/mcphub.nvim', -- see above for more mcphub config
     },
     opts = {
-      http = {
-        adapters = {
-          gemini = function()
-            return require('codecompanion.adapters').extend('gemini', {
-              env = { api_key = 'GEMINI_API_KEY' },
-              -- schema = {
-              --   model = { default = 'gemini-2.5-flash-preview' },
-              -- },
+      adapters = {
+        http = {
+          deepseek = function()
+            return require('codecompanion.adapters').extend('deepseek', {
+              schema = {
+                model = { default = 'deepseek-reasoner' },
+              },
             })
           end,
         },
       },
       strategies = {
-        chat = {
-          adapter = 'copilot',
-          keymaps = {
-            debug = { modes = { n = '<leader>cd' }, description = 'Debug' },
-            pin = { modes = { n = '<leader>cp' }, description = 'Pin Reference' },
-            clear = { modes = { n = '<leader>cx' }, description = 'Clear Chat' },
-            codeblock = { modes = { n = '<leader>ci' }, description = 'Insert Codeblock' },
-            stop = { modes = { n = '<leader>cS' }, description = 'Stop Request' },
-            change_adapter = { modes = { n = '<leader>cC' }, description = 'Change Adapter' },
-            regenerate = { modes = { n = '<leader>cr' }, description = 'Regenerate' },
-            watch = { modes = { n = '<leader>cw' }, description = 'Watch Buffer' },
-            fold_code = { modes = { n = '<leader>cf' }, description = 'Fold Code' },
-            yank_code = { modes = { n = '<leader>cy' }, description = 'Yank Code' },
-            system_prompt = { modes = { n = '<leader>cs' }, description = 'Toggle System Prompt' },
-          },
-        },
-        inline = {
-          adapter = 'copilot',
-          keymaps = {
-            accept_change = { modes = { n = '<leader>cA' }, description = 'Accept the suggested change' },
-            reject_change = { modes = { n = '<leader>cR' }, description = 'Reject the suggested change' },
-          },
-        },
-        cmd = { adapter = 'copilot' },
+        chat = { adapter = 'deepseek' },
+        inline = { adapter = 'deepseek' },
+        cmd = { adapter = 'deepseek' },
       },
       display = { action_palette = { provider = 'default' } }, -- have to set to default to use snacks.picker instead of mini.pick
       extensions = {
