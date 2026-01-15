@@ -90,18 +90,6 @@ return {
       folder = '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/template',
     },
 
-    follow_url_func = function(url)
-      vim.fn.jobstart({ 'open', url })
-    end,
-
-    follow_img_func = function(img)
-      vim.fn.jobstart({ 'qlmanage', '-p', img })
-    end,
-
-    -- use_advanced_uri = false,
-
-    -- open_app_foreground = true,
-
     picker = { name = 'snacks.pick' },
 
     search = { sort_by = 'modified', search_reversed = true, max_lines = 1000 },
@@ -119,7 +107,7 @@ return {
     ui = { enable = false },
 
     attachments = {
-      img_folder = 'images',
+      folder = './images',
 
       img_name_func = function()
         return string.format('%s-', os.time())
