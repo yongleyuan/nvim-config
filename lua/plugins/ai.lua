@@ -20,24 +20,12 @@ return {
     end,
   },
   {
-    'ravitemer/mcphub.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
-    cmd = 'MCPHub', -- lazy load
-    build = 'npm install -g mcp-hub@latest',
-    config = function()
-      require('mcphub').setup()
-    end,
-  },
-  {
     'olimorris/codecompanion.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
       'zbirenbaum/copilot.lua',
       'MeanderingProgrammer/render-markdown.nvim',
-      'ravitemer/mcphub.nvim', -- see above for more mcphub config
     },
     opts = {
       adapters = {
@@ -57,16 +45,6 @@ return {
         cmd = { adapter = 'deepseek' },
       },
       display = { action_palette = { provider = 'default' } }, -- have to set to default to use snacks.picker instead of mini.pick
-      extensions = {
-        mcphub = {
-          callback = 'mcphub.extensions.codecompanion',
-          opts = {
-            make_vars = true,
-            make_slash_commands = true,
-            show_result_in_chat = true,
-          },
-        },
-      },
     },
   },
   {

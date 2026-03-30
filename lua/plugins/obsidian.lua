@@ -62,9 +62,7 @@ return {
       return path .. '.md'
     end,
 
-    wiki_link_func = 'use_alias_only',
-
-    preferred_link_style = 'wiki',
+    link = { style = 'wiki' },
 
     frontmatter = { enabled = true },
 
