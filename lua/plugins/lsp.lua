@@ -110,6 +110,7 @@ return {
       'ruff',
       'prettier',
       'markdown_oxide',
+      'markdownlint'
     })
 
     require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
